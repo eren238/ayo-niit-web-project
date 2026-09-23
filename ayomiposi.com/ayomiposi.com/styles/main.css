@@ -1,0 +1,151 @@
+.auth-background {
+    height: 100%;
+    width: 100%;
+    background-color: var(--main-background-color);
+    background-size: 100%;
+    background-position: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-background .form-container {
+    height: 100%;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-background .form-container .form-wrapper {
+    padding: 30px;
+    display: flex;
+    width: 100%;
+    min-height: 100px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-background .form-container .form-wrapper .top-text-wrapper h1 {
+    font-family: bold;
+    line-height: 50px;
+    font-size: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-background .form-container .form-wrapper .top-text-wrapper h3 {
+    font-family: bold;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+    color: var(--black-color);
+    margin-bottom: 19px;
+
+}
+
+.auth-background .form-container .form-wrapper .top-text-wrapper p {
+    font-family: body-font;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 14px;
+    color: var(--font-color);
+    margin-bottom: 7px;
+
+}
+
+.auth-background .form-container .form-wrapper .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.auth-background .form-container .form-wrapper .form-content .text-field {
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    border-color: var(--border-color);
+    width: 350px;
+    font-size: 15px;
+    color: var(--background-color);
+    background-color: var(--white-color);
+}
+
+.auth-background .form-container .form-wrapper .form-content .text-field {
+    padding-left: 10px;
+}
+
+
+.auth-background .form-container .form-wrapper .form-content .btn {
+    height: 50px;
+    width: 350px;
+    padding: 1px;
+    margin-top: 20px;
+    border-radius: 9px;
+    background-color: var(--primary-color);
+    font-size: 15px;
+    color: var(--white-color);
+}
+
+.auth-background .form-container .form-wrapper .form-content .btn:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.auth-background .form-container .form-wrapper .text-content .top-text-wrapper {
+    display: flex;
+    justify-content: middle;
+    font-family: body-font;
+    font-size: 15px;
+    color: var(--botton-color);
+    gap: 8px;
+}
+
+.auth-background .form-container .form-wrapper .text-content .top-text-wrapper .btn {
+    text-decoration: underline;
+}
+
+.auth-background .form-container .form-wrapper .text-content .bottom-text-wrapper {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    color: var(--botton-color)
+}
+
+.auth-background .form-container .form-wrapper .text-content .bottom-text-wrapper {
+    text-decoration: underline;
+}
+
+
+@media all and (max-width: 500px) {
+    .auth-background .form-container .form-wrapper .top-text-wrapper p {
+        font-size: 14px
+    }
+
+    .auth-background .form-container .form-wrapper .text-content .top-text-wrapper .btn {
+        font-size: 10px;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .auth-background .form-container .form-wrapper .top-text-wrapper p {
+        font-size: 13px;
+    }
+}
+@media all and (max-width: 370px) {
+    .auth-background .form-container .form-wrapper .form-content .text-field {
+        width: 300px;
+        border-radius: 6px;
+
+    }
+
+    .auth-background .form-container .form-wrapper .form-content .btn {
+        width: 300px;
+        border-radius: 6px;
+
+    }
+}

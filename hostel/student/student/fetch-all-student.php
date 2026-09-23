@@ -1,6 +1,3 @@
-php
-
-
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 <?php
 $fetchAllStudentQuery = mysqli_query($conn, "SELECT   student_tab.*, status_tab.status_name FROM student_tab, status_tab  WHERE student_tab.status_id = status_tab.status_id ORDER BY student_tab.created_at DESC") or die(mysqli_error($conn));

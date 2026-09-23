@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../config/connection.php'; ?>
 
 <?php
-$allocationId = trim($_POST['allocationId'] ?? '');
+$allocationId = trim($_POST['allocationId']);
 
 if ($allocationId == '') {
     $response = [

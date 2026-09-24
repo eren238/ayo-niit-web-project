@@ -7,22 +7,24 @@ $block    = trim($_POST['block']);
 $floor    = trim($_POST['floor']);
 
 // Base query
-$sql = "SELECT  rooms_tab.*, hostels_tab.hostel_name FROM rooms_tab, hostels_tab WHERE rooms_tab.hostel_id = hostels_tab.hostel_id";
+$room = "SELECT  rooms_tab.*, hostels_tab.hostel_name FROM rooms_tab, hostels_tab WHERE rooms_tab.hostel_id = hostels_tab.hostel_id";
 
 // Dynamic filters matching your UI dropdowns
 if ($hostelId != '') {
-    $sql .= " AND rooms_tab.hostel_id = '$hostelId'";
+    $room .= " AND rooms_tab.hostel_id = '$hostelId'";
 }
+
 if ($block != '') {
-    $sql .= " AND rooms_tab.block = '$block'";
+    $room .= " AND rooms_tab.block = '$block'";
 }
+
 if ($floor != '') {
-    $sql .= " AND rooms_tab.floor = '$floor'";
+    $room .= " AND rooms_tab.floor = '$floor'";
 }
 
-$sql .= " ORDER BY rooms_tab.room_number ASC";
+$room .= " ORDER BY rooms_tab.room_number ASC";
 
-$fetchRoomsQuery = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+$fetchRoomsQuery = mysqli_query($conn, $room) or die(mysqli_error($conn));
 
 if (mysqli_num_rows($fetchRoomsQuery) == 0) {
     $response = [
@@ -33,11 +35,11 @@ if (mysqli_num_rows($fetchRoomsQuery) == 0) {
 }
 
 $roomsData = mysqli_fetch_all($fetchRoomsQuery, MYSQLI_ASSOC);
-
 $response = [
     'success' => true,
     'message' => "ROOMS FETCHED SUCCESSFULLY",
     'data'    => $roomsData
+    
 ];
 
 end:

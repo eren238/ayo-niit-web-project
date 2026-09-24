@@ -6,6 +6,7 @@ $hostelName     = trim($_POST['hostelName']);
 $code           = trim($_POST['code']);
 $gender         = trim($_POST['gender']);
 $hostelCapacity = trim($_POST['capacity']);
+$statusId       = trim($_POST['statusId'] ??'1');
 
 $hostelId = $code;
 

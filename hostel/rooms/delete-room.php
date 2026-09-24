@@ -12,7 +12,7 @@ if ($roomId == '') {
     goto end;
 }
 
-// 1. CHECK IF ROOM EXISTS
+
 $checkRoom = mysqli_query($conn, "SELECT * FROM rooms_tab WHERE room_id = '$roomId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkRoom) == 0) {
     $response = [
@@ -22,7 +22,6 @@ if (mysqli_num_rows($checkRoom) == 0) {
     goto end;
 }
 
-// 2. CHECK IF ANY BED IN THIS ROOM IS OCCUPIED ('O')
 $checkOccupied = mysqli_query($conn, "SELECT * FROM beds_tab WHERE room_id = '$roomId' AND status_id = 'O'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkOccupied) > 0) {
     $response = [
@@ -32,7 +31,6 @@ if (mysqli_num_rows($checkOccupied) > 0) {
     goto end;
 }
 
-// 3. DELETE BEDS IN THIS ROOM AND DELETE THE ROOM
 mysqli_query($conn, "DELETE FROM beds_tab WHERE room_id = '$roomId'") or die(mysqli_error($conn));
 mysqli_query($conn, "DELETE FROM rooms_tab WHERE room_id = '$roomId'") or die(mysqli_error($conn));
 

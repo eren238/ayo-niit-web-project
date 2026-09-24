@@ -7,7 +7,7 @@ $hostelName     = trim($_POST['hostelName']);
 $code           = trim($_POST['code']);
 $gender         = trim($_POST['gender']);
 $hostelCapacity = trim($_POST['hostelCapacity']);
-$statusId       = trim($_POST['statusId']);
+$statusId       = trim($_POST['statusId'] ?? '1');
 
 if ($hostelId == '') {
     $response = [

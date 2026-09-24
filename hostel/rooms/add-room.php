@@ -7,7 +7,7 @@ $roomNumber   = trim($_POST['roomNumber']);
 $block        = trim($_POST['block']);                  
 $floor        = trim($_POST['floor'] );                  
 $roomCapacity = trim($_POST['roomCapacity']); 
-$statusId     = trim($_POST['statusId']);      
+$statusId     = trim($_POST['statusId']);     
 
 if ($hostelId == '') {
     $response = [

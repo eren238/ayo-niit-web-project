@@ -10,7 +10,7 @@ $bedId     = trim($_POST['bedId']);
 if ($studentId == '') {
     $response = [
         'success' => false,
-        'message' => "STUDENT IS REQUIRED, Kindly select a student"
+        'message' => "STUDENT ID IS REQUIRED, Kindly select a student"
     ];
     goto end;
 }
@@ -18,7 +18,7 @@ if ($studentId == '') {
 if ($hostelId == '') {
     $response = [
         'success' => false,
-        'message' => "HOSTEL IS REQUIRED, Kindly select a hostel"
+        'message' => "HOSTEL ID IS REQUIRED, Kindly select a hostel"
     ];
     goto end;
 }
@@ -26,7 +26,7 @@ if ($hostelId == '') {
 if ($roomId == '') {
     $response = [
         'success' => false,
-        'message' => "ROOM IS REQUIRED, Kindly select a room"
+        'message' => "ROOM ID IS REQUIRED, Kindly select a room"
     ];
     goto end;
 }

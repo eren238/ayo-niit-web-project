@@ -58,7 +58,7 @@ if ($dueDate == '') {
     goto end;
 }
 
-// 1. CHECK IF FEE EXISTS
+
 $checkFee = mysqli_query($conn, "SELECT * FROM fees_tab WHERE fee_id = '$feeId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkFee) == 0) {
     $response = [
@@ -68,7 +68,6 @@ if (mysqli_num_rows($checkFee) == 0) {
     goto end;
 }
 
-// 2. UPDATE RECORD
 mysqli_query($conn, "UPDATE `fees_tab` SET 
     `fee_name`   = '$feeName',
     `hostel_id`  = '$hostelId',
@@ -79,15 +78,8 @@ mysqli_query($conn, "UPDATE `fees_tab` SET
     `updated_at` = NOW() 
     WHERE `fee_id` = '$feeId'") or die(mysqli_error($conn));
 
-// 3. FETCH UPDATED RECORD
-$fetchUpdated = mysqli_query($conn, "SELECT 
-        fees_tab.*, 
-        hostels_tab.hostel_name, 
-        status_tab.status_name 
-    FROM fees_tab, hostels_tab, status_tab 
-    WHERE fees_tab.hostel_id = hostels_tab.hostel_id 
-      AND fees_tab.status_id = status_tab.status_id 
-      AND fees_tab.fee_id = '$feeId'") or die(mysqli_error($conn));
+
+$fetchUpdated = mysqli_query($conn, "SELECT  fees_tab.*, hostels_tab.hostel_name,  status_tab.status_name FROM fees_tab, hostels_tab, status_tab  WHERE fees_tab.hostel_id = hostels_tab.hostel_id AND fees_tab.status_id = status_tab.status_id AND fees_tab.fee_id = '$feeId'") or die(mysqli_error($conn));
 
 $data = mysqli_fetch_assoc($fetchUpdated);
 

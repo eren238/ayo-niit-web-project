@@ -10,8 +10,17 @@ header('Content-Type: application/json; charset=UTF-8');
 $_HOST_NAME = "localhost";  
 $_DB_USERNAME ="root";
 $_DB_PASSWORD ="";
-
 $conn = mysqli_connect($_HOST_NAME, $_DB_USERNAME, $_DB_PASSWORD)or die("Unable to connect to MySQL1");
 mysqli_select_db($conn,"hostel_db");
+/////////////////////////////////////////////////////////////////
+
+
+////////////for online connect  
+// $_HOST_NAME = "102.68.98.184";  
+// $_DB_USERNAME ="niitwebd_hostelhub";
+// $_DB_PASSWORD ="UPvXCZWtzGS48K6rn9Jb";
+
+// $conn = mysqli_connect($_HOST_NAME, $_DB_USERNAME, $_DB_PASSWORD)or die("Unable to connect to MySQL1");
+// mysqli_select_db($conn,"niitwebd_hosttel_hub_db");
 /////////////////////////////////////////////////////////////////
 ?>

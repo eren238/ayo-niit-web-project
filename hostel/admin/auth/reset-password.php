@@ -2,25 +2,25 @@
 
 <?php
 // DECLERATION OF VARIABLE
-$emailAddress = trim($_POST['emailAddress']);
+$staffId = trim($_POST['staffId']);
 $resetOtp = trim($_POST['resetOtp']);
 $newPassword = trim($_POST['newPassword']);
 $confirmPassword = trim($_POST['confirmPassword']);
 
-if ($emailAddress == '') {
+if ($staffId == '') {
 
     $response = [
         'success' => false,
-        'message' => "EMAIL ADDRESS IS REQUIRED, Kindly fill in the email address to continue"
+        'message' => "STAFF ID IS REQUIRED, Kindly fill in the staff id to continue"
     ];
     goto end;
 }
 
-if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
+$checkStaffQuery = mysqli_query($conn, "SELECT * FROM staff_tab WHERE staff_id = '$staffId'") or die(mysqli_error($conn));
+if (mysqli_num_rows($checkStaffQuery) == 0) {
     $response = [
-        'response' => 102,
         'success' => false,
-        'message' => "INVALID EMAIL ADDRESS! Enter a valid email address and try again",
+        'message' => "STAFF NOT FOUND, Kindly check your details and try again"
     ];
     goto end;
 }
@@ -61,7 +61,7 @@ if ($newPassword != $confirmPassword) {
     goto end;
 }
 
-$otpCheck = mysqli_query($conn, "SELECT * FROM staff_tab WHERE email_address = '$emailAddress' AND reset_otp = '$resetOtp' LIMIT 1") or die(mysqli_error($conn));
+$otpCheck = mysqli_query($conn, "SELECT * FROM staff_tab WHERE staff_id = '$staffId' AND reset_otp = '$resetOtp' LIMIT 1") or die(mysqli_error($conn));
 if (mysqli_num_rows($otpCheck) == 0) {
 
     $response = [

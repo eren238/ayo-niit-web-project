@@ -58,7 +58,7 @@ if ($statusId == '') {
     ];
     goto end;
 }
-// 1. CHECK IF STAFF EXISTS
+
 $checkStaffQuery = mysqli_query($conn, "SELECT * FROM staff_tab WHERE staff_id = '$staffId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkStaffQuery) == 0) {
     $response = [

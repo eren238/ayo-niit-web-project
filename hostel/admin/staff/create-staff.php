@@ -6,7 +6,6 @@
 $firstName = trim($_POST['firstName']);
 $lastName = trim($_POST['lastName']);
 $emailAddress = trim($_POST['emailAddress']);
-$password = $_POST['password'];
 $roleId = $_POST['roleId'];
 $statusId = $_POST['statusId'];
 
@@ -43,13 +42,6 @@ if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
     goto end;
 }
 
-if ($password == '') {
-    $response = [
-        'success' => false,
-        'message' => "PASSWORD IS REQUIRED, Kindly fill in the password to continue"
-    ];
-    goto end;
-}
 
 if ($roleId == '') {
     $response = [
@@ -77,11 +69,10 @@ if (mysqli_num_rows($emailcheck) > 0) {
 }
 
 $staffId = 'STAFF' . date("Ymdhis");
-$hashPassword = md5($password);
 
 mysqli_query($conn, "INSERT INTO `staff_tab`
-    ( `staff_id`, `first_name`, `last_name`, `email_address`,  `status_id`,  `password`, `role_id`, `created_at`, `updated_at`) VALUES
-    ('$staffId', '$firstName', '$lastName', '$emailAddress',   '$statusId',  '$hashPassword',  '$roleId', NOW(), NOW())") or die(mysqli_error($conn));
+    ( `staff_id`, `first_name`, `last_name`, `email_address`,  `status_id`, `role_id`, `created_at`, `updated_at`) VALUES
+    ('$staffId', '$firstName', '$lastName', '$emailAddress',   '$statusId',  '$roleId', NOW(), NOW())") or die(mysqli_error($conn));
 
 $createStaffQuery = mysqli_query($conn, "SELECT staff_tab.*, role_tab.role_name, status_tab.status_name FROM staff_tab, role_tab, status_tab WHERE staff_tab.role_id = role_tab.role_id AND staff_tab.status_id = status_tab.status_id AND staff_tab.email_address = '$emailAddress'") or die(mysqli_error($conn));
 $staffData = mysqli_fetch_assoc($createStaffQuery);
@@ -94,7 +85,6 @@ $response = [
         'firstName' => $staffData['first_name'],
         'lastName' => $staffData['last_name'],
         'emailAddress' => $staffData['email_address'],
-        'password' => $staffData['password'],
         'roleName' => $staffData['role_name'],
         'lastLogin' => $staffData['last_login'], 
         'statusName' => $staffData['status_name'],

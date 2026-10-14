@@ -1,9 +1,9 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 
 <?php
-// DECLARATION OF VARIABLES
-$emailAddress = trim($_POST['emailAddress']);
-$password = trim($_POST['password']);
+
+$emailAddress = trim($_POST['emailAddress'] ?? '');
+$password     = trim($_POST['password'] ?? '');
 
 if ($emailAddress == '') {
     $response = [
@@ -31,7 +31,7 @@ if ($password == '') {
 
 $hashPassword = md5($password);
 
-$loginQuery = mysqli_query($conn, "SELECT staff_tab.*, role_tab.role_name, status_tab.status_name FROM staff_tab, role_tab, status_tab WHERE staff_tab.role_id = role_tab.role_id AND staff_tab.status_id = status_tab.status_id AND staff_tab.email_address = '$emailAddress' AND staff_tab.password = '$hashPassword'") or die(mysqli_error($conn));
+$loginQuery = mysqli_query($conn, "SELECT student_tab.*, status_tab.status_name FROM student_tab, status_tab WHERE student_tab.status_id = status_tab.status_id AND student_tab.email_address = '$emailAddress' AND student_tab.password = '$hashPassword'") or die(mysqli_error($conn));
 
 if (mysqli_num_rows($loginQuery) == 0) {
     $response = [
@@ -41,34 +41,25 @@ if (mysqli_num_rows($loginQuery) == 0) {
     goto end;
 }
 
-$staffData = mysqli_fetch_assoc($loginQuery);
+$studentData = mysqli_fetch_assoc($loginQuery);
+$studentId = $studentData['student_id'];
 
-if ($staffData['status_id'] !== '1') {
-    $response = [
-        'success' => false,
-        'message' => "ACCOUNT SUSPENDED OR INACTIVE! Contact system administrator for support"
-    ];
-    goto end;
-}
-
-$staffId = $staffData['staff_id'];
-
-$loginStaffQuery = mysqli_query($conn, "SELECT staff_tab.*, role_tab.role_name, status_tab.status_name FROM staff_tab, role_tab, status_tab WHERE staff_tab.role_id = role_tab.role_id AND staff_tab.status_id = status_tab.status_id AND staff_tab.email_address = '$emailAddress'") or die(mysqli_error($conn));
-$staffData = mysqli_fetch_assoc($loginStaffQuery);
+mysqli_query($conn, "UPDATE `student_tab` SET `last_login` = NOW() WHERE `student_id` = '$studentId'") or die(mysqli_error($conn));
 
 $response = [
     'success' => true,
-    'message' => "STAFF LOGIN SUCCESSFUL",
-    'data' => [
-        'staffId' => $staffData['staff_id'],
-        'firstName' => $staffData['first_name'],
-        'lastName' => $staffData['last_name'],
-        'emailAddress' => $staffData['email_address'],
-        'roleName' => $staffData['role_name'],
-        'lastLogin' => $staffData['last_login'], 
-        'statusName' => $staffData['status_name'],
+    'message' => "STUDENT LOGIN SUCCESSFUL",
+    'data'    => [
+        'studentId'    => $studentData['student_id'],
+        'firstName'    => $studentData['first_name'],
+        'lastName'     => $studentData['last_name'],
+        'emailAddress' => $studentData['email_address'],
+        'gender'       => $studentData['gender'],
+        'lastLogin'    => $studentData['last_login'],
+        'statusName'   => $studentData['status_name']
     ]
 ];
+
 end:
 echo json_encode($response);
 ?>

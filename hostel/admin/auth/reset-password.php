@@ -89,7 +89,6 @@ $response = [
         'lastName' => $staffData['last_name'],
         'emailAddress' => $staffData['email_address'],
         'statusName' => $staffData['status_name'],
-        'password' => $staffData['password'],
         'createdAt' => $staffData['created_at'],
         'updatedAt' => $staffData['updated_at']
     ]

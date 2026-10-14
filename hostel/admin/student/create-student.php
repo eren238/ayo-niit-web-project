@@ -8,7 +8,6 @@ $department   = trim($_POST['department']);
 $level        = trim($_POST['level']);
 $phoneNumber  = trim($_POST['phoneNumber']);
 $emailAddress = trim($_POST['emailAddress']);
-$password     = $_POST['password'];
 $statusId     = trim($_POST['statusId']);
 if ($firstName == '') {
     $response = [
@@ -67,13 +66,7 @@ if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
     ];
     goto end;
 }
-if ($password == '') {
-    $response = [
-        'success' => false,
-        'message' => "PASSWORD IS REQUIRED, Kindly fill in the password to continue"
-    ];
-    goto end;
-}
+
 if ($statusId == '') {
     $response = [
         'success' => false,
@@ -90,10 +83,9 @@ if (mysqli_num_rows($emailcheck) > 0) {
     goto end;
 }
 $studentId    = 'STUDENT' . date("Ymdhis");
-$hashPassword = md5($password);
 mysqli_query($conn, "INSERT INTO `student_tab`
-    (`student_id`, `first_name`, `last_name`, `gender`, `department`, `level`, `phone_number`, `email_address`, `password`, `status_id`, `created_at`, `updated_at`) VALUES
-    ('$studentId', '$firstName', '$lastName', '$gender', '$department', '$level', '$phoneNumber', '$emailAddress', '$hashPassword', '$statusId', NOW(), NOW())") or die(mysqli_error($conn));
+    (`student_id`, `first_name`, `last_name`, `gender`, `department`, `level`, `phone_number`, `email_address`, `status_id`, `created_at`, `updated_at`) VALUES
+    ('$studentId', '$firstName', '$lastName', '$gender', '$department', '$level', '$phoneNumber', '$emailAddress', '$statusId', NOW(), NOW())") or die(mysqli_error($conn));
 $createStudentQuery = mysqli_query($conn, "SELECT student_tab.*, status_tab.status_name FROM student_tab, status_tab WHERE student_tab.status_id = status_tab.status_id AND student_tab.email_address = '$emailAddress'") or die(mysqli_error($conn));
 $studentData = mysqli_fetch_assoc($createStudentQuery);
 $response = [
@@ -108,7 +100,6 @@ $response = [
         'level'        => $studentData['level'],
         'phoneNumber'  => $studentData['phone_number'],
         'emailAddress' => $studentData['email_address'],
-        'password'     => $studentData['password'],
         'statusName'   => $studentData['status_name'],
     ]
 ];

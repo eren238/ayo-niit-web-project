@@ -1,7 +1,5 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
-
 <?php
-
 $visitorName   = trim($_POST['visitorName'] ?? '');
 $studentId     = trim($_POST['studentId'] ?? '');
 $purpose       = trim($_POST['purpose'] ?? '');

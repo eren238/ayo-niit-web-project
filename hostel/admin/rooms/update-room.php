@@ -8,7 +8,7 @@ $roomNumber   = trim($_POST['roomNumber']);
 $block        = trim($_POST['block']);
 $floor        = trim($_POST['floor']);
 $roomCapacity = trim($_POST['roomCapacity']);
-$statusId     = trim($_POST['statusId']); 
+$statusId     = 1; 
 
 if ($roomId == '') {
     $response = [
@@ -58,7 +58,7 @@ if ($roomCapacity == '' || !is_numeric($roomCapacity) || $roomCapacity <= 0) {
     goto end;
 }
 
-// 1. CHECK IF ROOM EXISTS
+
 $checkRoomQuery = mysqli_query($conn, "SELECT * FROM rooms_tab WHERE room_id = '$roomId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkRoomQuery) == 0) {
     $response = [
@@ -67,8 +67,6 @@ if (mysqli_num_rows($checkRoomQuery) == 0) {
     ];
     goto end;
 }
-
-// 2. CHECK IF ROOM NUMBER IS ALREADY TAKEN IN THIS HOSTEL
 $roomCheck = mysqli_query($conn, "SELECT * FROM rooms_tab 
     WHERE hostel_id = '$hostelId' AND room_number = '$roomNumber' AND room_id != '$roomId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($roomCheck) > 0) {
@@ -79,7 +77,7 @@ if (mysqli_num_rows($roomCheck) > 0) {
     goto end;
 }
 
-// 3. UPDATE ROOM RECORD
+
 mysqli_query($conn, "UPDATE `rooms_tab` SET 
     `hostel_id`     = '$hostelId',
     `room_number`   = '$roomNumber',
@@ -89,7 +87,7 @@ mysqli_query($conn, "UPDATE `rooms_tab` SET
     `status_id`     = '$statusId'
     WHERE `room_id` = '$roomId'") or die(mysqli_error($conn));
 
-// 4. FETCH UPDATED RECORD
+
 $fetchUpdated = mysqli_query($conn, "SELECT 
         rooms_tab.*, 
         hostels_tab.hostel_name, 

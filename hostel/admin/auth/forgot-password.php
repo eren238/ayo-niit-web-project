@@ -46,8 +46,12 @@ if (mysqli_num_rows($emailCheck) == 0) {
 
 $staffData = mysqli_fetch_assoc($emailCheck);
 $staffId = $staffData['staff_id'];
+$emailAddress = $staffData['email_address'];
+$staffName = $staffData['first_name']. " ".$staffData['last_name'];
 
 $otpCode = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+require_once __DIR__ . '/../../config/mail/user/sent-otp-to-mail.php';
+
 
 
 mysqli_query($conn, "UPDATE staff_tab SET reset_otp='$otpCode', updated_at=NOW() WHERE staff_id='$staffId'");

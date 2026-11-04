@@ -51,3 +51,72 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.alert-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgb(0, 0, 0, 0.6);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.alert-overlay .alert-container {
+    height: 300px;
+    width: 400px;
+    border-radius: 10px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+
+
+}
+
+.alert-overlay .alert-container .image-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.alert-overlay .alert-container .image-wrapper img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.alert-overlay .alert-container h4 {
+    font-size: 15px;
+    font-family: sub-title-font;
+
+}
+
+.alert-overlay .alert-container .btn {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: var(--white-color);
+    height: 50px;
+    padding: 0px 30px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-family: sub-title-font;
+    transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    -ms-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    -moz-transition: all ease 0.2s;
+
+}
+
+.alert-overlay .alert-container .btn:hover {
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+}
+
+.alertModal {
+    display: flex;
+}

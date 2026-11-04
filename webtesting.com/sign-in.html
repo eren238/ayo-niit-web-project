@@ -14,9 +14,12 @@
     <link href="styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
     <link href="styles/contants.css" type="text/css" rel="stylesheet" />
     <link href="styles/main.css" type="text/css" rel="stylesheet" />
+      <script src="js/auth.js"></script>
     <title>NIITITCORE | Sign In</title>
 </head>
 <body>
+    <div class="alert-overlay" id="alert"></div>
+
     <section class="auth-session">
         <div class="auth-background">
             <div class="overlay-bg">
@@ -45,11 +48,11 @@
                                 </div>
                                 <div class="input-wrapper">
                                     <label> Password <span>*</span></label>
-                                    <input type="text" class="text-field" id="emailAddress"
+                                    <input type="text" class="text-field" id="password"
                                         placeholder="Enter your password" />
                                 </div>
 
-                                <button class="btn" title="sign-in">Sign-in</button>
+                                <button class="btn" title="sign-in" id="signInBtnId" onclick="signInHandle()">Sign-in</button>
                             </div>
 
                             <div class="bottom-container">

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Master Allocations</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item active">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Master Control</h4>
+                <p class="help-widget-subtext">Manage institutional allocations, overrides, and session terms.</p>
+                <a href="setup.html" class="help-widget-btn">
+                    <i class="bi bi-gear-fill"></i> System Setup
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Master Room Allocations</h1>
+                        <p>Institutional record of student room allocations, bed assignments, and tenancy</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#new-allocation" class="btn-primary">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>New Room Allocation</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Total Allocated</span>
+                        </div>
+                        <p class="stat-big-value">482 Beds</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>96.4% of Target</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-gender-male"></i>
+                            </div>
+                            <span class="stat-label-title">Male Allocations</span>
+                        </div>
+                        <p class="stat-big-value">258 Beds</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Blocks A & C</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-gender-female"></i>
+                            </div>
+                            <span class="stat-label-title">Female Allocations</span>
+                        </div>
+                        <p class="stat-big-value">224 Beds</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Blocks B & D</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-layers-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Remaining Vacancies</span>
+                        </div>
+                        <p class="stat-big-value">18 Beds</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Open for Assignment</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by student name, matric number, or room...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Hostel Block">
+                            <option value="">All Blocks</option>
+                            <option value="Block A">Block A (Nelson Mandela)</option>
+                            <option value="Block B">Block B (Queen Amina)</option>
+                            <option value="Block C">Block C (Kofi Annan)</option>
+                            <option value="Block D">Block D (Moremi)</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Academic Session">
+                            <option value="">All Sessions</option>
+                            <option value="2024/2025" selected>2024 / 2025</option>
+                            <option value="2023/2024">2023 / 2024</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Resident</th>
+                                    <th>Hostel & Room</th>
+                                    <th>Bed Space</th>
+                                    <th>Academic Session</th>
+                                    <th>Allocation Date</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">AP</div>
+                                            <div>
+                                                <div class="cell-title">Ayo Posikay</div>
+                                                <div class="cell-subtitle">STUDENT20260924</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block A - Room 204</strong></td>
+                                    <td>Bed 1 (Lower Bunk)</td>
+                                    <td>2024 / 2025</td>
+                                    <td>24 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Allocated</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#new-allocation" class="btn-action-icon" title="Edit Allocation"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deallocate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">CE</div>
+                                            <div>
+                                                <div class="cell-title">Chioma Eze</div>
+                                                <div class="cell-subtitle">STUDENT20260925</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block B - Room 112</strong></td>
+                                    <td>Bed 2 (Upper Bunk)</td>
+                                    <td>2024 / 2025</td>
+                                    <td>25 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Allocated</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#new-allocation" class="btn-action-icon" title="Edit Allocation"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deallocate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fefce8; color: #b45309;">IM</div>
+                                            <div>
+                                                <div class="cell-title">Ibrahim Musa</div>
+                                                <div class="cell-subtitle">STUDENT20260926</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block A - Room 305</strong></td>
+                                    <td>Bed 3 (Lower Bunk)</td>
+                                    <td>2024 / 2025</td>
+                                    <td>26 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Allocated</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#new-allocation" class="btn-action-icon" title="Edit Allocation"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deallocate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="new-allocation">
+                    <div>
+                        <h3 class="section-card-title">Allocate Room to Resident</h3>
+                        <p class="section-card-desc">Assign a verified student to an available hostel room and bedspace</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Select Student *</label>
+                                <select class="form-select-custom" name="studentId" id="studentId" required>
+                                    <option value="" disabled selected>Choose a registered student</option>
+                                    <option value="STUDENT20260924">Ayo Posikay — Computer Science (STUDENT20260924)</option>
+                                    <option value="STUDENT20260925">Chioma Eze — Software Eng (STUDENT20260925)</option>
+                                    <option value="STUDENT20260927">David Adeleke — Mass Comm (STUDENT20260927)</option>
+                                    <option value="STUDENT20260928">Blessing Johnson — Accounting (STUDENT20260928)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="hostelId">Hostel Block *</label>
+                                <select class="form-select-custom" name="hostelId" id="hostelId" required>
+                                    <option value="" disabled selected>Select Hostel Block</option>
+                                    <option value="BLK-A">Block A (Nelson Mandela Hall) - Male</option>
+                                    <option value="BLK-B">Block B (Queen Amina Hall) - Female</option>
+                                    <option value="BLK-C">Block C (Kofi Annan Hall) - Male</option>
+                                    <option value="BLK-D">Block D (Moremi Hall) - Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomNumber">Room Number *</label>
+                                <input type="text" class="form-input-custom" name="roomNumber" id="roomNumber" placeholder="e.g. Room 204" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="bedId">Bed Space *</label>
+                                <select class="form-select-custom" name="bedId" id="bedId" required>
+                                    <option value="Bed 1" selected>Bed 1 (Lower Bunk)</option>
+                                    <option value="Bed 2">Bed 2 (Upper Bunk)</option>
+                                    <option value="Bed 3">Bed 3 (Lower Bunk)</option>
+                                    <option value="Bed 4">Bed 4 (Upper Bunk)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="academicSession">Academic Session *</label>
+                                <select class="form-select-custom" name="academicSession" id="academicSession" required>
+                                    <option value="2024 / 2025" selected>2024 / 2025</option>
+                                    <option value="2023 / 2024">2023 / 2024</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="statusId">Allocation Status *</label>
+                                <select class="form-select-custom" name="statusId" id="statusId" required>
+                                    <option value="ALLOCATED" selected>Allocated</option>
+                                    <option value="PENDING">Pending Verification</option>
+                                    <option value="PROVISIONAL">Provisional</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Complete Allocation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

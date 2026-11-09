@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Reports & Analytics</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item active">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Audit Export</h4>
+                <p class="help-widget-subtext">Generate formal institutional compliance and revenue audit statements.</p>
+                <a href="#generate-report" class="help-widget-btn">
+                    <i class="bi bi-file-earmark-arrow-down"></i> Custom Report
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Reports & Audit Analytics</h1>
+                        <p>Generate, export, and review hostel occupancy, revenue, and clearance statements</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#generate-report" class="btn-primary">
+                        <i class="bi bi-file-earmark-arrow-down"></i>
+                        <span>Generate Custom Report</span>
+                    </a>
+
+                    <div class="academic-year-pill">
+                        <span class="label-muted">Academic Year:</span>
+                        <select aria-label="Select Academic Year">
+                            <option value="2024-2025" selected>2024 - 25</option>
+                            <option value="2023-2024">2023 - 24</option>
+                        </select>
+                    </div>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-file-earmark-bar-graph"></i>
+                            </div>
+                            <span class="stat-label-title">Reports Generated</span>
+                        </div>
+                        <p class="stat-big-value">318</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-download"></i>
+                            <span>Available for Export</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-pie-chart-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Bed Occupancy</span>
+                        </div>
+                        <p class="stat-big-value">98.0%</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check-circle"></i>
+                            <span>482 / 500 Capacity</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <span class="stat-label-title">Hostel Fee Revenue</span>
+                        </div>
+                        <p class="stat-big-value">₦14.8M</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-right"></i>
+                            <span>+9.4% vs Last Term</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <span class="stat-label-title">Pending Balances</span>
+                        </div>
+                        <p class="stat-big-value">₦2.4M</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>18 Student Dues</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="dashboard-grid-3col">
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Room Occupancy & Bed Audit</h3>
+                                <p class="section-card-desc">Weekly census of occupied and vacant spaces by block</p>
+                            </div>
+                            <span class="status-badge badge-info">Weekly</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">Updated Today, 08:30 AM</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Hostel Fees & Revenue Log</h3>
+                                <p class="section-card-desc">Complete financial transaction records and bank settlements</p>
+                            </div>
+                            <span class="status-badge badge-success">Financial</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">Updated Yesterday</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Room Transfers Summary</h3>
+                                <p class="section-card-desc">Audit of student transfer requests, reasons, and approvals</p>
+                            </div>
+                            <span class="status-badge badge-purple">Operations</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">48 records logged</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Clearance & Key Return Audit</h3>
+                                <p class="section-card-desc">End-of-term student departure forms and keys returned</p>
+                            </div>
+                            <span class="status-badge badge-warning">Clearance</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">142 checkouts processed</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Visitor Pass & Traffic Log</h3>
+                                <p class="section-card-desc">Daily register of external visitors and departure times</p>
+                            </div>
+                            <span class="status-badge badge-neutral">Security</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">Active register</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h3 class="section-card-title">Staff Duty & Warden Rosters</h3>
+                                <p class="section-card-desc">Shift allocations, warden contacts, and hall supervisors</p>
+                            </div>
+                            <span class="status-badge badge-info">Admin</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px;">
+                            <span style="font-size: 11.5px; color: #94a3b8;">24 staff active</span>
+                            <div style="display: flex; gap: 6px;">
+                                <a href="#" class="btn-secondary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+                                <a href="#" class="btn-primary" style="padding: 5px 10px; font-size: 11.5px;"><i class="bi bi-file-earmark-excel"></i> Excel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card" id="generate-report">
+                    <div>
+                        <h3 class="section-card-title">Generate Custom Report</h3>
+                        <p class="section-card-desc">Filter operational data by date range, module, and export format</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="reportCategory">Report Dataset Category *</label>
+                                <select class="form-select-custom" name="reportCategory" id="reportCategory" required>
+                                    <option value="Occupancy">Bed Space Allocations & Occupancy</option>
+                                    <option value="Fees">Hostel Fees & Revenue Ledger</option>
+                                    <option value="Transfers">Room Transfers & Movements</option>
+                                    <option value="Checkouts">Student Clearance & Checkout Log</option>
+                                    <option value="Visitors">Visitor Management Daily Register</option>
+                                    <option value="Staff">Hostel Staff & Wardens Schedule</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="hostelBlock">Hostel Block Filter</label>
+                                <select class="form-select-custom" name="hostelBlock" id="hostelBlock">
+                                    <option value="ALL">All Hostel Blocks</option>
+                                    <option value="BLK-A">Block A (Nelson Mandela Hall)</option>
+                                    <option value="BLK-B">Block B (Queen Amina Hall)</option>
+                                    <option value="BLK-C">Block C (Kofi Annan Hall)</option>
+                                    <option value="BLK-D">Block D (Moremi Hall)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="startDate">Start Date *</label>
+                                <input type="date" class="form-input-custom" name="startDate" id="startDate" value="2024-09-01" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="endDate">End Date *</label>
+                                <input type="date" class="form-input-custom" name="endDate" id="endDate" value="2024-10-31" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="exportFormat">Export File Format *</label>
+                                <select class="form-select-custom" name="exportFormat" id="exportFormat" required>
+                                    <option value="PDF">PDF Document (.pdf)</option>
+                                    <option value="EXCEL">Excel Spreadsheet (.xlsx)</option>
+                                    <option value="CSV">CSV Spreadsheet (.csv)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Filters</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-file-earmark-check"></i> Generate & Download
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

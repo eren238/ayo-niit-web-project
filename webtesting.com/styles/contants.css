@@ -52,10 +52,14 @@ a {
     color: inherit;
 }
 
+
+
 .alert-overlay {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     background: rgb(0, 0, 0, 0.6);
     z-index: 500;
     display: flex;
@@ -65,18 +69,20 @@ a {
 }
 
 .alert-overlay .alert-container {
-    height: 300px;
-    width: 400px;
-    border-radius: 10px;
+    min-height: 300px;
+    height: auto;
+    width: 420px;
+    max-width: 90%;
+    padding: 30px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
     background-color: var(--white-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 20px;
-
-
-
 }
 
 .alert-overlay .alert-container .image-wrapper {
@@ -93,7 +99,12 @@ a {
 .alert-overlay .alert-container h4 {
     font-size: 15px;
     font-family: sub-title-font;
-
+    text-align: center;
+    margin: 0px;
+    width: 100%;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .alert-overlay .alert-container .btn {

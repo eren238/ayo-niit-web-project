@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Students Directory</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Staff & Warden Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Resident Operations</span>
+
+                <a href="students.html" class="nav-link-item active">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="staff-auth/staff-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Duty Roster</h4>
+                <p class="help-widget-subtext">Block A Warden Duty Shift: Day & Evening Supervision.</p>
+                <a href="tel:+234800467835" class="help-widget-btn">
+                    <i class="bi bi-telephone"></i> Security Post
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Students Directory</h1>
+                        <p>View registered student residents, academic credentials, and bed assignments</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#add-student" class="btn-primary">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Register Student</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">SA</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Samuel Adeleke</span>
+                            <span class="user-display-role">Hall Warden (Block A)</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Total Enrolled</span>
+                        </div>
+                        <p class="stat-big-value">1,248</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>All Registered Students</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-gender-male"></i>
+                            </div>
+                            <span class="stat-label-title">Male Residents</span>
+                        </div>
+                        <p class="stat-big-value">680</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Blocks A & C</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-gender-female"></i>
+                            </div>
+                            <span class="stat-label-title">Female Residents</span>
+                        </div>
+                        <p class="stat-big-value">568</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Blocks B & D</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Active Allocations</span>
+                        </div>
+                        <p class="stat-big-value">482</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>Currently Housed</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by name, student ID, or department...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Gender">
+                            <option value="">All Genders</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Level">
+                            <option value="">All Levels</option>
+                            <option value="ND 1">ND 1</option>
+                            <option value="ND 2">ND 2</option>
+                            <option value="HND 1">HND 1</option>
+                            <option value="HND 2">HND 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Details</th>
+                                    <th>Gender</th>
+                                    <th>Department & Level</th>
+                                    <th>Phone Number</th>
+                                    <th>Room Allocation</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">AP</div>
+                                            <div>
+                                                <div class="cell-title">Ayo Posikay</div>
+                                                <div class="cell-subtitle">STUDENT20260924 • ayo@schoolhostel.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-info">Male</span></td>
+                                    <td>Computer Science (HND 1)</td>
+                                    <td>09050121142</td>
+                                    <td>Block A - Room 204 (Bed 1)</td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-student" class="btn-action-icon" title="Edit Student"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Student"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">CE</div>
+                                            <div>
+                                                <div class="cell-title">Chioma Eze</div>
+                                                <div class="cell-subtitle">STUDENT20260925 • chioma@schoolhostel.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-purple">Female</span></td>
+                                    <td>Software Eng (ND 2)</td>
+                                    <td>08031234567</td>
+                                    <td>Block B - Room 112 (Bed 2)</td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-student" class="btn-action-icon" title="Edit Student"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Student"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fefce8; color: #b45309;">IM</div>
+                                            <div>
+                                                <div class="cell-title">Ibrahim Musa</div>
+                                                <div class="cell-subtitle">STUDENT20260926 • ibrahim@schoolhostel.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-info">Male</span></td>
+                                    <td>Electrical Eng (HND 2)</td>
+                                    <td>08149876543</td>
+                                    <td>Block A - Room 305 (Bed 3)</td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-student" class="btn-action-icon" title="Edit Student"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Student"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">BJ</div>
+                                            <div>
+                                                <div class="cell-title">Blessing Johnson</div>
+                                                <div class="cell-subtitle">STUDENT20260928 • blessing@schoolhostel.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-purple">Female</span></td>
+                                    <td>Accounting (ND 1)</td>
+                                    <td>08055667788</td>
+                                    <td>Block B - Room 108 (Bed 1)</td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-student" class="btn-action-icon" title="Edit Student"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Student"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="add-student">
+                    <div>
+                        <h3 class="section-card-title">Register New Student</h3>
+                        <p class="section-card-desc">Enter resident details matching the institutional database record</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Student ID / Matric Number *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" placeholder="e.g. STU/2026/0290" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="firstName">First Name *</label>
+                                <input type="text" class="form-input-custom" name="firstName" id="firstName" placeholder="e.g. Ayomide" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="lastName">Last Name *</label>
+                                <input type="text" class="form-input-custom" name="lastName" id="lastName" placeholder="e.g. Posikay" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="gender">Gender *</label>
+                                <select class="form-select-custom" name="gender" id="gender" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="department">Department *</label>
+                                <input type="text" class="form-input-custom" name="department" id="department" placeholder="e.g. Computer Science" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="level">Level *</label>
+                                <select class="form-select-custom" name="level" id="level" required>
+                                    <option value="ND 1">ND 1</option>
+                                    <option value="ND 2">ND 2</option>
+                                    <option value="HND 1" selected>HND 1</option>
+                                    <option value="HND 2">HND 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="phoneNumber">Phone Number *</label>
+                                <input type="tel" class="form-input-custom" name="phoneNumber" id="phoneNumber" placeholder="e.g. 09050121142" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="emailAddress">Email Address *</label>
+                                <input type="email" class="form-input-custom" name="emailAddress" id="emailAddress" placeholder="e.g. student@schoolhostel.com" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="statusId">Account Status *</label>
+                                <select class="form-select-custom" name="statusId" id="statusId" required>
+                                    <option value="ACTIVE" selected>Active</option>
+                                    <option value="INACTIVE">Inactive</option>
+                                    <option value="SUSPENDED">Suspended</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Register Student
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

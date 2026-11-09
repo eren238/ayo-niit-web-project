@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Student Profile</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Student Resident Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">My Accommodation</span>
+
+                <a href="my-room.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>My Room & Roommates</span>
+                </a>
+
+                <a href="my-fees.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Fees & Payments</span>
+                </a>
+
+                <a href="room-transfer.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfer Request</span>
+                </a>
+
+                <a href="my-visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>My Visitors</span>
+                </a>
+
+                <a href="my-checkout.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Clearance & Checkout</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="profile.html" class="nav-link-item active">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="student-login.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Account Data</h4>
+                <p class="help-widget-subtext">Contact student affairs office to correct matriculation details.</p>
+                <a href="mailto:records@schoolhostel.edu" class="help-widget-btn">
+                    <i class="bi bi-envelope"></i> Contact Records
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Resident Profile</h1>
+                        <p>Matriculation details, institutional credentials, and emergency records</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Ayo Posikay</span>
+                            <span class="user-display-role">STUDENT20260924</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <div class="section-card">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div class="user-avatar-circle" style="width: 54px; height: 54px; font-size: 20px;">AP</div>
+                        <div>
+                            <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Ayo Posikay</h3>
+                            <p style="font-size: 13px; color: #64748b; margin: 3px 0 0 0;">Matric ID: <strong>STUDENT20260924</strong> • Computer Science (HND 1)</p>
+                        </div>
+                        <div style="margin-left: auto;">
+                            <span class="status-badge badge-success">Active Resident</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Academic & Contact Information</h3>
+                        <p class="section-card-desc">Personal details verified with the university registry</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">First Name</label>
+                                <input type="text" class="form-input-custom" name="firstName" value="Ayo" readonly>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Last Name</label>
+                                <input type="text" class="form-input-custom" name="lastName" value="Posikay" readonly>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Gender</label>
+                                <input type="text" class="form-input-custom" name="gender" value="Male" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Department</label>
+                                <input type="text" class="form-input-custom" name="department" value="Computer Science" readonly>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Academic Level</label>
+                                <input type="text" class="form-input-custom" name="level" value="HND 1" readonly>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Academic Session</label>
+                                <input type="text" class="form-input-custom" name="session" value="2024 / 2025" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Phone Number</label>
+                                <input type="tel" class="form-input-custom" name="phoneNumber" value="09050121142">
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Email Address</label>
+                                <input type="email" class="form-input-custom" name="emailAddress" value="ayo@schoolhostel.com">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Update Contact Info
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Emergency Contact / Next of Kin</h3>
+                        <p class="section-card-desc">Designated contact for emergencies and hostel clearance authorization</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Next of Kin Full Name</label>
+                                <input type="text" class="form-input-custom" name="nokName" value="Mr. Michael Posikay">
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Relationship</label>
+                                <input type="text" class="form-input-custom" name="nokRelationship" value="Father">
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Emergency Phone Number</label>
+                                <input type="tel" class="form-input-custom" name="nokPhone" value="08031234567">
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom" style="margin-top: 14px;">
+                            <label class="form-label-custom">Residential Address</label>
+                            <input type="text" class="form-input-custom" name="nokAddress" value="14, University Road, Lagos, Nigeria">
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Save Emergency Contact
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

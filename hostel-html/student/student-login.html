@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png" />
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/contants.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/main.css" type="text/css" rel="stylesheet" />
+    <script src="../js/student-auth.js"></script>
+    <title>Hostel | Student Login</title>
+</head>
+<body>
+    <div class="alert-overlay" id="alert"></div>
+
+    <div class="student-portal-wrapper">
+        <div class="student-portal-card">
+            <div class="portal-form-pane">
+                <div class="form-header">
+                    <h1 class="login-heading">Login</h1>
+                    <p class="login-subtext">Enter your account details</p>
+                </div>
+
+                <form class="portal-login-form" action="dashboard.html" method="POST" onsubmit="event.preventDefault(); signInHandle();">
+                    <div class="underline-field-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" name="emailAddress" class="underline-input" id="emailAddress" placeholder="Enter your email address" required autocomplete="email" />
+                    </div>
+
+                    <div class="underline-field-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" name="password" class="underline-input" id="password" placeholder="Enter your password" required autocomplete="current-password" />
+                            <button type="button" class="password-toggle-trigger" title="Toggle password visibility" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="forgot-password-row">
+                        <a href="student-forgot-password.html" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="portal-login-btn" id="signInBtnId" title="Login">Login</button>
+                </form>
+
+                <div class="signup-account-prompt">
+                    <span>Don't have an account?</span>
+                    <a href="student-sign-up.html" class="signup-link-highlight">SignUp</a>
+                </div>
+            </div>
+
+            <div class="portal-hero-pane">
+                <div class="school-hero-display">
+                    <div class="school-logo-badge">
+                        <img src="../all-images/icon-images/logo.png" alt="School Logo" class="school-logo-image" />
+                    </div>
+                </div>
+
+                <div class="portal-hero-text">
+                    <h2 class="hero-portal-title">
+                        <span class="title-bold">Welcome</span> <span class="title-light">to Student Portal</span>
+                    </h2>
+                    <p class="hero-portal-subtitle">Login to access your account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Master Payments & Fee Ledger</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item active">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Master Control</h4>
+                <p class="help-widget-subtext">Manage institutional revenue, fee structures, and bank reconciliations.</p>
+                <a href="reports.html" class="help-widget-btn">
+                    <i class="bi bi-file-earmark-bar-graph"></i> Financial Audit
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Master Payments & Fee Ledger</h1>
+                        <p>Institutional record of room fee collections, payment methods, and transactions</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#record-payment" class="btn-primary">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Record Payment</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <span class="stat-label-title">Total Revenue</span>
+                        </div>
+                        <p class="stat-big-value">₦14.8M</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>14.3% vs last month</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-receipt"></i>
+                            </div>
+                            <span class="stat-label-title">Verified Receipts</span>
+                        </div>
+                        <p class="stat-big-value">468</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Transactions Settled</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <span class="stat-label-title">Pending Verification</span>
+                        </div>
+                        <p class="stat-big-value">14</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Awaiting Bank Confirmation</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <span class="stat-label-title">Caution Deposits</span>
+                        </div>
+                        <p class="stat-big-value">₦12.05M</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Escrow Held in Trust</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by student ID, reference, or description...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Payment Method">
+                            <option value="">All Payment Methods</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Cash">Cash / Teller</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Status">
+                            <option value="">All Statuses</option>
+                            <option value="VERIFIED">Verified</option>
+                            <option value="PENDING">Pending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Resident</th>
+                                    <th>Fee Description</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
+                                    <th>Transaction Ref</th>
+                                    <th>Payment Date</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">AP</div>
+                                            <div>
+                                                <div class="cell-title">Ayo Posikay</div>
+                                                <div class="cell-subtitle">STUDENT20260924</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Annual Hostel Fee</td>
+                                    <td><strong>₦50,000</strong></td>
+                                    <td>Bank Transfer</td>
+                                    <td><code>TXN-2026-90412</code></td>
+                                    <td>24 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Verified</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#record-payment" class="btn-action-icon" title="Edit Payment"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Payment"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">BJ</div>
+                                            <div>
+                                                <div class="cell-title">Blessing Johnson</div>
+                                                <div class="cell-subtitle">STUDENT20260928</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>1st Semester Installment</td>
+                                    <td><strong>₦25,000</strong></td>
+                                    <td>Debit Card</td>
+                                    <td><code>TXN-2026-88190</code></td>
+                                    <td>26 Sep 2026</td>
+                                    <td><span class="status-badge badge-warning">Partial</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#record-payment" class="btn-action-icon" title="Edit Payment"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Payment"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="record-payment">
+                    <div>
+                        <h3 class="section-card-title">Record Hostel Fee Payment</h3>
+                        <p class="section-card-desc">Log official payments verified by bursary or bank settlement</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" placeholder="e.g. STUDENT20260924" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="feeDescription">Fee Description *</label>
+                                <input type="text" class="form-input-custom" name="feeDescription" id="feeDescription" placeholder="e.g. Annual Hostel Bed Fee" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="amount">Amount (₦) *</label>
+                                <input type="number" class="form-input-custom" name="amount" id="amount" placeholder="e.g. 50000" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="paymentMethod">Payment Method *</label>
+                                <select class="form-select-custom" name="paymentMethod" id="paymentMethod" required>
+                                    <option value="Bank Transfer" selected>Bank Transfer</option>
+                                    <option value="Debit Card">Debit Card (Online)</option>
+                                    <option value="Direct Deposit">Direct Bank Deposit</option>
+                                    <option value="Cash / POS">Cash / POS Slip</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="transactionReference">Transaction Reference / Receipt No *</label>
+                                <input type="text" class="form-input-custom" name="transactionReference" id="transactionReference" placeholder="e.g. TXN-2026-90412" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="paymentDate">Payment Date *</label>
+                                <input type="date" class="form-input-custom" name="paymentDate" id="paymentDate" value="2026-09-24" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom" style="margin-top: 14px;">
+                            <label class="form-label-custom" for="statusId">Verification Status *</label>
+                            <select class="form-select-custom" name="statusId" id="statusId" required>
+                                <option value="VERIFIED" selected>Verified (Settled)</option>
+                                <option value="PENDING">Pending Reconciliation</option>
+                                <option value="REVERSED">Reversed</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Record Transaction
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

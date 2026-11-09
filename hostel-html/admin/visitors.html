@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Master Visitors Register</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item active">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Master Control</h4>
+                <p class="help-widget-subtext">Access institutional security registers and visitor audit statements.</p>
+                <a href="setup.html" class="help-widget-btn">
+                    <i class="bi bi-gear-fill"></i> System Setup
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Master Visitors Register</h1>
+                        <p>Track guest entries, resident hosts, visiting hours compliance, and security logs</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#log-visitor" class="btn-primary">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Log Guest Entry</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                            <span class="stat-label-title">Total Entries (Today)</span>
+                        </div>
+                        <p class="stat-big-value">236</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>All Hostel Blocks</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                            <span class="stat-label-title">Total Exits</span>
+                        </div>
+                        <p class="stat-big-value">198</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Checked Out</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                            <span class="stat-label-title">Active Guest Passes</span>
+                        </div>
+                        <p class="stat-big-value">24</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-clock"></i>
+                            <span>Currently in Rooms</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <span class="stat-label-title">Curfew Compliance</span>
+                        </div>
+                        <p class="stat-big-value">100%</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Zero Violations</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by visitor name, student host, or purpose...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Status">
+                            <option value="">All Statuses</option>
+                            <option value="IN">Inside (Active)</option>
+                            <option value="OUT">Departed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Visitor Name</th>
+                                    <th>Student Host ID</th>
+                                    <th>Purpose</th>
+                                    <th>Date</th>
+                                    <th>Arrival</th>
+                                    <th>Departure</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">MJ</div>
+                                            <div>
+                                                <div class="cell-title">Michael Johnson</div>
+                                                <div class="cell-subtitle">Parent / Guardian</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>STUDENT20260924</strong> (Ayo Posikay)</td>
+                                    <td>Family Visit & Supplies</td>
+                                    <td>24 Oct 2024</td>
+                                    <td>11:15 AM</td>
+                                    <td>— Inside —</td>
+                                    <td><span class="status-badge badge-info">Inside</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#log-visitor" class="btn-action-icon" title="Edit Visitor"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Sign Out"><i class="bi bi-box-arrow-right"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">SO</div>
+                                            <div>
+                                                <div class="cell-title">Sarah Okafor</div>
+                                                <div class="cell-subtitle">Family</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>STUDENT20260925</strong> (Chioma Eze)</td>
+                                    <td>Academic Materials Drop-off</td>
+                                    <td>24 Oct 2024</td>
+                                    <td>09:30 AM</td>
+                                    <td>11:00 AM</td>
+                                    <td><span class="status-badge badge-neutral">Departed</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#log-visitor" class="btn-action-icon" title="Edit Visitor"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="log-visitor">
+                    <div>
+                        <h3 class="section-card-title">Log Guest Entry at Gate</h3>
+                        <p class="section-card-desc">Record visitor entry pass and link to resident host matriculation ID</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="visitorName">Visitor Full Name *</label>
+                                <input type="text" class="form-input-custom" name="visitorName" id="visitorName" placeholder="e.g. Mr. Michael Johnson" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Student Host ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" placeholder="e.g. STUDENT20260924" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="purpose">Purpose of Visit *</label>
+                                <input type="text" class="form-input-custom" name="purpose" id="purpose" placeholder="e.g. Parent Visit / Materials Drop" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="visitDate">Date of Visit *</label>
+                                <input type="date" class="form-input-custom" name="visitDate" id="visitDate" value="2026-10-24" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="arrivalTime">Arrival Time *</label>
+                                <input type="time" class="form-input-custom" name="arrivalTime" id="arrivalTime" value="11:15" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="departureTime">Departure Time</label>
+                                <input type="time" class="form-input-custom" name="departureTime" id="departureTime">
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom" style="margin-top: 14px;">
+                            <label class="form-label-custom" for="statusId">Pass Status *</label>
+                            <select class="form-select-custom" name="statusId" id="statusId" required>
+                                <option value="IN" selected>IN (Currently in Hostel)</option>
+                                <option value="OUT">OUT (Departed)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Log Visitor Entry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

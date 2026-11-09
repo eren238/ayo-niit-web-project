@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | System Setup & Settings</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item active">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Master Policies</h4>
+                <p class="help-widget-subtext">Changes take effect immediately across all hostel resident and staff accounts.</p>
+                <a href="dashboard.html" class="help-widget-btn">
+                    <i class="bi bi-shield-check"></i> Dashboard
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Hostel Setup & Configurations</h1>
+                        <p>Configure academic sessions, allocation policies, visiting hours, and fee structures</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="academic-year-pill">
+                        <span class="label-muted">Academic Year:</span>
+                        <select aria-label="Select Academic Year">
+                            <option value="2024-2025" selected>2024 - 25</option>
+                            <option value="2023-2024">2023 - 24</option>
+                        </select>
+                    </div>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Institutional & Academic Details</h3>
+                        <p class="section-card-desc">Configure foundational system identity and current operational academic calendar</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">System Title</label>
+                                <input type="text" class="form-input-custom" name="systemTitle" value="School Hostel Management System" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Current Academic Session</label>
+                                <input type="text" class="form-input-custom" name="currentSession" value="2024 / 2025" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Current Semester</label>
+                                <select class="form-select-custom" name="currentSemester">
+                                    <option selected>First Semester (Fall)</option>
+                                    <option>Second Semester (Spring)</option>
+                                    <option>Summer Session</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Accounting Currency</label>
+                                <select class="form-select-custom" name="currency">
+                                    <option selected>NGN - Nigerian Naira (₦)</option>
+                                    <option>USD - United States Dollar ($)</option>
+                                    <option>GBP - British Pound (£)</option>
+                                    <option>EUR - Euro (€)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Contact Email</label>
+                                <input type="email" class="form-input-custom" name="contactEmail" value="hostel-admin@schoolhostel.com" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Warden Hotline</label>
+                                <input type="tel" class="form-input-custom" name="wardenHotline" value="+234 800 467 835" required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Save General Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Room & Bed Allocation Policy</h3>
+                        <p class="section-card-desc">Define automated matching criteria, prioritization, and hall occupancy rules</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Allocation Strategy</label>
+                                <select class="form-select-custom" name="allocationStrategy">
+                                    <option selected>First-Come, First-Served with Fee Verification</option>
+                                    <option>Merit / Academic Ranking Priority</option>
+                                    <option>Freshers & Finalists Priority First</option>
+                                    <option>Manual Warden Approval Mode</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Gender Segregation Enforcement</label>
+                                <select class="form-select-custom" name="genderSegregation">
+                                    <option selected>Strict By Building Block (Male Blocks / Female Blocks)</option>
+                                    <option>Strict By Floor Level</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Max Room Transfer Requests Per Student</label>
+                                <input type="number" class="form-input-custom" name="maxTransfers" value="2" min="1" max="5">
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Auto-Cancel Unpaid Allocations After</label>
+                                <select class="form-select-custom" name="cancellationPeriod">
+                                    <option selected>48 Hours (2 Days)</option>
+                                    <option>72 Hours (3 Days)</option>
+                                    <option>7 Days</option>
+                                    <option>Never (Manual Revocation Only)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Save Allocation Rules
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Visiting Hours & Hostel Curfew Rules</h3>
+                        <p class="section-card-desc">Control entry hours, guest visitor cutoff times, and security checkpoint policies</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Visiting Hours Start</label>
+                                <input type="time" class="form-input-custom" name="visitingStart" value="10:00" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Visiting Hours End (Daily Cutoff)</label>
+                                <input type="time" class="form-input-custom" name="visitingEnd" value="18:00" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Night Curfew Lockdown Time</label>
+                                <input type="time" class="form-input-custom" name="curfewTime" value="22:00" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Overnight Guest Policy</label>
+                                <select class="form-select-custom" name="overnightPolicy">
+                                    <option selected>Strictly Prohibited Without Warden Written Approval</option>
+                                    <option>Allowed With Advance 24h Registration</option>
+                                    <option>Immediate Family Only (With Pass)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Save Visiting & Curfew Rules
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Fee Rates & Caution Deposits</h3>
+                        <p class="section-card-desc">Manage standard hostel accommodation pricing, key replacement fines, and caution deposit policies</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Standard Bed Rate (Per Semester)</label>
+                                <input type="text" class="form-input-custom" name="standardBedRate" value="₦ 120,000" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Refundable Caution / Damage Deposit</label>
+                                <input type="text" class="form-input-custom" name="cautionDeposit" value="₦ 25,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Lost Key Replacement Fee</label>
+                                <input type="text" class="form-input-custom" name="keyFee" value="₦ 5,000" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Late Checkout Surcharge Rate (Daily)</label>
+                                <input type="text" class="form-input-custom" name="lateCheckoutSurcharge" value="₦ 2,500" required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Save Fee Policies
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

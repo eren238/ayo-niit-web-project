@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png" />
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/contants.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/main.css" type="text/css" rel="stylesheet" />
+    <script src="../js/student-auth.js"></script>
+    <title>Hostel | Student Sign Up</title>
+</head>
+<body>
+    <div class="alert-overlay" id="alert"></div>
+
+    <div class="student-portal-wrapper">
+        <div class="student-portal-card">
+            <div class="portal-form-pane">
+                <div class="form-header">
+                    <h1 class="login-heading">Sign Up</h1>
+                    <p class="login-subtext">Enter your student details to create an account</p>
+                </div>
+
+                <form class="portal-login-form" action="" method="POST" onsubmit="event.preventDefault(); signUpHandle();">
+                    <div class="form-grid-2col">
+                        <div class="underline-field-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="underline-input" id="firstName" name="firstName" placeholder="e.g. John" required autocomplete="given-name" />
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="underline-input" id="lastName" name="lastName" placeholder="e.g. Doe" required autocomplete="family-name" />
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="gender">Gender</label>
+                            <select class="underline-input" id="gender" name="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="department">Department</label>
+                            <input type="text" class="underline-input" id="department" name="department" placeholder="e.g. Computer Science" required />
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="level">Level</label>
+                            <input type="text" class="underline-input" id="level" name="level" placeholder="e.g. 100 Level" required />
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" class="underline-input" id="phoneNumber" name="phoneNumber" placeholder="e.g. 08012345678" required autocomplete="tel" />
+                        </div>
+
+                        <div class="underline-field-group form-grid-col-full">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" class="underline-input" id="emailAddress" name="emailAddress" placeholder="Enter your student email" required autocomplete="email" />
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="underline-input" id="password" name="password" placeholder="Min. 8 characters" required autocomplete="new-password" />
+                                <button type="button" class="password-toggle-trigger" title="Toggle password visibility" aria-label="Toggle password visibility">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="underline-field-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="underline-input" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password" />
+                                <button type="button" class="password-toggle-trigger" title="Toggle password visibility" aria-label="Toggle password visibility">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="portal-login-btn" id="signUpBtn" title="Sign Up">Sign Up</button>
+                </form>
+
+                <div class="signup-account-prompt">
+                    <span>Already have an account?</span>
+                    <a href="student-login.html" class="signup-link-highlight">Login</a>
+                </div>
+            </div>
+
+            <div class="portal-hero-pane">
+                <div class="school-hero-display">
+                    <div class="school-logo-badge">
+                        <img src="../all-images/icon-images/logo.png" alt="School Logo" class="school-logo-image" />
+                    </div>
+                </div>
+
+                <div class="portal-hero-text">
+                    <h2 class="hero-portal-title">
+                        <span class="title-bold">Welcome</span> <span class="title-light">to Student Portal</span>
+                    </h2>
+                    <p class="hero-portal-subtitle">Sign up to access your hostel resident account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

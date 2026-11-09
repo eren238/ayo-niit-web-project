@@ -5,22 +5,22 @@ function closeModal() {
     alertModal.classList.remove("alertModal");
 }
 
-function alertModal(success, message) {
+function alertModal(success, message, redirectUrl = "sign-in.html") {
     const alertModal = document.getElementById('alert');
     if (success == true) {
         alertModal.innerHTML =
             `<div class="alert-container">
                 <div class="image-wrapper">
-                    <img src="/all-images/icon-images/success.gif" alt="Success">
+                    <img src="all-images/icon-images/success.gif" alt="Success">
                 </div>
                 <h4>${message}</h4>
-              <a href="sign-in.html"> <button class="btn" title="Okay, Thanks">Okay, Thanks</button> </a>
+              <a href="${redirectUrl}"> <button class="btn" title="Okay, Thanks">Okay, Thanks</button> </a>
             </div>`;
     } else {
         alertModal.innerHTML =
             ` <div class="alert-container">
             <div class="image-wrapper">
-                <img src="/all-images/icon-images/warning.gif" alt="Warning">
+                <img src="all-images/icon-images/warning.gif" alt="Warning">
             </div>
             <h4>${message}</h4>
             <button onclick = "closeModal()" class="btn" title="Okay">Okay</button>
@@ -168,14 +168,16 @@ async function signInHandle() {
             },
             body: JSON.stringify({
                 emailAddress,
-                password
+                password,
+                confirmPassword: password
             })
         });
 
         const fetchData = await response.json();
 
         if (fetchData.success == true) {
-            alertModal(fetchData.success, fetchData.message + ' Hi, ' + fetchData.data.emailAddress);
+            const email = (fetchData.data && fetchData.data.emailAddress) ? ' Hi, ' + fetchData.data.emailAddress : '';
+            alertModal(fetchData.success, fetchData.message + email, "index.html");
         } else {
             alertModal(fetchData.success, fetchData.message);
         }
@@ -230,19 +232,21 @@ async function forgotPasswordHandle() {
         const fetchData = await response.json();
 
         if (fetchData.success == true) {
-            alertModal(fetchData.success, fetchData.message + ' Hi, ' + fetchData.data.emailAddress);
+            sessionStorage.setItem("userForgotPasswordSession", JSON.stringify(fetchData));
+            const email = (fetchData.data && fetchData.data.emailAddress) ? ' Hi, ' + fetchData.data.emailAddress : '';
+            alertModal(fetchData.success, fetchData.message + email, "reset-password.html");
         } else {
             alertModal(fetchData.success, fetchData.message);
         }
 
-        forgotPasswordBtn.innerHTML = 'Forgot Password';
+        forgotPasswordBtn.innerHTML = 'Proceed to reset password';
         forgotPasswordBtn.disabled = false;
 
     } catch (error) {
         console.error(error);
         alertModal(false, error.message);
 
-        forgotPasswordBtn.innerHTML = 'Forgot Password';
+        forgotPasswordBtn.innerHTML = 'Proceed to reset password';
         forgotPasswordBtn.disabled = false;
     }
 }
@@ -251,46 +255,45 @@ async function forgotPasswordHandle() {
 
 //reset-password
 async function resetPasswordHandle() {
-
-    const resetOtp = document.getElementById("resetOtp").value.trim();
-    const password = document.getElementById("password").value;
+    
+    const otpCode = document.getElementById("otpCode").value.trim();
+    const newPassword = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (!resetOtp) {
+    if (!otpCode) {
         alertModal(false, "OTP REQUIRED");
         return;
     }
 
-    if (resetOtp.length < 6) {
+    if (otpCode.length < 6) {
         alertModal(false, "OTP MUST NOT BE LESS THAN 6");
         return;
     }
 
-    if (resetOtp.length > 6) {
+    if (otpCode.length > 6) {
         alertModal(false, "OTP MUST NOT BE MORE THAN 6");
         return;
     }
 
-    if (!password) {
-        alertModal(false, "PASSWORD REQUIRED");
+    if (!newPassword) {
+        alertModal(false, "NEW PASSWORD REQUIRED");
         return;
     }
 
-    if (password.length < 8) {
-        alertModal(false, "PASSWORD MUST NOT BE LESS THAN 8 CHARACTERS")
+    if (newPassword.length < 8) {
+        alertModal(false, "NEW PASSWORD MUST NOT BE LESS THAN 8 CHARACTERS")
         return;
     }
 
-    if (password !== confirmPassword) {
-        alertModal(false, "PASSWORDS DO NOT MATCH")
+    if (newPassword !== confirmPassword) {
+        alertModal(false, "NEW PASSWORDS DO NOT MATCH")
         return;
     }
 
 
-
-    const resetPasswordBtnId = document.getElementById('resetPasswordBtnId');
-    resetPasswordBtnId.innerHTML = 'Authenticating...';
-    resetPasswordBtnId.disabled = true;
+    const resetPasswordBtn = document.getElementById('resetPasswordBtnId');
+    resetPasswordBtn.innerHTML = 'Processing...';
+    resetPasswordBtn.disabled = true;
 
     try {
 
@@ -300,15 +303,16 @@ async function resetPasswordHandle() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                resetOtp,
-                password
+                otpCode,
+                password: newPassword,
+                confirmedPassword: confirmPassword
             })
         });
 
         const fetchData = await response.json();
-
         if (fetchData.success == true) {
-            alertModal(fetchData.success, fetchData.message);
+            const email = (fetchData.data && fetchData.data.emailAddress) ? ' Hi, ' + fetchData.data.emailAddress : '';
+            alertModal(fetchData.success, fetchData.message + email, "sign-in.html");
         } else {
             alertModal(fetchData.success, fetchData.message);
         }

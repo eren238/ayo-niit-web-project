@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Rooms Management</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Staff & Warden Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="rooms.html" class="nav-link-item active">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Resident Operations</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="staff-auth/staff-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Duty Roster</h4>
+                <p class="help-widget-subtext">Block A Warden Duty Shift: Day & Evening Supervision.</p>
+                <a href="tel:+234800467835" class="help-widget-btn">
+                    <i class="bi bi-telephone"></i> Security Post
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Rooms Management</h1>
+                        <p>Monitor room allocations, bed capacities, and floor layouts</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#add-room" class="btn-primary">
+                        <i class="bi bi-door-open-fill"></i>
+                        <span>Add New Room</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">SA</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Samuel Adeleke</span>
+                            <span class="user-display-role">Hall Warden (Block A)</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-door-open-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Total Rooms</span>
+                        </div>
+                        <p class="stat-big-value">256</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Across 6 Blocks</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-person-fill-check"></i>
+                            </div>
+                            <span class="stat-label-title">Occupied</span>
+                        </div>
+                        <p class="stat-big-value">251</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>98% Occupancy</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-door-closed"></i>
+                            </div>
+                            <span class="stat-label-title">Available Rooms</span>
+                        </div>
+                        <p class="stat-big-value">5</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Ready to Allocate</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-layers-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Bed Inventory</span>
+                        </div>
+                        <p class="stat-big-value">1,024</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Standard Bedspaces</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by room number, block, or floor...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Hostel Block">
+                            <option value="">All Blocks</option>
+                            <option value="Block A">Block A (Nelson Mandela)</option>
+                            <option value="Block B">Block B (Queen Amina)</option>
+                            <option value="Block C">Block C (Kofi Annan)</option>
+                            <option value="Block D">Block D (Moremi)</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Status">
+                            <option value="">All Statuses</option>
+                            <option value="OCCUPIED">Occupied</option>
+                            <option value="AVAILABLE">Available</option>
+                            <option value="MAINTENANCE">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Room Details</th>
+                                    <th>Hostel Block</th>
+                                    <th>Bed Capacity</th>
+                                    <th>Allocation Ratio</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">204</div>
+                                            <div>
+                                                <div class="cell-title">Room 204</div>
+                                                <div class="cell-subtitle">Floor 2 • Standard Tier</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block A (Male)</strong></td>
+                                    <td>4 Beds</td>
+                                    <td><span style="color: #059669; font-weight: 600;">4 / 4 (Full)</span></td>
+                                    <td><span class="status-badge badge-success">Occupied</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-room" class="btn-action-icon" title="Edit Room"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Room"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #ecfdf5; color: #059669;">104</div>
+                                            <div>
+                                                <div class="cell-title">Room 104</div>
+                                                <div class="cell-subtitle">Floor 1 • Standard Tier</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block B (Female)</strong></td>
+                                    <td>4 Beds</td>
+                                    <td><span style="color: #1e40af; font-weight: 600;">3 / 4 (1 Vacancy)</span></td>
+                                    <td><span class="status-badge badge-info">Available</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-room" class="btn-action-icon" title="Edit Room"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Room"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">305</div>
+                                            <div>
+                                                <div class="cell-title">Room 305</div>
+                                                <div class="cell-subtitle">Floor 3 • Premium Tier</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block A (Male)</strong></td>
+                                    <td>2 Beds</td>
+                                    <td><span style="color: #059669; font-weight: 600;">2 / 2 (Full)</span></td>
+                                    <td><span class="status-badge badge-success">Occupied</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-room" class="btn-action-icon" title="Edit Room"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Room"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #ecfdf5; color: #059669;">112</div>
+                                            <div>
+                                                <div class="cell-title">Room 112</div>
+                                                <div class="cell-subtitle">Floor 1 • Standard Tier</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><strong>Block B (Female)</strong></td>
+                                    <td>4 Beds</td>
+                                    <td><span style="color: #059669; font-weight: 600;">4 / 4 (Full)</span></td>
+                                    <td><span class="status-badge badge-success">Occupied</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-room" class="btn-action-icon" title="Edit Room"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Room"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="add-room">
+                    <div>
+                        <h3 class="section-card-title">Add New Room</h3>
+                        <p class="section-card-desc">Configure a room and assign it to a hostel block</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="hostelId">Hostel Block *</label>
+                                <select class="form-select-custom" name="hostelId" id="hostelId" required>
+                                    <option value="" disabled selected>Select Hostel Block</option>
+                                    <option value="BLK-A">Block A (Nelson Mandela Hall) - Male</option>
+                                    <option value="BLK-B">Block B (Queen Amina Hall) - Female</option>
+                                    <option value="BLK-C">Block C (Kofi Annan Hall) - Male</option>
+                                    <option value="BLK-D">Block D (Moremi Hall) - Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomNumber">Room Number *</label>
+                                <input type="text" class="form-input-custom" name="roomNumber" id="roomNumber" placeholder="e.g. 205" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="floor">Floor Level *</label>
+                                <select class="form-select-custom" name="floor" id="floor" required>
+                                    <option value="Ground Floor">Ground Floor</option>
+                                    <option value="Floor 1" selected>Floor 1</option>
+                                    <option value="Floor 2">Floor 2</option>
+                                    <option value="Floor 3">Floor 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="capacity">Bed Capacity *</label>
+                                <select class="form-select-custom" name="capacity" id="capacity" required>
+                                    <option value="2">2 Beds (Double)</option>
+                                    <option value="4" selected>4 Beds (Standard)</option>
+                                    <option value="6">6 Beds (Dormitory)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomCategory">Room Tier *</label>
+                                <select class="form-select-custom" name="roomCategory" id="roomCategory" required>
+                                    <option value="Standard" selected>Standard</option>
+                                    <option value="Deluxe">Deluxe</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="statusId">Initial Status *</label>
+                                <select class="form-select-custom" name="statusId" id="statusId" required>
+                                    <option value="AVAILABLE" selected>Available</option>
+                                    <option value="OCCUPIED">Occupied</option>
+                                    <option value="MAINTENANCE">Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Create Room
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Room Transfer Request</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Student Resident Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">My Accommodation</span>
+
+                <a href="my-room.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>My Room & Roommates</span>
+                </a>
+
+                <a href="my-fees.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Fees & Payments</span>
+                </a>
+
+                <a href="room-transfer.html" class="nav-link-item active">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfer Request</span>
+                </a>
+
+                <a href="my-visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>My Visitors</span>
+                </a>
+
+                <a href="my-checkout.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Clearance & Checkout</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="profile.html" class="nav-link-item">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="student-login.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Transfer Policy</h4>
+                <p class="help-widget-subtext">Students are allowed a maximum of 2 room change applications per academic term.</p>
+                <a href="my-room.html" class="help-widget-btn">
+                    <i class="bi bi-info-circle"></i> View Policy
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Room Transfer Request</h1>
+                        <p>Apply for room reallocation and track decision status from the hostel warden</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#request-transfer" class="btn-primary">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>New Request</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Ayo Posikay</span>
+                            <span class="user-display-role">STUDENT20260924</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-door-open-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Current Allotment</span>
+                        </div>
+                        <p class="stat-big-value">Room 204</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Block A (Bed 1)</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-send-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Requests Submitted</span>
+                        </div>
+                        <p class="stat-big-value">1</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Limit: 2 per term</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <span class="stat-label-title">Pending Decisions</span>
+                        </div>
+                        <p class="stat-big-value">0</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>All Processed</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Approved Moves</span>
+                        </div>
+                        <p class="stat-big-value">1</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Reallocated to 204</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Application Date</th>
+                                    <th>From Room</th>
+                                    <th>Requested Room</th>
+                                    <th>Reason for Transfer</th>
+                                    <th>Warden Remarks</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>22 May 2024</td>
+                                    <td>Block A - Room 102</td>
+                                    <td><strong>Block A - Room 204</strong></td>
+                                    <td>Medical Ground (Ground floor dust sensitivity)</td>
+                                    <td>Approved after medical certificate verification. Key issued.</td>
+                                    <td><span class="status-badge badge-success">Approved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="request-transfer">
+                    <div>
+                        <h3 class="section-card-title">Apply for Room Reassignment</h3>
+                        <p class="section-card-desc">Submit formal application to the Hall Warden for accommodation transfer</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Matric / Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" value="STUDENT20260924" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="currentRoomId">Current Room & Bed *</label>
+                                <input type="text" class="form-input-custom" name="currentRoomId" id="currentRoomId" value="Block A - Room 204 (Bed 1)" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="targetRoomId">Preferred Room / Block *</label>
+                                <select class="form-select-custom" name="targetRoomId" id="targetRoomId" required>
+                                    <option value="" disabled selected>Select Preferred Target</option>
+                                    <option value="Block A - Room 104">Block A - Room 104 (Floor 1)</option>
+                                    <option value="Block A - Room 305">Block A - Room 305 (Floor 3)</option>
+                                    <option value="Block C - Room 101">Block C (Kofi Annan) - Room 101</option>
+                                    <option value="Block C - Room 208">Block C (Kofi Annan) - Room 208</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="reason">Primary Reason *</label>
+                                <select class="form-select-custom" name="reason" id="reason" required>
+                                    <option value="" disabled selected>Choose a category</option>
+                                    <option value="Medical Grounds">Medical Grounds (Health / Physical Accessibility)</option>
+                                    <option value="Academic Compatibility">Academic Compatibility / Quiet Study</option>
+                                    <option value="Department Grouping">Departmental Study Group</option>
+                                    <option value="Personal Incompatibility">Personal Differences with Roommate</option>
+                                    <option value="Other Grounds">Other Grounds</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="remarks">Detailed Explanation *</label>
+                                <input type="text" class="form-input-custom" name="remarks" id="remarks" placeholder="Provide details to assist warden evaluation..." required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-send"></i> Submit Transfer Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Staff Directory & Roles</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item active">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Staff Roles</h4>
+                <p class="help-widget-subtext">Assign administrative roles, warden blocks, and system permissions.</p>
+                <a href="setup.html" class="help-widget-btn">
+                    <i class="bi bi-shield-lock"></i> Permissions
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Staff Management & Directory</h1>
+                        <p>Manage hostel administrators, wardens, hall supervisors, and role assignments</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#add-staff" class="btn-primary">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Register Staff</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Total Staff</span>
+                        </div>
+                        <p class="stat-big-value">24</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>Active Accounts</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <span class="stat-label-title">Hall Wardens</span>
+                        </div>
+                        <p class="stat-big-value">8</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Assigned to Blocks</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Porters & Security</span>
+                        </div>
+                        <p class="stat-big-value">12</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Gate & Desk Shifts</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-person-gear"></i>
+                            </div>
+                            <span class="stat-label-title">Super Admins</span>
+                        </div>
+                        <p class="stat-big-value">4</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Full System Privileges</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by staff name, email, or role...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Role">
+                            <option value="">All Roles</option>
+                            <option value="1">Super Admin</option>
+                            <option value="2">Hostel Warden</option>
+                            <option value="3">Hall Supervisor</option>
+                            <option value="4">Hall Porter</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Status">
+                            <option value="">All Statuses</option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Staff Member</th>
+                                    <th>Email Address</th>
+                                    <th>Assigned Role</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">AU</div>
+                                            <div>
+                                                <div class="cell-title">Admin User</div>
+                                                <div class="cell-subtitle">Staff ID: STF/ADM/001</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>admin@schoolhostel.com</td>
+                                    <td><span class="status-badge badge-purple">Super Admin</span></td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-staff" class="btn-action-icon" title="Edit Staff"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deactivate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #ecfdf5; color: #059669;">SA</div>
+                                            <div>
+                                                <div class="cell-title">Samuel Adeleke</div>
+                                                <div class="cell-subtitle">Staff ID: STF/WRD/004</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>samuel.adeleke@schoolhostel.com</td>
+                                    <td><span class="status-badge badge-info">Hostel Warden (Block A)</span></td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-staff" class="btn-action-icon" title="Edit Staff"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deactivate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">GD</div>
+                                            <div>
+                                                <div class="cell-title">Grace Danladi</div>
+                                                <div class="cell-subtitle">Staff ID: STF/WRD/007</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>grace.danladi@schoolhostel.com</td>
+                                    <td><span class="status-badge badge-info">Hostel Warden (Block B)</span></td>
+                                    <td><span class="status-badge badge-success">Active</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#add-staff" class="btn-action-icon" title="Edit Staff"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Deactivate"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="add-staff">
+                    <div>
+                        <h3 class="section-card-title">Register New Staff Member</h3>
+                        <p class="section-card-desc">Create staff login credentials and assign operational role permissions</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="firstName">First Name *</label>
+                                <input type="text" class="form-input-custom" name="firstName" id="firstName" placeholder="e.g. Samuel" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="lastName">Last Name *</label>
+                                <input type="text" class="form-input-custom" name="lastName" id="lastName" placeholder="e.g. Adeleke" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="emailAddress">Staff Email Address *</label>
+                                <input type="email" class="form-input-custom" name="emailAddress" id="emailAddress" placeholder="e.g. warden@schoolhostel.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roleId">Assigned Role *</label>
+                                <select class="form-select-custom" name="roleId" id="roleId" required>
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="1">Super Administrator</option>
+                                    <option value="2">Hostel Warden</option>
+                                    <option value="3">Hall Supervisor</option>
+                                    <option value="4">Hall Porter / Gate Officer</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="statusId">Account Status *</label>
+                                <select class="form-select-custom" name="statusId" id="statusId" required>
+                                    <option value="1" selected>Active</option>
+                                    <option value="2">Inactive / Suspended</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Register Staff
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

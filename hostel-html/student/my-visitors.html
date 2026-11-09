@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | My Visitors</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Student Resident Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">My Accommodation</span>
+
+                <a href="my-room.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>My Room & Roommates</span>
+                </a>
+
+                <a href="my-fees.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Fees & Payments</span>
+                </a>
+
+                <a href="room-transfer.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfer Request</span>
+                </a>
+
+                <a href="my-visitors.html" class="nav-link-item active">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>My Visitors</span>
+                </a>
+
+                <a href="my-checkout.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Clearance & Checkout</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="profile.html" class="nav-link-item">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="student-login.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Visiting Policy</h4>
+                <p class="help-widget-subtext">Visiting hours end strictly at 06:00 PM. No non-resident overnight stays permitted.</p>
+                <a href="my-room.html" class="help-widget-btn">
+                    <i class="bi bi-clock"></i> 10 AM - 6 PM
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>My Visitors</h1>
+                        <p>Pre-register incoming guests and view entry records logged by the hostel gate</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#register-visitor" class="btn-primary">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Pre-Register Guest</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Ayo Posikay</span>
+                            <span class="user-display-role">STUDENT20260924</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                            <span class="stat-label-title">Total Visits</span>
+                        </div>
+                        <p class="stat-big-value">2</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>This Academic Term</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Current Active Pass</span>
+                        </div>
+                        <p class="stat-big-value">0</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>No Guests Currently Inside</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <span class="stat-label-title">Guest Hours</span>
+                        </div>
+                        <p class="stat-big-value">10:00 - 18:00</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Daily Permitted Window</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <span class="stat-label-title">Security Clearance</span>
+                        </div>
+                        <p class="stat-big-value">Valid</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>No Gate Restrictions</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Visitor Name</th>
+                                    <th>Purpose of Visit</th>
+                                    <th>Date of Visit</th>
+                                    <th>Arrival</th>
+                                    <th>Departure</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-title">Mr. Michael Johnson</div>
+                                        <div class="cell-subtitle">Guardian / Parent</div>
+                                    </td>
+                                    <td>Parent Visit & Supplies</td>
+                                    <td>24 Oct 2024</td>
+                                    <td>11:15 AM</td>
+                                    <td>02:45 PM</td>
+                                    <td><span class="status-badge badge-neutral">Departed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-title">Blessing Adeleke</div>
+                                        <div class="cell-subtitle">Sibling</div>
+                                    </td>
+                                    <td>Academic Materials Drop-off</td>
+                                    <td>12 Oct 2024</td>
+                                    <td>01:30 PM</td>
+                                    <td>03:20 PM</td>
+                                    <td><span class="status-badge badge-neutral">Departed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="register-visitor">
+                    <div>
+                        <h3 class="section-card-title">Pre-Register Incoming Visitor</h3>
+                        <p class="section-card-desc">Notify the hostel gate security checkpoint of an expected guest</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Host Matric / Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" value="STUDENT20260924" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="visitorName">Visitor Full Name *</label>
+                                <input type="text" class="form-input-custom" name="visitorName" id="visitorName" placeholder="e.g. Mr. Emmanuel Johnson" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="purpose">Purpose of Visit *</label>
+                                <select class="form-select-custom" name="purpose" id="purpose" required>
+                                    <option value="" disabled selected>Select Purpose</option>
+                                    <option value="Parent / Family Visit">Parent / Family Visit</option>
+                                    <option value="Academic Study Collaboration">Academic Study Collaboration</option>
+                                    <option value="Item Delivery">Package / Item Delivery</option>
+                                    <option value="Official Visit">Official Institutional Visit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="visitDate">Date of Visit *</label>
+                                <input type="date" class="form-input-custom" name="visitDate" id="visitDate" value="2026-11-10" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="arrivalTime">Expected Arrival Time *</label>
+                                <input type="time" class="form-input-custom" name="arrivalTime" id="arrivalTime" value="11:00" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="departureTime">Expected Departure Time *</label>
+                                <input type="time" class="form-input-custom" name="departureTime" id="departureTime" value="16:00" required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Register Visitor Pass
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

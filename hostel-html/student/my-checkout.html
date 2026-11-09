@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Clearance & Checkout</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Student Resident Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">My Accommodation</span>
+
+                <a href="my-room.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>My Room & Roommates</span>
+                </a>
+
+                <a href="my-fees.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Fees & Payments</span>
+                </a>
+
+                <a href="room-transfer.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfer Request</span>
+                </a>
+
+                <a href="my-visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>My Visitors</span>
+                </a>
+
+                <a href="my-checkout.html" class="nav-link-item active">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Clearance & Checkout</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="profile.html" class="nav-link-item">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="student-login.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Caution Refund</h4>
+                <p class="help-widget-subtext">Refund of ₦25,000 caution deposit requires verified room inspection sign-off.</p>
+                <a href="my-fees.html" class="help-widget-btn">
+                    <i class="bi bi-wallet2"></i> Deposit Details
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Clearance & Checkout</h1>
+                        <p>Submit end-of-term room clearance, key surrender, and caution deposit refund request</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#checkout-request" class="btn-primary">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Submit Checkout</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Ayo Posikay</span>
+                            <span class="user-display-role">STUDENT20260924</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-door-closed-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Current Allotment</span>
+                        </div>
+                        <p class="stat-big-value">Room 204</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Block A (Bed 1)</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-key-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Room Key</span>
+                        </div>
+                        <p class="stat-big-value">In Hand</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Key #BLK-A-204-1</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <span class="stat-label-title">Refundable Caution</span>
+                        </div>
+                        <p class="stat-big-value">₦25,000</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>Pending Inspection</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-clipboard-check"></i>
+                            </div>
+                            <span class="stat-label-title">Clearance Status</span>
+                        </div>
+                        <p class="stat-big-value">Active</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Awaiting Checkout</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Clearance Procedure Overview</h3>
+                        <p class="section-card-desc">Three simple steps to complete hostel vacating and claim your caution deposit</p>
+                    </div>
+
+                    <div class="form-grid-3col">
+                        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #1e40af; font-size: 13px; margin-bottom: 6px;">
+                                <span style="background-color: #eff6ff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">1</span>
+                                Submit Date
+                            </div>
+                            <p style="font-size: 12px; color: #64748b; margin: 0; line-height: 1.4;">Submit your departure date and key condition form below at least 24 hours in advance.</p>
+                        </div>
+
+                        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #1e40af; font-size: 13px; margin-bottom: 6px;">
+                                <span style="background-color: #eff6ff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">2</span>
+                                Room Inspection
+                            </div>
+                            <p style="font-size: 12px; color: #64748b; margin: 0; line-height: 1.4;">Hostel warden visits Room 204 to check bed frame, mattress, and wardrobe conditions.</p>
+                        </div>
+
+                        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #1e40af; font-size: 13px; margin-bottom: 6px;">
+                                <span style="background-color: #eff6ff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">3</span>
+                                Handover & Refund
+                            </div>
+                            <p style="font-size: 12px; color: #64748b; margin: 0; line-height: 1.4;">Surrender room key to the hall porter desk and receive electronic caution refund.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card" id="checkout-request">
+                    <div>
+                        <h3 class="section-card-title">Submit Checkout & Clearance Form</h3>
+                        <p class="section-card-desc">Provide vacating details for hall porter and warden clearance</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Matric / Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" value="STUDENT20260924" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomBed">Room & Bed Allocated *</label>
+                                <input type="text" class="form-input-custom" name="roomBed" id="roomBed" value="Block A - Room 204 (Bed 1)" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="checkoutDate">Proposed Departure Date *</label>
+                                <input type="date" class="form-input-custom" name="checkoutDate" id="checkoutDate" value="2026-11-20" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="keyStatus">Key Handover Status *</label>
+                                <select class="form-select-custom" name="keyStatus" id="keyStatus" required>
+                                    <option value="Returned" selected>Intact & Ready to Return</option>
+                                    <option value="Lost">Lost Key (Fine of ₦5,000 applies)</option>
+                                    <option value="Damaged">Damaged Key</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomCondition">Room & Bed Condition *</label>
+                                <select class="form-select-custom" name="roomCondition" id="roomCondition" required>
+                                    <option value="Good" selected>Good Condition (Clean & No Damage)</option>
+                                    <option value="Minor Wear">Minor Wear and Tear</option>
+                                    <option value="Damaged">Damaged Fixtures Reported</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom" style="margin-top: 14px;">
+                            <label class="form-label-custom" for="remarks">Forwarding Address / Bank Account for Refund</label>
+                            <input type="text" class="form-input-custom" name="remarks" id="remarks" placeholder="e.g. GTBank 0123456789 (Ayomide Posikay) for ₦25,000 caution refund">
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Submit Clearance Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

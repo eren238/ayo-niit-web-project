@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png" />
+    <link href="../../styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
+    <link href="../../styles/contants.css" type="text/css" rel="stylesheet" />
+    <link href="../../styles/main.css" type="text/css" rel="stylesheet" />
+    <title>Hostel | Super Admin Sign In</title>
+</head>
+<body>
+    <div class="student-portal-wrapper">
+        <div class="student-portal-card">
+            <div class="portal-form-pane">
+                <div class="form-header">
+                    <h1 class="login-heading">Admin Sign In</h1>
+                    <p class="login-subtext">Enter your administrator credentials</p>
+                </div>
+
+                <form class="portal-login-form" action="../dashboard.html" method="POST">
+                    <div class="underline-field-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" name="emailAddress" class="underline-input" id="emailAddress" required />
+                    </div>
+
+                    <div class="underline-field-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" name="password" class="underline-input" id="password" required />
+                        </div>
+                    </div>
+
+                    <div class="forgot-password-row">
+                        <a href="admin-forgot-password.html" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="portal-login-btn" id="loginBtn">Sign In to Console</button>
+                </form>
+
+                <div class="signup-account-prompt">
+                    <span>Hostel Staff or Student?</span>
+                    <a href="../../staff/staff-auth/staff-sign-in.html" class="signup-link-highlight">Staff Portal</a>
+                    <span>&bull;</span>
+                    <a href="../../student/student-login.html" class="signup-link-highlight">Student Portal</a>
+                </div>
+            </div>
+
+            <div class="portal-hero-pane">
+                <div class="school-hero-display">
+                    <div class="school-logo-badge">
+                        <img src="../../all-images/icon-images/logo.png" alt="School Logo" class="school-logo-image" />
+                    </div>
+                </div>
+
+                <div class="portal-hero-text">
+                    <h2 class="hero-portal-title">
+                        <span class="title-bold">Super Admin</span> <span class="title-light">Console</span>
+                    </h2>
+                    <p class="hero-portal-subtitle">Institutional oversight, staff management, and system setup</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

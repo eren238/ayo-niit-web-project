@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Checkouts & Clearance</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Super Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="hostels.html" class="nav-link-item">
+                    <i class="bi bi-building"></i>
+                    <span>Hostels</span>
+                </a>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Operations & Management</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="staff-list.html" class="nav-link-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Staff Management</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item active">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Administration & System</span>
+
+                <a href="reports.html" class="nav-link-item">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Reports & Audits</span>
+                </a>
+
+                <a href="setup.html" class="nav-link-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings & Setup</span>
+                </a>
+
+                <a href="admin-auth/admin-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Master Control</h4>
+                <p class="help-widget-subtext">Manage institutional clearance forms and caution deposit refund authorizations.</p>
+                <a href="setup.html" class="help-widget-btn">
+                    <i class="bi bi-gear-fill"></i> System Setup
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Checkouts & Clearance Management</h1>
+                        <p>Process resident vacating forms, room inspection sign-offs, and key returns</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#log-checkout" class="btn-primary">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Log Student Checkout</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AU</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Admin User</span>
+                            <span class="user-display-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </div>
+                            <span class="stat-label-title">Total Checkouts</span>
+                        </div>
+                        <p class="stat-big-value">142</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>This Academic Year</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Keys Returned</span>
+                        </div>
+                        <p class="stat-big-value">138</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>97.2% Handover Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Damages Reported</span>
+                        </div>
+                        <p class="stat-big-value">3</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Caution Fee Deducted</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <span class="stat-label-title">Caution Deposits Cleared</span>
+                        </div>
+                        <p class="stat-big-value">₦3.45M</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>Refunds Processed</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by student ID, room, or clearance status...">
+                    </div>
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select" aria-label="Filter by Key Status">
+                            <option value="">All Key Statuses</option>
+                            <option value="Returned">Returned</option>
+                            <option value="Lost">Lost</option>
+                            <option value="Damaged">Damaged</option>
+                        </select>
+                        <select class="toolbar-select" aria-label="Filter by Status">
+                            <option value="">All Statuses</option>
+                            <option value="CLEARED">Cleared</option>
+                            <option value="PENDING">Pending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Resident</th>
+                                    <th>Room & Bed</th>
+                                    <th>Checkout Date</th>
+                                    <th>Key Status</th>
+                                    <th>Room Condition</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #eff6ff; color: #1e40af;">DA</div>
+                                            <div>
+                                                <div class="cell-title">David Adeleke</div>
+                                                <div class="cell-subtitle">STUDENT20260927</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Block C - Room 101 (Bed 1)</td>
+                                    <td>15 Oct 2024</td>
+                                    <td><span class="status-badge badge-success">Returned</span></td>
+                                    <td>Good (No Damage)</td>
+                                    <td><span class="status-badge badge-success">Cleared</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#log-checkout" class="btn-action-icon" title="Edit Checkout"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Checkout"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fdf2f8; color: #db2777;">BJ</div>
+                                            <div>
+                                                <div class="cell-title">Blessing Johnson</div>
+                                                <div class="cell-subtitle">STUDENT20260928</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Block B - Room 108 (Bed 1)</td>
+                                    <td>18 Oct 2024</td>
+                                    <td><span class="status-badge badge-warning">Lost</span></td>
+                                    <td>Minor Wear (Key fine applied)</td>
+                                    <td><span class="status-badge badge-warning">Pending</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: inline-flex; gap: 4px;">
+                                            <a href="#log-checkout" class="btn-action-icon" title="Edit Checkout"><i class="bi bi-pencil"></i></a>
+                                            <a href="#" class="btn-action-icon btn-action-delete" title="Delete Checkout"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="log-checkout">
+                    <div>
+                        <h3 class="section-card-title">Log Student Checkout & Clearance</h3>
+                        <p class="section-card-desc">Record key surrender, inspection status, and caution fee approval</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" placeholder="e.g. STUDENT20260927" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomBed">Room & Bed *</label>
+                                <input type="text" class="form-input-custom" name="roomBed" id="roomBed" placeholder="e.g. Block C - Room 101 (Bed 1)" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="checkoutDate">Checkout Date *</label>
+                                <input type="date" class="form-input-custom" name="checkoutDate" id="checkoutDate" value="2024-10-20" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="keyStatus">Key Handover Status *</label>
+                                <select class="form-select-custom" name="keyStatus" id="keyStatus" required>
+                                    <option value="Returned" selected>Returned</option>
+                                    <option value="Lost">Lost (Fine Applies)</option>
+                                    <option value="Damaged">Damaged</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="roomCondition">Room & Bed Condition *</label>
+                                <select class="form-select-custom" name="roomCondition" id="roomCondition" required>
+                                    <option value="Good" selected>Good Condition (Clean)</option>
+                                    <option value="Minor Wear">Minor Wear and Tear</option>
+                                    <option value="Damaged">Damage Detected</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="statusId">Clearance Status *</label>
+                                <select class="form-select-custom" name="statusId" id="statusId" required>
+                                    <option value="CLEARED" selected>Cleared</option>
+                                    <option value="PENDING">Pending Fee Deduction</option>
+                                    <option value="REJECTED">Clearance Denied</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom" style="margin-top: 14px;">
+                            <label class="form-label-custom" for="remarks">Inspection Remarks & Forwarding Account</label>
+                            <input type="text" class="form-input-custom" name="remarks" id="remarks" placeholder="e.g. Bedframe intact, mattress inspected. Caution refund approved.">
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Record Checkout
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Staff Warden Dashboard</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Staff & Warden Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item active">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Resident Operations</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="staff-auth/staff-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Duty Roster</h4>
+                <p class="help-widget-subtext">Block A Warden Duty Shift: Day & Evening Supervision.</p>
+                <a href="tel:+234800467835" class="help-widget-btn">
+                    <i class="bi bi-telephone"></i> Security Post
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Staff Operations Dashboard</h1>
+                        <p>Hostel resident operations, daily bed occupancy, and hall management</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <a href="rooms.html#add-room" class="btn-primary" style="font-size: 12px; padding: 6px 12px;">
+                            <i class="bi bi-plus-lg"></i> Room
+                        </a>
+                        <a href="allocations.html#new-allocation" class="btn-primary" style="font-size: 12px; padding: 6px 12px;">
+                            <i class="bi bi-plus-lg"></i> Allocate
+                        </a>
+                    </div>
+
+                    <div class="academic-year-pill">
+                        <span class="label-muted">Session:</span>
+                        <span style="font-weight: 600; font-size: 13px; color: #0f172a;">2024 / 2025</span>
+                    </div>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">SA</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Samuel Adeleke</span>
+                            <span class="user-display-role">Hall Warden (Block A)</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Hostel Residents</span>
+                        </div>
+                        <p class="stat-big-value">1,248</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>Active Students</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-door-open-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Occupied Rooms</span>
+                        </div>
+                        <p class="stat-big-value">98%</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-arrow-up-short"></i>
+                            <span>251 of 256 Rooms</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Bed Allocations</span>
+                        </div>
+                        <p class="stat-big-value">482 Beds</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>18 Open Beds</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-person-vcard"></i>
+                            </div>
+                            <span class="stat-label-title">Today's Visitors</span>
+                        </div>
+                        <p class="stat-big-value">24</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Logged at Gate</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="dashboard-grid-2col">
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h3 class="section-card-title">Recent Room Allocations</h3>
+                                <p class="section-card-desc">Latest bed spaces assigned to students</p>
+                            </div>
+                            <a href="allocations.html" style="color: #1e40af; font-size: 12px; font-weight: 600; text-decoration: none;">View all</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="management-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Room & Bed</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-title">Ayo Posikay</div>
+                                            <div class="cell-subtitle">STUDENT20260924</div>
+                                        </td>
+                                        <td>Block A - Room 204 (Bed 1)</td>
+                                        <td><span class="status-badge badge-success">Allocated</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-title">Chioma Eze</div>
+                                            <div class="cell-subtitle">STUDENT20260925</div>
+                                        </td>
+                                        <td>Block B - Room 112 (Bed 2)</td>
+                                        <td><span class="status-badge badge-success">Allocated</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-title">Ibrahim Musa</div>
+                                            <div class="cell-subtitle">STUDENT20260926</div>
+                                        </td>
+                                        <td>Block A - Room 305 (Bed 3)</td>
+                                        <td><span class="status-badge badge-success">Allocated</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h3 class="section-card-title">Pending Room Transfers</h3>
+                                <p class="section-card-desc">Reallocation requests needing warden review</p>
+                            </div>
+                            <a href="transfers.html" style="color: #1e40af; font-size: 12px; font-weight: 600; text-decoration: none;">Review all</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="management-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Move Request</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-title">David Adeleke</div>
+                                            <div class="cell-subtitle">STUDENT20260927</div>
+                                        </td>
+                                        <td>Room 102 ➔ Room 208</td>
+                                        <td><span class="status-badge badge-warning">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-title">Emmanuel Ojo</div>
+                                            <div class="cell-subtitle">STUDENT20260930</div>
+                                        </td>
+                                        <td>Room 301 ➔ Room 104</td>
+                                        <td><span class="status-badge badge-warning">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid-2col">
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h3 class="section-card-title">Visitors Log (Today)</h3>
+                                <p class="section-card-desc">Active entry passes at reception</p>
+                            </div>
+                            <a href="visitors.html" style="color: #1e40af; font-size: 12px; font-weight: 600; text-decoration: none;">View log</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="management-table">
+                                <thead>
+                                    <tr>
+                                        <th>Visitor</th>
+                                        <th>Resident Visited</th>
+                                        <th>Arrival</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Michael Johnson</td>
+                                        <td>Ayo Posikay (Room 204)</td>
+                                        <td>11:15 AM</td>
+                                        <td><span class="status-badge badge-info">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sarah Okafor</td>
+                                        <td>Chioma Eze (Room 112)</td>
+                                        <td>09:30 AM</td>
+                                        <td><span class="status-badge badge-neutral">Departed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h3 class="section-card-title">Recent Fee Payment Slips</h3>
+                                <p class="section-card-desc">Verified transactions for hall clearance</p>
+                            </div>
+                            <a href="payments.html" style="color: #1e40af; font-size: 12px; font-weight: 600; text-decoration: none;">View all</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="management-table">
+                                <thead>
+                                    <tr>
+                                        <th>Resident</th>
+                                        <th>Fee Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ayo Posikay</td>
+                                        <td>Annual Hostel Fee</td>
+                                        <td><strong>₦50,000</strong></td>
+                                        <td><span class="status-badge badge-success">Verified</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Blessing Johnson</td>
+                                        <td>1st Semester Installment</td>
+                                        <td><strong>₦25,000</strong></td>
+                                        <td><span class="status-badge badge-warning">Partial</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

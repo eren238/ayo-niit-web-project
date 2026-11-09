@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel | Fees & Payments</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Student Resident Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">My Accommodation</span>
+
+                <a href="my-room.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>My Room & Roommates</span>
+                </a>
+
+                <a href="my-fees.html" class="nav-link-item active">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Fees & Payments</span>
+                </a>
+
+                <a href="room-transfer.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfer Request</span>
+                </a>
+
+                <a href="my-visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>My Visitors</span>
+                </a>
+
+                <a href="my-checkout.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Clearance & Checkout</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="profile.html" class="nav-link-item">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+
+                <a href="student-login.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Bursary Support</h4>
+                <p class="help-widget-subtext">For transaction reconciliation or payment receipt issues.</p>
+                <a href="mailto:bursary@schoolhostel.edu" class="help-widget-btn">
+                    <i class="bi bi-envelope"></i> Contact Bursary
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Hostel Fees & Payments</h1>
+                        <p>Track accommodation fee invoices, receipts, and submit payment records</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <a href="#pay-fee" class="btn-primary">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Submit Payment Proof</span>
+                    </a>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Ayo Posikay</span>
+                            <span class="user-display-role">STUDENT20260924</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <section class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-receipt"></i>
+                            </div>
+                            <span class="stat-label-title">Total Invoiced</span>
+                        </div>
+                        <p class="stat-big-value">₦75,000</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Session 2024 / 2025</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Total Paid</span>
+                        </div>
+                        <p class="stat-big-value">₦75,000</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-check2"></i>
+                            <span>100% Cleared</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <span class="stat-label-title">Outstanding Due</span>
+                        </div>
+                        <p class="stat-big-value">₦0.00</p>
+                        <div class="stat-trend-footer trend-up">
+                            <i class="bi bi-shield-check"></i>
+                            <span>No Outstanding Balance</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-purple">
+                                <i class="bi bi-shield-lock-fill"></i>
+                            </div>
+                            <span class="stat-label-title">Caution Deposit</span>
+                        </div>
+                        <p class="stat-big-value">₦25,000</p>
+                        <div class="stat-trend-footer trend-muted">
+                            <span>Refundable on Checkout</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Fee Description</th>
+                                    <th>Transaction Ref</th>
+                                    <th>Payment Method</th>
+                                    <th>Amount</th>
+                                    <th>Payment Date</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Receipt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-title">Annual Hostel Bed Space Fee</div>
+                                        <div class="cell-subtitle">Block A - Room 204 (Bed 1)</div>
+                                    </td>
+                                    <td><code>TXN-2026-90412</code></td>
+                                    <td>Bank Transfer</td>
+                                    <td><strong>₦50,000</strong></td>
+                                    <td>24 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Verified</span></td>
+                                    <td style="text-align: right;">
+                                        <a href="#" class="btn-secondary" style="padding: 4px 10px; font-size: 11.5px;"><i class="bi bi-download"></i> Receipt</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-title">Caution & Damage Deposit</div>
+                                        <div class="cell-subtitle">Refundable upon room inspection</div>
+                                    </td>
+                                    <td><code>TXN-2026-88102</code></td>
+                                    <td>Debit Card (Paystack)</td>
+                                    <td><strong>₦25,000</strong></td>
+                                    <td>20 Sep 2026</td>
+                                    <td><span class="status-badge badge-success">Verified</span></td>
+                                    <td style="text-align: right;">
+                                        <a href="#" class="btn-secondary" style="padding: 4px 10px; font-size: 11.5px;"><i class="bi bi-download"></i> Receipt</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card" id="pay-fee">
+                    <div>
+                        <h3 class="section-card-title">Submit New Payment Record</h3>
+                        <p class="section-card-desc">Enter bank transaction details or proof of payment for verification by bursary</p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentId">Matric / Student ID *</label>
+                                <input type="text" class="form-input-custom" name="studentId" id="studentId" value="STUDENT20260924" readonly required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="feeDescription">Payment Category *</label>
+                                <select class="form-select-custom" name="feeDescription" id="feeDescription" required>
+                                    <option value="Annual Hostel Fee">Annual Hostel Bed Space Fee (₦50,000)</option>
+                                    <option value="1st Semester Installment">1st Semester Installment (₦25,000)</option>
+                                    <option value="2nd Semester Installment">2nd Semester Installment (₦25,000)</option>
+                                    <option value="Caution Deposit">Caution / Damage Deposit (₦25,000)</option>
+                                    <option value="Key Replacement Fee">Lost Key Replacement Fine (₦5,000)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="amount">Amount (₦) *</label>
+                                <input type="number" class="form-input-custom" name="amount" id="amount" placeholder="e.g. 50000" min="1000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="paymentMethod">Payment Method *</label>
+                                <select class="form-select-custom" name="paymentMethod" id="paymentMethod" required>
+                                    <option value="Bank Transfer">Bank Transfer (Direct / Mobile App)</option>
+                                    <option value="Debit Card">Online Card Payment (Paystack / Flutterwave)</option>
+                                    <option value="Bank Deposit">Bank Teller Deposit</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="transactionReference">Transaction Reference / Session ID *</label>
+                                <input type="text" class="form-input-custom" name="transactionReference" id="transactionReference" placeholder="e.g. TXN-2026-99201" required>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="paymentDate">Date of Payment *</label>
+                                <input type="date" class="form-input-custom" name="paymentDate" id="paymentDate" value="2026-09-24" required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Reset Form</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2"></i> Submit Payment Record
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

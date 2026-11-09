@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Hostel | Student Checkouts</title>
+    <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png" />
+    <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/contants.css" type="text/css" rel="stylesheet" />
+    <link href="../styles/main.css" type="text/css" rel="stylesheet" />
+</head>
+<body class="dashboard-body-tag">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div class="brand-text-group">
+                    <h2 class="brand-title">School Hostel</h2>
+                    <span class="brand-subtitle">Staff & Warden Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu-wrapper">
+                <a href="dashboard.html" class="nav-link-item">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <span class="menu-category-title">Accommodations</span>
+
+                <a href="rooms.html" class="nav-link-item">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Rooms</span>
+                </a>
+
+                <a href="beds.html" class="nav-link-item">
+                    <i class="bi bi-layers"></i>
+                    <span>Beds</span>
+                </a>
+
+                <a href="allocations.html" class="nav-link-item">
+                    <i class="bi bi-person-check"></i>
+                    <span>Allocations</span>
+                </a>
+
+                <span class="menu-category-title">Resident Operations</span>
+
+                <a href="students.html" class="nav-link-item">
+                    <i class="bi bi-people"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="transfers.html" class="nav-link-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Room Transfers</span>
+                </a>
+
+                <a href="checkouts.html" class="nav-link-item active">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Checkouts</span>
+                </a>
+
+                <a href="payments.html" class="nav-link-item">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Payments & Fees</span>
+                </a>
+
+                <a href="visitors.html" class="nav-link-item">
+                    <i class="bi bi-person-vcard"></i>
+                    <span>Visitors</span>
+                </a>
+
+                <span class="menu-category-title">Account</span>
+
+                <a href="staff-auth/staff-sign-in.html" class="nav-link-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Sign Out</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-help-widget">
+                <h4 class="help-widget-title">Duty Roster</h4>
+                <p class="help-widget-subtext">Block A Warden Duty Shift: Day & Evening Supervision.</p>
+                <a href="tel:+234800467835" class="help-widget-btn">
+                    <i class="bi bi-telephone"></i> Security Post
+                </a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="topbar-left">
+                    <div class="page-title-group">
+                        <h1>Student Checkouts & Clearance</h1>
+                        <p>Track room handovers, key returns, and hostel exit clearances</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="academic-year-pill">
+                        <span class="label-muted">Academic Year:</span>
+                        <select>
+                            <option>2024 - 2025</option>
+                            <option>2023 - 2024</option>
+                        </select>
+                    </div>
+
+                    <div class="notification-btn" title="Notifications">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-badge-dot">3</span>
+                    </div>
+
+                    <div class="user-profile-badge">
+                        <div class="user-avatar-circle">SA</div>
+                        <div class="user-name-role">
+                            <span class="user-display-name">Samuel Adeleke</span>
+                            <span class="user-display-role">Hall Warden (Block A)</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content-area">
+                <div class="stats-cards-grid-4">
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-blue">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </div>
+                            <div>
+                                <h4 class="stat-label-title">Total Checkouts</h4>
+                                <h3 class="stat-big-value">142</h3>
+                            </div>
+                        </div>
+                        <div class="stat-trend-footer">
+                            <span class="trend-muted">Current academic term</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-green">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="stat-label-title">Fully Cleared</h4>
+                                <h3 class="stat-big-value">128</h3>
+                            </div>
+                        </div>
+                        <div class="stat-trend-footer">
+                            <span class="trend-up"><i class="bi bi-check2-all"></i> 90.1% clearance</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-amber">
+                                <i class="bi bi-key"></i>
+                            </div>
+                            <div>
+                                <h4 class="stat-label-title">Pending Keys</h4>
+                                <h3 class="stat-big-value">9</h3>
+                            </div>
+                        </div>
+                        <div class="stat-trend-footer">
+                            <span class="trend-down"><i class="bi bi-clock"></i> Keys outstanding</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-icon-wrapper icon-red">
+                                <i class="bi bi-cash"></i>
+                            </div>
+                            <div>
+                                <h4 class="stat-label-title">Pending Fines</h4>
+                                <h3 class="stat-big-value">5</h3>
+                            </div>
+                        </div>
+                        <div class="stat-trend-footer">
+                            <span class="trend-muted">Caution deductions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-toolbar">
+                    <div class="toolbar-search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search by student ID or room..." />
+                    </div>
+
+                    <div class="toolbar-filters-group">
+                        <select class="toolbar-select">
+                            <option value="">All Clearances</option>
+                            <option value="CLEARED">Cleared</option>
+                            <option value="IN_REVIEW">In Review</option>
+                            <option value="FINE_DUE">Fine Due</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="management-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Room & Bed</th>
+                                    <th>Checkout Date</th>
+                                    <th>Keys Status</th>
+                                    <th>Room Condition</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #ecfdf5; color: #047857;">DT</div>
+                                            <div>
+                                                <h5 class="cell-title">David Tariq</h5>
+                                                <p class="cell-subtitle">STU/2024/0052</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Block A • Rm 104 (Bed A)</td>
+                                    <td>2024-10-24</td>
+                                    <td>Both Keys Returned</td>
+                                    <td>Pristine Condition</td>
+                                    <td><span class="status-badge badge-success">CLEARED</span></td>
+                                    <td style="text-align: right;">
+                                        <a href="#" class="btn-action-icon" title="Print Clearance"><i class="bi bi-printer"></i></a>
+                                        <a href="#" class="btn-action-icon btn-action-delete" title="Delete"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fefce8; color: #b45309;">MN</div>
+                                            <div>
+                                                <h5 class="cell-title">Maryam Nura</h5>
+                                                <p class="cell-subtitle">STU/2024/0078</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Block B • Rm 212 (Bed B)</td>
+                                    <td>2024-10-22</td>
+                                    <td>Wardrobe Key Pending</td>
+                                    <td>Minor Wear</td>
+                                    <td><span class="status-badge badge-warning">IN_REVIEW</span></td>
+                                    <td style="text-align: right;">
+                                        <a href="#" class="btn-action-icon" title="Print Clearance"><i class="bi bi-printer"></i></a>
+                                        <a href="#" class="btn-action-icon btn-action-delete" title="Delete"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cell-user-info">
+                                            <div class="avatar-badge" style="background-color: #fef2f2; color: #b91c1c;">KB</div>
+                                            <div>
+                                                <h5 class="cell-title">Kolawole Balogun</h5>
+                                                <p class="cell-subtitle">STU/2024/0199</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Block D • Rm 105 (Bed A)</td>
+                                    <td>2024-10-18</td>
+                                    <td>Key Missing</td>
+                                    <td>Damaged Latch</td>
+                                    <td><span class="status-badge badge-danger">FINE_DUE</span></td>
+                                    <td style="text-align: right;">
+                                        <a href="#" class="btn-action-icon" title="Print Clearance"><i class="bi bi-printer"></i></a>
+                                        <a href="#" class="btn-action-icon btn-action-delete" title="Delete"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div>
+                        <h3 class="section-card-title">Log Student Checkout</h3>
+                        <p class="section-card-desc">Enter room departure details matching backend fields.</p>
+                    </div>
+
+                    <form action="" method="POST">
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label for="studentId">Student ID / Matric</label>
+                                <input type="text" name="studentId" id="studentId" placeholder="e.g. STU/2024/0290" required />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label for="roomBed">Hostel Room & Bed Handed Over</label>
+                                <input type="text" name="roomBed" id="roomBed" placeholder="e.g. Block A • Rm 201 (Bed A)" required />
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label for="checkoutDate">Checkout Date</label>
+                                <input type="date" name="checkoutDate" id="checkoutDate" required />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label for="keyStatus">Keys Status</label>
+                                <select name="keyStatus" id="keyStatus" required>
+                                    <option value="Both Keys Returned">Both Keys Returned</option>
+                                    <option value="Room Key Only">Room Key Only</option>
+                                    <option value="Wardrobe Key Only">Wardrobe Key Only</option>
+                                    <option value="Keys Lost / Missing">Keys Lost / Missing</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2col">
+                            <div class="form-group-custom">
+                                <label for="roomCondition">Room Condition</label>
+                                <select name="roomCondition" id="roomCondition" required>
+                                    <option value="Pristine Condition">Pristine Condition</option>
+                                    <option value="Passed Inspection">Passed Inspection</option>
+                                    <option value="Minor Wear & Tear">Minor Wear & Tear</option>
+                                    <option value="Damage Recorded (Fine Due)">Damage Recorded (Fine Due)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label for="statusId">Clearance Status</label>
+                                <select name="statusId" id="statusId" required>
+                                    <option value="CLEARED" selected>CLEARED (Fully Cleared)</option>
+                                    <option value="IN_REVIEW">IN_REVIEW (In Review)</option>
+                                    <option value="FINE_DUE">FINE_DUE (Fine Due)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <label for="remarks">Inspector / Warden Remarks</label>
+                            <input type="text" name="remarks" id="remarks" placeholder="Observations, damage deduction notes..." />
+                        </div>
+
+                        <div style="margin-top: 6px; display: flex; justify-content: flex-end;">
+                            <button type="submit" class="btn-primary" style="height: 38px;">
+                                <i class="bi bi-plus-circle"></i> Record Checkout & Clearance
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

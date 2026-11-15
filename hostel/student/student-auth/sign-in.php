@@ -54,7 +54,10 @@ $response = [
         'firstName'    => $studentData['first_name'],
         'lastName'     => $studentData['last_name'],
         'emailAddress' => $studentData['email_address'],
-        'gender'       => $studentData['gender'],
+        'gender'       => $studentData['gender'] ?? '',
+        'department'   => $studentData['department'] ?? '',
+        'level'        => $studentData['level'] ?? '',
+        'phoneNumber'  => $studentData['phone_number'] ?? '',
         'lastLogin'    => $studentData['last_login'],
         'statusName'   => $studentData['status_name']
     ]

@@ -2,7 +2,7 @@
 
 <?php
 
-$fetchAllHostelsQuery = mysqli_query($conn, "SELECT * FROM hostels_tab ORDER BY hostel_name ") or die(mysqli_error($conn));
+$fetchAllHostelsQuery = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id ORDER BY hostels_tab.hostel_name ASC") or die(mysqli_error($conn));
 
 if (mysqli_num_rows($fetchAllHostelsQuery) == 0) {
     $response = [

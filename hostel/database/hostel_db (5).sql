@@ -141,7 +141,6 @@ CREATE TABLE `hostels_tab` (
   `sn` int(11) NOT NULL,
   `hostel_id` varchar(50) NOT NULL,
   `hostel_name` varchar(100) NOT NULL,
-  `code` varchar(50) NOT NULL,
   `gender` enum('Male','Female','Mixed') NOT NULL,
   `hostel_capacity` int(11) NOT NULL DEFAULT 0,
   `status_id` varchar(5) NOT NULL DEFAULT '1',
@@ -438,8 +437,7 @@ ALTER TABLE `fees_tab`
 --
 ALTER TABLE `hostels_tab`
   ADD PRIMARY KEY (`sn`),
-  ADD UNIQUE KEY `hostel_id` (`hostel_id`),
-  ADD UNIQUE KEY `code` (`code`);
+  ADD UNIQUE KEY `hostel_id` (`hostel_id`);
 
 --
 -- Indexes for table `maintenance_tab`

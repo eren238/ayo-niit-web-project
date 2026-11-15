@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,13 @@
     <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
     <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
     <link href="../styles/main.css" rel="stylesheet" type="text/css">
+    <script src="../js/session-manager.js"></script>
+    <script src="../js/modal-handler.js"></script>
+    <script src="../js/student-management.js"></script>
 </head>
 <body class="dashboard-body-tag">
     <div class="dashboard-layout">
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
             <div class="sidebar-brand">
                 <div class="brand-icon-box">
                     <i class="bi bi-mortarboard"></i>
@@ -19,6 +22,7 @@
                     <h2 class="brand-title">School Hostel</h2>
                     <span class="brand-subtitle">Student Resident Portal</span>
                 </div>
+                <a href="#" class="sidebar-close-btn" aria-label="Close navigation"><i class="bi bi-x-lg"></i></a>
             </div>
 
             <nav class="sidebar-menu-wrapper">
@@ -75,10 +79,12 @@
                 </a>
             </div>
         </aside>
+        <a href="#" class="sidebar-backdrop-link" aria-label="Close backdrop"></a>
 
         <main class="dashboard-main">
             <header class="dashboard-topbar">
                 <div class="topbar-left">
+                    <a href="#dashboard-sidebar" class="mobile-menu-trigger" aria-label="Open navigation"><i class="bi bi-list"></i></a>
                     <div class="page-title-group">
                         <h1>Resident Profile</h1>
                         <p>Matriculation details, institutional credentials, and emergency records</p>
@@ -87,10 +93,10 @@
 
                 <div class="topbar-right">
                     <div class="user-profile-badge">
-                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-avatar-circle">SR</div>
                         <div class="user-name-role">
-                            <span class="user-display-name">Ayo Posikay</span>
-                            <span class="user-display-role">STUDENT20260924</span>
+                            <span class="user-display-name">Student Resident</span>
+                            <span class="user-display-role">Student Resident</span>
                         </div>
                     </div>
                 </div>
@@ -99,10 +105,10 @@
             <div class="dashboard-content-area">
                 <div class="section-card">
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <div class="user-avatar-circle" style="width: 54px; height: 54px; font-size: 20px;">AP</div>
+                        <div class="user-avatar-circle" style="width: 54px; height: 54px; font-size: 20px;">SR</div>
                         <div>
-                            <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Ayo Posikay</h3>
-                            <p style="font-size: 13px; color: #64748b; margin: 3px 0 0 0;">Matric ID: <strong>STUDENT20260924</strong> • Computer Science (HND 1)</p>
+                            <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Student Resident</h3>
+                            <p style="font-size: 13px; color: #64748b; margin: 3px 0 0 0;">Matric ID: <strong>Student Portal</strong> • Resident Account</p>
                         </div>
                         <div style="margin-left: auto;">
                             <span class="status-badge badge-success">Active Resident</span>
@@ -120,12 +126,12 @@
                         <div class="form-grid-3col">
                             <div class="form-group-custom">
                                 <label class="form-label-custom">First Name</label>
-                                <input type="text" class="form-input-custom" name="firstName" value="Ayo" readonly>
+                                <input type="text" class="form-input-custom" name="firstName" value="" placeholder="First Name" readonly>
                             </div>
 
                             <div class="form-group-custom">
                                 <label class="form-label-custom">Last Name</label>
-                                <input type="text" class="form-input-custom" name="lastName" value="Posikay" readonly>
+                                <input type="text" class="form-input-custom" name="lastName" value="" placeholder="Last Name" readonly>
                             </div>
 
                             <div class="form-group-custom">
@@ -154,12 +160,12 @@
                         <div class="form-grid-2col" style="margin-top: 14px;">
                             <div class="form-group-custom">
                                 <label class="form-label-custom">Phone Number</label>
-                                <input type="tel" class="form-input-custom" name="phoneNumber" value="09050121142">
+                                <input type="tel" class="form-input-custom" name="phoneNumber" value="" placeholder="Phone Number">
                             </div>
 
                             <div class="form-group-custom">
                                 <label class="form-label-custom">Email Address</label>
-                                <input type="email" class="form-input-custom" name="emailAddress" value="ayo@schoolhostel.com">
+                                <input type="email" class="form-input-custom" name="emailAddress" value="" placeholder="Email Address">
                             </div>
                         </div>
 
@@ -210,5 +216,6 @@
             </div>
         </main>
     </div>
+    <div class="alert-overlay" id="studentAlert"></div>
 </body>
 </html>

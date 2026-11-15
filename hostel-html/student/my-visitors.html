@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,13 @@
     <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
     <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
     <link href="../styles/main.css" rel="stylesheet" type="text/css">
+        <script src="../js/session-manager.js"></script>
+    <script src="../js/modal-handler.js"></script>
+    <script src="../js/student-management.js"></script>
 </head>
 <body class="dashboard-body-tag">
     <div class="dashboard-layout">
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
             <div class="sidebar-brand">
                 <div class="brand-icon-box">
                     <i class="bi bi-mortarboard"></i>
@@ -19,6 +22,7 @@
                     <h2 class="brand-title">School Hostel</h2>
                     <span class="brand-subtitle">Student Resident Portal</span>
                 </div>
+                <a href="#" class="sidebar-close-btn" aria-label="Close navigation"><i class="bi bi-x-lg"></i></a>
             </div>
 
             <nav class="sidebar-menu-wrapper">
@@ -75,10 +79,12 @@
                 </a>
             </div>
         </aside>
+        <a href="#" class="sidebar-backdrop-link" aria-label="Close backdrop"></a>
 
         <main class="dashboard-main">
             <header class="dashboard-topbar">
                 <div class="topbar-left">
+                    <a href="#dashboard-sidebar" class="mobile-menu-trigger" aria-label="Open navigation"><i class="bi bi-list"></i></a>
                     <div class="page-title-group">
                         <h1>My Visitors</h1>
                         <p>Pre-register incoming guests and view entry records logged by the hostel gate</p>
@@ -92,10 +98,10 @@
                     </a>
 
                     <div class="user-profile-badge">
-                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-avatar-circle">SR</div>
                         <div class="user-name-role">
-                            <span class="user-display-name">Ayo Posikay</span>
-                            <span class="user-display-role">STUDENT20260924</span>
+                            <span class="user-display-name">Student Resident</span>
+                            <span class="user-display-role">Student Resident</span>
                         </div>
                     </div>
                 </div>
@@ -256,5 +262,6 @@
             </div>
         </main>
     </div>
+    <div class="alert-overlay" id="studentAlert"></div>
 </body>
 </html>

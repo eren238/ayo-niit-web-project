@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,14 @@
     <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
     <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
     <link href="../styles/main.css" rel="stylesheet" type="text/css">
+    <script src="../js/student-management.js"></script>
+        <script src="../js/session-manager.js"></script>
+    <script src="../js/modal-handler.js"></script>
 </head>
 <body class="dashboard-body-tag">
+    <div class="alert-overlay" id="studentAlert"></div>
     <div class="dashboard-layout">
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
             <div class="sidebar-brand">
                 <div class="brand-icon-box">
                     <i class="bi bi-mortarboard"></i>
@@ -19,6 +23,7 @@
                     <h2 class="brand-title">School Hostel</h2>
                     <span class="brand-subtitle">Student Resident Portal</span>
                 </div>
+                <a href="#" class="sidebar-close-btn" aria-label="Close navigation"><i class="bi bi-x-lg"></i></a>
             </div>
 
             <nav class="sidebar-menu-wrapper">
@@ -75,10 +80,12 @@
                 </a>
             </div>
         </aside>
+        <a href="#" class="sidebar-backdrop-link" aria-label="Close backdrop"></a>
 
         <main class="dashboard-main">
             <header class="dashboard-topbar">
                 <div class="topbar-left">
+                    <a href="#dashboard-sidebar" class="mobile-menu-trigger" aria-label="Open navigation"><i class="bi bi-list"></i></a>
                     <div class="page-title-group">
                         <h1>My Room & Roommates</h1>
                         <p>Detailed room allotment, bedspace information, and hall amenities</p>
@@ -86,16 +93,20 @@
                 </div>
 
                 <div class="topbar-right">
-                    <a href="room-transfer.html" class="btn-primary">
+                    <a href="#register-bed" class="btn-primary">
+                        <i class="bi bi-house-add"></i>
+                        <span>Register My Room</span>
+                    </a>
+                    <a href="room-transfer.html" class="btn-secondary" style="margin-left:0;">
                         <i class="bi bi-arrow-left-right"></i>
                         <span>Apply for Transfer</span>
                     </a>
 
                     <div class="user-profile-badge">
-                        <div class="user-avatar-circle">AP</div>
+                        <div class="user-avatar-circle">SR</div>
                         <div class="user-name-role">
-                            <span class="user-display-name">Ayo Posikay</span>
-                            <span class="user-display-role">STUDENT20260924</span>
+                            <span class="user-display-name">Student Resident</span>
+                            <span class="user-display-role">Student Resident</span>
                         </div>
                     </div>
                 </div>
@@ -167,7 +178,7 @@
                         <div class="roommate-card current-user">
                             <div class="avatar-badge" style="background-color: #1e40af; color: #ffffff;">AP</div>
                             <div class="roommate-details">
-                                <div class="roommate-name">Ayo Posikay (You)</div>
+                                <div class="roommate-name">You (Resident)</div>
                                 <div class="roommate-bed">Bed 1 • Lower Bunk • STU/2026/0290</div>
                                 <div class="roommate-phone">Computer Science (HND 1) • 09050121142</div>
                             </div>
@@ -254,6 +265,50 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="section-card" id="register-bed">
+                    <div>
+                        <h3 class="section-card-title">Register My Hostel Room &amp; Bed</h3>
+                        <p class="section-card-desc">Select your preferred hostel block, room, and available bed space to self-register your accommodation</p>
+                    </div>
+
+                    <form id="register-bed-form" action="#" method="POST">
+                        <div class="form-grid-3col">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentHostelSelect">Hostel Block *</label>
+                                <select class="form-select-custom" name="hostelId" id="studentHostelSelect" required>
+                                    <option value="" disabled selected>Loading hostels...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentRoomSelect">Available Room *</label>
+                                <select class="form-select-custom" name="roomId" id="studentRoomSelect" required>
+                                    <option value="" disabled selected>Select a hostel first</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="studentBedSelect">Available Bed Space *</label>
+                                <select class="form-select-custom" name="bedId" id="studentBedSelect" required>
+                                    <option value="" disabled selected>Select a room first</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 16px; padding: 12px 16px; background: #f0f9ff; border-left: 3px solid #0ea5e9; border-radius: 6px; font-size: 13px; color: #0369a1;">
+                            <i class="bi bi-info-circle-fill" style="margin-right: 6px;"></i>
+                            <strong>Note:</strong> Only available (vacant) rooms and beds are shown. Once registered, you must report to the Warden's office within 24 hours for final confirmation.
+                        </div>
+
+                        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="reset" class="btn-secondary">Clear Selection</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="bi bi-check2-circle"></i> Confirm Registration
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>

@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -92,6 +94,10 @@ body.dashboard-body-tag {
     column-gap: 20px;
     row-gap: 18px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .form-grid-col-full {
@@ -482,7 +488,10 @@ select.underline-input option {
     gap: 16px;
 }
 
-.menu-toggle-btn {
+.menu-toggle-btn,
+.mobile-menu-trigger,
+.sidebar-close-btn,
+.sidebar-backdrop-link {
     display: none;
     background: #ffffff;
     border: 1px solid #cbd5e1;
@@ -921,6 +930,17 @@ table.management-table tbody tr:last-child td {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.section-card > form {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .section-card-title {
@@ -936,13 +956,125 @@ table.management-table tbody tr:last-child td {
     margin: 2px 0 0 0;
 }
 
+/* ==========================================================================
+   FORM MODAL POPUP SYSTEM
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.modal-overlay.active,
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-dialog-custom {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 26px 28px;
+    box-sizing: border-box;
+    animation: modalPopAnimation 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPopAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.93) translateY(14px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-dialog-custom .section-card {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+    margin: 0;
+}
+
+.modal-header-custom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.modal-close-btn {
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.form-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.form-grid-3col > *,
+.form-grid-2col > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .form-group-custom {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.form-group-custom label {
+.form-group-custom label,
+.form-label-custom {
     font-size: 12px;
     font-weight: 600;
     color: #334155;
@@ -950,7 +1082,13 @@ table.management-table tbody tr:last-child td {
 
 .form-group-custom input,
 .form-group-custom select,
-.form-group-custom textarea {
+.form-group-custom textarea,
+.form-input-custom,
+.form-select-custom {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     height: 38px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
@@ -962,14 +1100,27 @@ table.management-table tbody tr:last-child td {
     outline: none;
 }
 
+.form-group-custom select,
+.form-select-custom {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 28px;
+    appearance: auto;
+    -webkit-appearance: auto;
+}
+
 .form-group-custom textarea {
     height: 70px;
     resize: vertical;
+    white-space: normal;
 }
 
 .form-group-custom input:focus,
 .form-group-custom select:focus,
-.form-group-custom textarea:focus {
+.form-group-custom textarea:focus,
+.form-input-custom:focus,
+.form-select-custom:focus {
     border-color: #1e40af;
 }
 
@@ -977,18 +1128,33 @@ table.management-table tbody tr:last-child td {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .dashboard-grid-2col {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.dashboard-grid-2col > *,
+.dashboard-grid-3col > * {
+    min-width: 0;
 }
 
 .dashboard-grid-3col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .occupancy-block-list {
@@ -1277,6 +1443,11 @@ table.management-table tbody tr:last-child td {
     line-height: 1.4;
 }
 
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE MOBILE VIEW (@media)
+   ========================================================================== */
+
+/* 1. TABLET & SMALL DESKTOP (<= 1100px) */
 @media screen and (max-width: 1100px) {
     .dashboard-grid-3col {
         grid-template-columns: 1fr;
@@ -1296,46 +1467,752 @@ table.management-table tbody tr:last-child td {
     .grid-3-col {
         grid-template-columns: 1fr;
     }
+    .form-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
+/* 2. TABLET & MOBILE (<= 860px) */
 @media screen and (max-width: 860px) {
+    html,
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body:not(.dashboard-body-tag),
+    .body:not(.dashboard-body-tag) {
+        padding: 16px 12px;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboard-layout {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* Off-Canvas Pure-CSS Drawer Navigation */
     .dashboard-sidebar {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 280px;
+        max-width: 86vw;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 1050;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 4px 0 28px rgba(15, 23, 42, 0.22);
+        transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        border-right: 1px solid #e2e8f0;
+    }
+
+    #dashboard-sidebar:target,
+    .dashboard-sidebar.sidebar-open {
+        left: 0 !important;
+    }
+
+    .sidebar-brand {
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid #f1f5f9;
+        flex-shrink: 0;
+    }
+
+    .sidebar-close-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background-color: #f1f5f9;
+        color: #475569;
+        font-size: 16px;
+        text-decoration: none;
+        margin-left: auto;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar-close-btn:hover,
+    .sidebar-close-btn:active {
+        background-color: #fee2e2;
+        color: #dc2626;
+    }
+
+    .sidebar-backdrop-link {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.55);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 1040;
+    }
+
+    #dashboard-sidebar:target ~ .sidebar-backdrop-link,
+    .sidebar-backdrop.active {
+        display: block;
+    }
+
+    .sidebar-menu-wrapper {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 14px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .nav-link-item {
+        padding: 11px 14px;
+        font-size: 14px;
+        border-radius: 8px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .sidebar-help-widget {
+        margin: 10px;
+        padding: 12px;
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Main Area & Sticky Compact Topbar */
+    .dashboard-main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-topbar {
+        height: auto;
+        min-height: 56px;
+        padding: 10px 14px;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mobile-menu-trigger,
+    .menu-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
+        font-size: 20px;
+        text-decoration: none;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-menu-trigger:hover,
+    .mobile-menu-trigger:active,
+    .menu-toggle-btn:hover,
+    .menu-toggle-btn:active {
+        background-color: #eff6ff;
+        color: #1d4ed8;
+        border-color: #93c5fd;
+    }
+
+    .page-title-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .page-title-group h1 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+    }
+
+    .page-title-group p {
+        font-size: 11.5px;
+        color: #64748b;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        width: auto;
+        border: none;
+        padding-top: 0;
+    }
+
+    .academic-year-pill {
         display: none;
     }
-    .menu-toggle-btn {
+
+    .user-profile-badge {
+        padding: 3px;
+        border: 1px solid #e2e8f0;
+        border-radius: 50%;
+        background-color: #ffffff;
+        text-decoration: none;
         display: flex;
+        align-items: center;
     }
-    .dashboard-topbar {
-        padding: 0 16px;
+
+    .user-avatar-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 11.5px;
+        border-radius: 50%;
     }
+
+    .user-name-role {
+        display: none;
+    }
+
+    .topbar-right .btn-primary,
+    .topbar-right .btn-secondary {
+        padding: 7px 12px;
+        font-size: 12px;
+        border-radius: 7px;
+        white-space: nowrap;
+    }
+
+    /* Content Area & Compact 2-Column Stat Cards */
     .dashboard-content-area {
-        padding: 16px;
+        padding: 14px 12px 28px 12px;
+        gap: 14px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
-    .stats-cards-grid-5,
-    .stats-cards-grid-4 {
-        grid-template-columns: 1fr;
+
+    .stats-cards-grid-4,
+    .stats-cards-grid-5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
+
+    .stats-cards-grid-5 > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    .overview-stat-card {
+        padding: 12px 14px;
+        border-radius: 10px;
+        gap: 6px;
+    }
+
+    .stat-card-header {
+        gap: 8px;
+    }
+
+    .stat-icon-wrapper {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+        border-radius: 7px;
+    }
+
+    .stat-label-title {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .stat-big-value {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+    }
+
+    .stat-trend-footer {
+        font-size: 10.5px;
+    }
+
+    /* Fluid Swipeable Tables */
+    .table-card {
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+        overflow: hidden;
+        margin-bottom: 4px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .table-responsive {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+
+    table.management-table {
+        min-width: 650px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.management-table th {
+        padding: 10px 12px;
+        font-size: 11px;
+        white-space: nowrap;
+        background-color: #f8fafc;
+    }
+
+    table.management-table td {
+        padding: 10px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .cell-title {
+        font-size: 12.5px;
+    }
+
+    .cell-subtitle {
+        font-size: 11px;
+    }
+
+    .avatar-badge {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+
+    .status-badge {
+        padding: 2.5px 7px;
+        font-size: 10.5px;
+        white-space: nowrap;
+    }
+
+    .btn-action-icon {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+
+    /* Filter Toolbar */
     .filter-toolbar {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 10px;
     }
+
     .toolbar-search-box {
+        width: 100%;
         max-width: 100%;
+        padding: 8px 12px;
     }
+
+    .toolbar-search-box input {
+        font-size: 16px;
+    }
+
+    .toolbar-filters-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .toolbar-select {
+        flex: 1 1 calc(50% - 4px);
+        min-width: 120px;
+        height: 38px;
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .toolbar-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .toolbar-actions .btn-primary,
+    .toolbar-actions .btn-secondary {
+        flex: 1;
+        justify-content: center;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    /* Section Cards, Forms & Modals */
+    .section-card {
+        padding: 16px 14px;
+        border-radius: 12px;
+        gap: 12px;
+    }
+
+    .section-card-title {
+        font-size: 15px;
+    }
+
+    .section-card-desc {
+        font-size: 11.5px;
+    }
+
+    .modal-overlay {
+        padding: 12px 10px;
+    }
+
+    .modal-dialog-custom {
+        max-width: 98%;
+        max-height: 92vh;
+        max-height: 92dvh;
+        padding: 18px 14px;
+        border-radius: 14px;
+    }
+
+    .form-grid-3col,
+    .form-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-group-custom label {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .form-group-custom input,
+    .form-group-custom select,
+    .form-group-custom textarea {
+        height: 42px;
+        font-size: 16px;
+        border-radius: 8px;
+        padding: 8px 12px;
+    }
+
+    .form-group-custom textarea {
+        height: 72px;
+    }
+
+    .section-card form button[type="submit"],
+    .section-card form .btn-primary {
+        width: 100%;
+        height: 44px;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    .section-card > div[style*="display: flex"] {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Roommates & Widgets */
+    .roommate-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .roommate-card {
+        padding: 12px 14px;
+        border-radius: 10px;
+        gap: 12px;
+    }
+
+    .notice-banner {
+        padding: 12px 14px;
+        gap: 10px;
+        border-radius: 8px;
+    }
+
+    .counter-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .counter-box {
+        padding: 10px 8px;
+    }
+
+    .counter-val {
+        font-size: 17px;
+    }
+
+    .counter-lbl {
+        font-size: 10.5px;
+    }
+
+    /* Auth Portal Cards on Mobile */
+    .student-portal-wrapper {
+        padding: 12px 8px;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        align-items: center;
+    }
+
     .student-portal-card {
         flex-direction: column;
         width: 100%;
-        max-width: 480px;
+        max-width: 440px;
         min-height: auto;
+        padding: 16px 14px;
+        border-radius: 16px;
+        gap: 14px;
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
     }
+
     .portal-hero-pane {
         order: -1;
-        padding: 24px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        min-height: auto;
+        flex: unset;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-start;
+        text-align: left;
     }
+
+    .school-hero-display {
+        padding: 0;
+        margin: 0;
+        flex: unset;
+    }
+
+    .school-logo-badge {
+        width: 44px;
+        height: 44px;
+        padding: 6px;
+        border-radius: 10px;
+        margin: 0;
+    }
+
+    .school-logo-badge .school-logo-image {
+        max-height: 32px;
+    }
+
+    .portal-hero-text {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+
+    .hero-portal-title {
+        font-size: 16px !important;
+        margin: 0;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    .hero-portal-subtitle {
+        font-size: 11px !important;
+        margin: 2px 0 0 0;
+        text-align: left;
+    }
+
     .portal-form-pane {
-        padding: 24px 16px;
+        padding: 8px 4px;
+        width: 100%;
+        flex: unset;
     }
-    .form-grid-2col {
+
+    .portal-form-pane .form-header {
+        margin-bottom: 16px;
+    }
+
+    .portal-form-pane .form-header .login-heading {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+    }
+
+    .portal-form-pane .form-header .login-subtext {
+        font-size: 12.5px;
+        line-height: 1.4;
+    }
+
+    .underline-field-group {
+        margin-bottom: 14px;
+    }
+
+    .underline-field-group label {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .underline-field-group .underline-input {
+        font-size: 16px;
+        height: 44px;
+        padding: 4px 0 6px 0;
+    }
+
+    .password-input-wrapper .underline-input {
+        padding-right: 36px;
+    }
+
+    .password-toggle-trigger {
+        min-width: 40px;
+        min-height: 40px;
+        bottom: 2px;
+        font-size: 18px;
+    }
+
+    .forgot-password-row {
+        margin-top: -2px;
+        margin-bottom: 16px;
+    }
+
+    .forgot-password-row .forgot-link {
+        font-size: 12px;
+    }
+
+    .portal-login-btn {
+        height: 48px;
+        font-size: 15px;
+        border-radius: 10px;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    .signup-account-prompt {
+        font-size: 12px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 4px;
+    }
+}
+
+/* 3. COMPACT PHONES (<= 480px) */
+@media screen and (max-width: 480px) {
+    .page-title-group p {
+        display: none;
+    }
+
+    .topbar-right .btn-primary,
+    .topbar-right .btn-secondary {
+        padding: 6px 10px;
+        font-size: 11.5px;
+    }
+
+    .counter-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .counter-box {
+        padding: 8px 6px;
+    }
+
+    .counter-val {
+        font-size: 16px;
+    }
+
+    .counter-lbl {
+        font-size: 10px;
+    }
+}
+
+/* 4. EXTRA SMALL PHONES (<= 360px) */
+@media screen and (max-width: 360px) {
+    .student-portal-wrapper {
+        padding: 6px 4px;
+    }
+
+    .student-portal-card {
+        padding: 12px 10px;
+        border-radius: 12px;
+    }
+
+    .stats-cards-grid-4,
+    .stats-cards-grid-5 {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .overview-stat-card {
+        padding: 10px 12px;
+    }
+
+    .stat-big-value {
+        font-size: 17px;
+    }
+
+    .portal-form-pane .form-header .login-heading {
+        font-size: 20px;
+    }
+
+    .portal-login-btn {
+        height: 44px;
+        font-size: 14px;
+    }
+
+    table.management-table th,
+    table.management-table td {
+        padding: 8px 10px;
+        font-size: 11.5px;
     }
 }

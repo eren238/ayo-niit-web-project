@@ -12,7 +12,7 @@ if ($searchContent == '') {
     goto end;
 }
 
-$searchHostelQuery = mysqli_query($conn, "SELECT * FROM hostels_tab  WHERE (hostel_name LIKE '%$searchContent%' OR code LIKE '%$searchContent%' OR hostel_id LIKE '%$searchContent%'  OR gender LIKE '%$searchContent%') ORDER BY hostel_name ASC") or die(mysqli_error($conn));
+$searchHostelQuery = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE (hostels_tab.hostel_name LIKE '%$searchContent%' OR hostels_tab.hostel_id LIKE '%$searchContent%' OR hostels_tab.gender LIKE '%$searchContent%' OR status_tab.status_name LIKE '%$searchContent%') ORDER BY hostels_tab.hostel_name ASC") or die(mysqli_error($conn));
 
 if (mysqli_num_rows($searchHostelQuery) == 0) {
     $response = [

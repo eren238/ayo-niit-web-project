@@ -12,7 +12,7 @@ if ($hostelId == '') {
     goto end;
 }
 
-$query = mysqli_query($conn, "SELECT  hostels_tab.*,  status_tab.status_name FROM hostels_tab, status_tab WHERE hostels_tab.status_id = status_tab.status_id  AND hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
+$query = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
 
 if (mysqli_num_rows($query) == 0) {
     $response = [

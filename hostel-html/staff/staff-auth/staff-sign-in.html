@@ -8,9 +8,12 @@
     <link href="../../styles/icons-1.11.3/font/bootstrap-icons.css" type="text/css" rel="stylesheet" />
     <link href="../../styles/contants.css" type="text/css" rel="stylesheet" />
     <link href="../../styles/main.css" type="text/css" rel="stylesheet" />
+    <script src="../../js/staff-auth.js"></script>
     <title>Hostel | Staff Sign In</title>
 </head>
 <body>
+    <div class="alert-overlay" id="alert"></div>
+
     <div class="student-portal-wrapper">
         <div class="student-portal-card">
             <div class="portal-form-pane">
@@ -19,16 +22,19 @@
                     <p class="login-subtext">Enter your staff credentials</p>
                 </div>
 
-                <form class="portal-login-form" action="../dashboard.html" method="POST">
+                <form class="portal-login-form" action="../dashboard.html" method="POST" onsubmit="event.preventDefault(); staffSignInHandle();">
                     <div class="underline-field-group">
                         <label for="emailAddress">Email Address</label>
-                        <input type="email" name="emailAddress" class="underline-input" id="emailAddress" required />
+                        <input type="email" name="emailAddress" class="underline-input" id="emailAddress" placeholder="Enter your staff email" required autocomplete="email" />
                     </div>
 
                     <div class="underline-field-group">
                         <label for="password">Password</label>
                         <div class="password-input-wrapper">
-                            <input type="password" name="password" class="underline-input" id="password" required />
+                            <input type="password" name="password" class="underline-input" id="password" placeholder="Enter your password" required autocomplete="current-password" />
+                            <button type="button" class="password-toggle-trigger" title="Toggle password visibility" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -36,7 +42,7 @@
                         <a href="staff-forgot-password.html" class="forgot-link">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="portal-login-btn" id="loginBtn">Sign In</button>
+                    <button type="submit" class="portal-login-btn" id="signInBtnId" title="Sign In">Sign In</button>
                 </form>
 
                 <div class="signup-account-prompt">
@@ -56,7 +62,7 @@
                     <h2 class="hero-portal-title">
                         <span class="title-bold">Welcome</span> <span class="title-light">to Staff Portal</span>
                     </h2>
-                    <p class="hero-portal-subtitle">Login to access your staff account</p>
+                    <p class="hero-portal-subtitle">Login to access your staff management account</p>
                 </div>
             </div>
         </div>

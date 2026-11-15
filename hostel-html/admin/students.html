@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,11 +6,16 @@
     <title>School Hostel | Students Directory</title>
     <link href="../all-images/icon-images/icon.png" rel="shortcut icon" type="image/png">
     <link href="../styles/icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    <link href="../styles/contants.css" rel="stylesheet" type="text/css">
     <link href="../styles/main.css" rel="stylesheet" type="text/css">
+    <script src="../js/admin-management.js"></script>
+        <script src="../js/session-manager.js"></script>
+    <script src="../js/modal-handler.js"></script>
 </head>
 <body class="dashboard-body-tag">
+    <div class="alert-overlay" id="alert"></div>
     <div class="dashboard-layout">
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
             <div class="sidebar-brand">
                 <div class="brand-icon-box">
                     <i class="bi bi-buildings"></i>
@@ -19,6 +24,7 @@
                     <h2 class="brand-title">School Hostel</h2>
                     <span class="brand-subtitle">Super Admin Console</span>
                 </div>
+                <a href="#" class="sidebar-close-btn" aria-label="Close navigation"><i class="bi bi-x-lg"></i></a>
             </div>
 
             <nav class="sidebar-menu-wrapper">
@@ -107,10 +113,12 @@
                 </a>
             </div>
         </aside>
+        <a href="#" class="sidebar-backdrop-link" aria-label="Close backdrop"></a>
 
         <main class="dashboard-main">
             <header class="dashboard-topbar">
                 <div class="topbar-left">
+                    <a href="#dashboard-sidebar" class="mobile-menu-trigger" aria-label="Open navigation"><i class="bi bi-list"></i></a>
                     <div class="page-title-group">
                         <h1>Students Directory</h1>
                         <p>View registered student residents, academic credentials, and bed assignments</p>
@@ -225,7 +233,7 @@
                                     <th style="text-align: right;">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="studentsTableBody">
                                 <tr>
                                     <td>
                                         <div class="cell-user-info">
@@ -303,7 +311,7 @@
                         <p class="section-card-desc">Enter resident details matching the institutional database record</p>
                     </div>
 
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" id="addStudentForm" onsubmit="createStudentHandle(event)">
                         <div class="form-grid-3col">
                             <div class="form-group-custom">
                                 <label class="form-label-custom" for="studentId">Student ID / Matric Number *</label>
@@ -361,9 +369,9 @@
                             <div class="form-group-custom">
                                 <label class="form-label-custom" for="statusId">Account Status *</label>
                                 <select class="form-select-custom" name="statusId" id="statusId" required>
-                                    <option value="ACTIVE" selected>Active</option>
-                                    <option value="INACTIVE">Inactive</option>
-                                    <option value="SUSPENDED">Suspended</option>
+                                    <option value="1" selected>Active</option>
+                                    <option value="2">Inactive</option>
+
                                 </select>
                             </div>
                         </div>

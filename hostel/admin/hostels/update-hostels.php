@@ -2,11 +2,10 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$hostelId       = trim($_POST['hostelId']);
-$hostelName     = trim($_POST['hostelName']);
-$code           = trim($_POST['code']);
-$gender         = trim($_POST['gender']);
-$hostelCapacity = trim($_POST['hostelCapacity']);
+$hostelId       = trim($_POST['hostelId'] ?? '');
+$hostelName     = trim($_POST['hostelName'] ?? '');
+$gender         = trim($_POST['gender'] ?? '');
+$hostelCapacity = trim($_POST['hostelCapacity'] ?? $_POST['capacity'] ?? '');
 $statusId       = trim($_POST['statusId'] ?? '1');
 
 if ($hostelId == '') {
@@ -17,18 +16,19 @@ if ($hostelId == '') {
     goto end;
 }
 
-if ($hostelName == '') {
+$checkHostelQuery = mysqli_query($conn, "SELECT * FROM hostels_tab WHERE hostel_id = '$hostelId'") or die(mysqli_error($conn));
+if (mysqli_num_rows($checkHostelQuery) == 0) {
     $response = [
         'success' => false,
-        'message' => "HOSTEL NAME IS REQUIRED"
+        'message' => "HOSTEL NOT FOUND"
     ];
     goto end;
 }
 
-if ($code == '') {
+if ($hostelName == '') {
     $response = [
         'success' => false,
-        'message' => "HOSTEL CODE IS REQUIRED"
+        'message' => "HOSTEL NAME IS REQUIRED"
     ];
     goto end;
 }
@@ -49,36 +49,35 @@ if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || $hostelCapacity <= 
     goto end;
 }
 
-$checkHostelQuery = mysqli_query($conn, "SELECT * FROM hostels_tab WHERE hostel_id = '$hostelId'") or die(mysqli_error($conn));
-if (mysqli_num_rows($checkHostelQuery) == 0) {
-    $response = [
-        'success' => false,
-        'message' => "HOSTEL NOT FOUND"
-    ];
-    goto end;
+// Normalize status
+if ($statusId == '' || strtoupper($statusId) == 'ACTIVE') {
+    $statusId = '1';
+} elseif (strtoupper($statusId) == 'INACTIVE' || strtoupper($statusId) == 'CLOSED') {
+    $statusId = '2';
 }
 
-
-$codeCheck = mysqli_query($conn, "SELECT * FROM hostels_tab WHERE code = '$code' AND hostel_id != '$hostelId'") or die(mysqli_error($conn));
-if (mysqli_num_rows($codeCheck) > 0) {
+$nameCheck = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_name = '$hostelName' AND hostel_id != '$hostelId'") or die(mysqli_error($conn));
+if (mysqli_num_rows($nameCheck) > 0) {
     $response = [
         'success' => false,
-        'message' => "HOSTEL CODE '$code' IS ALREADY IN USE BY ANOTHER HOSTEL"
+        'message' => "HOSTEL NAME '$hostelName' IS ALREADY IN USE BY ANOTHER HOSTEL"
     ];
     goto end;
 }
 
 mysqli_query($conn, "UPDATE `hostels_tab` SET 
     `hostel_name`     = '$hostelName',
-    `code`            = '$code',
     `gender`          = '$gender',
     `hostel_capacity` = '$hostelCapacity',
-    `status_id`       = '$statusId'
+    `status_id`       = '$statusId',
+    `updated_at`      = NOW()
     WHERE `hostel_id` = '$hostelId'") or die(mysqli_error($conn));
 
-$fetchUpdated = mysqli_query($conn, "SELECT  hostels_tab.*,  status_tab.status_name FROM hostels_tab, status_tab WHERE hostels_tab.status_id = status_tab.status_id  AND hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
+$fetchUpdated = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
 
 $data = mysqli_fetch_assoc($fetchUpdated);
+$data['hostelId'] = $data['hostel_id'];
+$data['code']     = $data['hostel_id'];
 
 $response = [
     'success' => true,

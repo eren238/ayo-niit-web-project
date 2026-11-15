@@ -2,9 +2,9 @@
 <?php
 $hostelId     = trim($_POST['hostelId'] ?? '');
 $roomNumber   = trim($_POST['roomNumber'] ?? '');
-$block        = trim($_POST['block'] ?? '');
-$floor        = trim($_POST['floor'] ?? '');
-$roomCapacity = trim($_POST['roomCapacity'] ?? '');
+$block        = trim($_POST['block'] ?? $_POST['hostelId'] ?? 'A');
+$floor        = trim($_POST['floor'] ?? '1');
+$roomCapacity = trim($_POST['roomCapacity'] ?? $_POST['capacity'] ?? '4');
 $statusId     = trim($_POST['statusId'] ?? '1');
 
 if ($hostelId == '') {

@@ -3,13 +3,11 @@
 <?php
 
 $hostelName     = trim($_POST['hostelName'] ?? '');
-$code           = trim($_POST['code'] ?? '');
 $gender         = trim($_POST['gender'] ?? '');
-$hostelCapacity = trim($_POST['hostelCapacity'] ?? '');
+$hostelCapacity = trim($_POST['hostelCapacity'] ?? $_POST['capacity'] ?? '');
 $statusId       = trim($_POST['statusId'] ?? '1');
 
-$hostelId = $code;
-
+// Validate Hostel Name
 if ($hostelName == '') {
     $response = [
         'success' => false,
@@ -18,14 +16,7 @@ if ($hostelName == '') {
     goto end;
 }
 
-if ($code == '') {
-    $response = [
-        'success' => false,
-        'message' => "HOSTEL CODE IS REQUIRED, Kindly fill in the hostel code to continue"
-    ];
-    goto end;
-}
-
+// Validate Gender
 if ($gender == '') {
     $response = [
         'success' => false,
@@ -34,6 +25,7 @@ if ($gender == '') {
     goto end;
 }
 
+// Validate Capacity
 if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || $hostelCapacity <= 0) {
     $response = [
         'success' => false,
@@ -42,19 +34,41 @@ if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || $hostelCapacity <= 
     goto end;
 }
 
-$checkCodeQuery = mysqli_query($conn, "SELECT * FROM hostels_tab WHERE code = '$code' OR hostel_id = '$hostelId'") or die(mysqli_error($conn));
-if (mysqli_num_rows($checkCodeQuery) > 0) {
+// Normalize Status ID
+if ($statusId == '' || strtoupper($statusId) == 'ACTIVE') {
+    $statusId = '1';
+} elseif (strtoupper($statusId) == 'INACTIVE' || strtoupper($statusId) == 'CLOSED') {
+    $statusId = '2';
+}
+
+// Check if Hostel Name already exists
+$checkHostelName = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_name = '$hostelName'") or die(mysqli_error($conn));
+if (mysqli_num_rows($checkHostelName) > 0) {
     $response = [
         'success' => false,
-        'message' => "HOSTEL ALREADY EXISTS! A hostel with code '$code' already exists"
+        'message' => "HOSTEL ALREADY EXISTS! A hostel with name '$hostelName' already exists"
     ];
     goto end;
 }
 
-mysqli_query($conn, "INSERT INTO `hostels_tab` (`hostel_id`, `hostel_name`, `code`, `gender`, `hostel_capacity`, `status_id`, `created_at`, `updated_at`) VALUES ('$hostelId', '$hostelName', '$code', '$gender', '$hostelCapacity', '$statusId', NOW(), NOW())") or die(mysqli_error($conn));
+// Auto-generate Hostel ID itself (no code input needed, consistent with ROOM, STAFF, STUDENT)
+$hostelId = 'HOSTEL' . date("YmdHis");
+$checkHostelId = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_id = '$hostelId'") or die(mysqli_error($conn));
+$suffix = 1;
+while (mysqli_num_rows($checkHostelId) > 0) {
+    $hostelId = 'HOSTEL' . date("YmdHis") . $suffix;
+    $checkHostelId = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_id = '$hostelId'") or die(mysqli_error($conn));
+    $suffix++;
+}
 
-$fetchHostelQuery = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab, status_tab WHERE hostels_tab.status_id = status_tab.status_id AND hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
+mysqli_query($conn, "INSERT INTO `hostels_tab` (`hostel_id`, `hostel_name`, `gender`, `hostel_capacity`, `status_id`, `created_at`, `updated_at`) VALUES ('$hostelId', '$hostelName', '$gender', '$hostelCapacity', '$statusId', NOW(), NOW())") or die(mysqli_error($conn));
+
+$fetchHostelQuery = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
 $hostelData = mysqli_fetch_assoc($fetchHostelQuery);
+
+// Add convenience alias for any clients
+$hostelData['hostelId'] = $hostelData['hostel_id'];
+$hostelData['code']     = $hostelData['hostel_id'];
 
 $response = [
     'success' => true,

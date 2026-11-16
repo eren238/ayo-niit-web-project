@@ -200,7 +200,7 @@
                 <div class="filter-toolbar">
                     <div class="toolbar-search-box">
                         <i class="bi bi-search"></i>
-                        <input type="text" placeholder="Search by hostel name, code, or wing...">
+                        <input type="text" placeholder="Search by hostel name, ID, or wing...">
                     </div>
                     <div class="toolbar-filters-group">
                         <select class="toolbar-select" aria-label="Filter by Gender Category">
@@ -223,7 +223,7 @@
                             <thead>
                                 <tr>
                                     <th>Hostel Block</th>
-                                    <th>Hostel Code</th>
+                                    <th>Hostel ID</th>
                                     <th>Gender Category</th>
                                     <th>Student Capacity</th>
                                     <th>Rooms Count</th>
@@ -332,15 +332,10 @@
                     </div>
 
                     <form action="#" method="POST">
-                        <div class="form-grid-3col">
+                        <div class="form-grid-2col">
                             <div class="form-group-custom">
                                 <label class="form-label-custom" for="hostelName">Hostel Name / Title *</label>
                                 <input type="text" class="form-input-custom" name="hostelName" id="hostelName" placeholder="e.g. Block E (Kwame Nkrumah Hall)" required>
-                            </div>
-
-                            <div class="form-group-custom">
-                                <label class="form-label-custom" for="hostelCode">Hostel Code <span style="font-size: 11px; color: #64748b; font-weight: normal;">(Auto-generated)</span></label>
-                                <input type="text" class="form-input-custom" name="hostelCode" id="hostelCode" placeholder="Auto-generated (e.g. HST...)" readonly style="background-color: #f8fafc; cursor: not-allowed;">
                             </div>
 
                             <div class="form-group-custom">

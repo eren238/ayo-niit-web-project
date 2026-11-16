@@ -1,0 +1,1 @@
+<?php require_once __DIR__ . '/../hostels/fetch-all-hostels.php'; ?>

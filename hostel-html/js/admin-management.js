@@ -459,7 +459,8 @@ function renderHostelsTable(hostelList) {
 
     tableBody.innerHTML = hostelList.map((hostel, idx) => {
         const color = badgeColors[idx % badgeColors.length];
-        const code = hostel.code || hostel.hostel_id || 'BLK';
+        const hostelId = hostel.hostel_id || hostel.hostelId || 'HOSTEL';
+        const initial = (hostel.hostel_name || 'H')[0].toUpperCase();
         const statusLabel = (hostel.status_id === '1' || hostel.status_name === 'Active' || hostel.status_id === 'ACTIVE') ? 'Active' : 'Maintenance';
         const statusClass = statusLabel === 'Active' ? 'badge-success' : 'badge-warning';
 
@@ -467,21 +468,21 @@ function renderHostelsTable(hostelList) {
             <tr>
                 <td>
                     <div class="cell-user-info">
-                        <div class="avatar-badge" style="background-color: ${color.bg}; color: ${color.color};">${code.substring(0, 3).toUpperCase()}</div>
+                        <div class="avatar-badge" style="background-color: ${color.bg}; color: ${color.color};">${initial}</div>
                         <div>
                             <div class="cell-title">${hostel.hostel_name || 'Hostel Block'}</div>
-                            <div class="cell-subtitle">Code: ${code}</div>
+                            <div class="cell-subtitle">ID: ${hostelId}</div>
                         </div>
                     </div>
                 </td>
-                <td><span class="role-pill">${code}</span></td>
+                <td><span class="role-pill">${hostelId}</span></td>
                 <td>${hostel.gender || 'Mixed'}</td>
                 <td><strong>${hostel.hostel_capacity || hostel.capacity || 0}</strong> Students</td>
                 <td>${hostel.total_rooms || Math.ceil((hostel.hostel_capacity || 40) / 4)} Rooms</td>
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
-                        <button type="button" class="btn-action-icon btn-action-delete" title="Delete Hostel" onclick="deleteHostelHandle('${hostel.hostel_id || code}')">
+                        <button type="button" class="btn-action-icon btn-action-delete" title="Delete Hostel" onclick="deleteHostelHandle('${hostel.hostel_id || hostelId}')">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
@@ -510,14 +511,12 @@ async function createHostelHandle(event) {
     if (event) event.preventDefault();
 
     const hostelName = document.getElementById("hostelName")?.value.trim();
-    const hostelCode = document.getElementById("hostelCode")?.value.trim();
     const gender = document.getElementById("gender")?.value;
     const capacity = document.getElementById("capacity")?.value;
     const totalRooms = document.getElementById("totalRooms")?.value;
     const statusId = document.getElementById("statusId")?.value || "1";
 
     if (!hostelName) { alertModal(false, "HOSTEL NAME IS REQUIRED"); return; }
-    if (!hostelCode) { alertModal(false, "HOSTEL CODE IS REQUIRED"); return; }
     if (!gender) { alertModal(false, "GENDER IS REQUIRED"); return; }
     if (!capacity) { alertModal(false, "STUDENT CAPACITY IS REQUIRED"); return; }
 
@@ -527,8 +526,6 @@ async function createHostelHandle(event) {
 
     const formData = new FormData();
     formData.append("hostelName", hostelName);
-    formData.append("code", hostelCode);
-    formData.append("hostelCode", hostelCode);
     formData.append("gender", gender);
     formData.append("hostelCapacity", capacity);
     formData.append("capacity", capacity);
@@ -540,7 +537,7 @@ async function createHostelHandle(event) {
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
-            alertModal(true, `HOSTEL CREATED SUCCESSFULLY! Code: ${hostelCode}`);
+            alertModal(true, `HOSTEL CREATED SUCCESSFULLY!`);
             document.querySelector("#add-hostel form")?.reset();
             closeModal("modal-add-hostel");
             fetchAllHostels();
@@ -1508,7 +1505,7 @@ function populateHostelDropdowns(hostels) {
         const defaultPrompt = sel.getAttribute("id") === "studentHostelSelect" ? "Select Hostel Block" : "Select Hostel Block";
         sel.innerHTML = `<option value="" disabled ${!currentVal ? 'selected' : ''}>${defaultPrompt}</option>`;
         hostels.forEach(h => {
-            const hId = h.hostel_id || h.code;
+            const hId = h.hostel_id || h.hostelName;
             const hName = h.hostel_name || hId;
             sel.innerHTML += `<option value="${hId}" ${currentVal === hId ? 'selected' : ''}>${hName} (${h.gender || 'Mixed'})</option>`;
         });

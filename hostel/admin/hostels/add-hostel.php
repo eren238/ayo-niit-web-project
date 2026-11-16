@@ -2,6 +2,8 @@
 
 <?php
 
+
+
 $hostelName     = trim($_POST['hostelName'] ?? '');
 $gender         = trim($_POST['gender'] ?? '');
 $hostelCapacity = trim($_POST['hostelCapacity'] ?? $_POST['capacity'] ?? '');

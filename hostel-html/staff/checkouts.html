@@ -216,6 +216,7 @@
                                     <th>Student ID</th>
                                     <th>Room & Bed</th>
                                     <th>Checkout Date</th>
+                                    <th>Reason</th>
                                     <th>Keys Status</th>
                                     <th>Room Condition</th>
                                     <th>Status</th>
@@ -307,10 +308,23 @@
                             </div>
                         </div>
 
-                        <div class="form-grid-2col">
+                        <div class="form-grid-3col">
                             <div class="form-group-custom">
                                 <label for="checkoutDate">Checkout Date</label>
                                 <input type="date" name="checkoutDate" id="checkoutDate" required />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <label for="reason">Reason for Checkout</label>
+                                <select name="reason" id="reason" required>
+                                    <option value="End of Semester" selected>End of Semester</option>
+                                    <option value="Graduation / Program Completion">Graduation / Program Completion</option>
+                                    <option value="Moving Off-Campus">Moving Off-Campus</option>
+                                    <option value="Academic Withdrawal / Transfer">Academic Withdrawal / Transfer</option>
+                                    <option value="Medical / Health Reason">Medical / Health Reason</option>
+                                    <option value="Disciplinary / Suspension">Disciplinary / Suspension</option>
+                                    <option value="Personal / Other">Personal / Other</option>
+                                </select>
                             </div>
 
                             <div class="form-group-custom">

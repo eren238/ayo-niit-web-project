@@ -224,6 +224,7 @@
                                     <th>Student Resident</th>
                                     <th>Room & Bed</th>
                                     <th>Checkout Date</th>
+                                    <th>Reason</th>
                                     <th>Key Status</th>
                                     <th>Room Condition</th>
                                     <th>Status</th>
@@ -243,6 +244,7 @@
                                     </td>
                                     <td>Block C - Room 101 (Bed 1)</td>
                                     <td>15 Oct 2024</td>
+                                    <td><span class="role-pill">End of Semester</span></td>
                                     <td><span class="status-badge badge-success">Returned</span></td>
                                     <td>Good (No Damage)</td>
                                     <td><span class="status-badge badge-success">Cleared</span></td>
@@ -306,6 +308,20 @@
 
                         <div class="form-grid-3col" style="margin-top: 14px;">
                             <div class="form-group-custom">
+                                <label class="form-label-custom" for="reason">Reason for Checkout *</label>
+                                <select class="form-select-custom" name="reason" id="reason" required>
+                                    <option value="" disabled selected>Select Reason</option>
+                                    <option value="End of Semester">End of Semester</option>
+                                    <option value="Graduation / Program Completion">Graduation / Program Completion</option>
+                                    <option value="Moving Off-Campus">Moving Off-Campus</option>
+                                    <option value="Academic Withdrawal / Transfer">Academic Withdrawal / Transfer</option>
+                                    <option value="Medical / Health Reason">Medical / Health Reason</option>
+                                    <option value="Disciplinary / Suspension">Disciplinary / Suspension</option>
+                                    <option value="Personal / Other">Personal / Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
                                 <label class="form-label-custom" for="keyStatus">Key Handover Status *</label>
                                 <select class="form-select-custom" name="keyStatus" id="keyStatus" required>
                                     <option value="Returned" selected>Returned</option>
@@ -322,7 +338,9 @@
                                     <option value="Damaged">Damage Detected</option>
                                 </select>
                             </div>
+                        </div>
 
+                        <div class="form-grid-2col" style="margin-top: 14px;">
                             <div class="form-group-custom">
                                 <label class="form-label-custom" for="statusId">Clearance Status *</label>
                                 <select class="form-select-custom" name="statusId" id="statusId" required>
@@ -331,11 +349,11 @@
                                     <option value="REJECTED">Clearance Denied</option>
                                 </select>
                             </div>
-                        </div>
 
-                        <div class="form-group-custom" style="margin-top: 14px;">
-                            <label class="form-label-custom" for="remarks">Inspection Remarks & Forwarding Account</label>
-                            <input type="text" class="form-input-custom" name="remarks" id="remarks" placeholder="e.g. Bedframe intact, mattress inspected. Caution refund approved.">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="remarks">Inspection Remarks & Forwarding Account</label>
+                                <input type="text" class="form-input-custom" name="remarks" id="remarks" placeholder="e.g. Bedframe intact, mattress inspected. Caution refund approved.">
+                            </div>
                         </div>
 
                         <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">

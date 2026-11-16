@@ -220,7 +220,20 @@
                             </div>
                         </div>
 
-                        <div class="form-grid-2col" style="margin-top: 14px;">
+                        <div class="form-grid-3col" style="margin-top: 14px;">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom" for="reason">Reason for Checkout *</label>
+                                <select class="form-select-custom" name="reason" id="reason" required>
+                                    <option value="" disabled selected>Select Reason</option>
+                                    <option value="End of Semester">End of Semester</option>
+                                    <option value="Graduation / Program Completion">Graduation / Program Completion</option>
+                                    <option value="Moving Off-Campus">Moving Off-Campus</option>
+                                    <option value="Academic Withdrawal / Transfer">Academic Withdrawal / Transfer</option>
+                                    <option value="Medical / Health Reason">Medical / Health Reason</option>
+                                    <option value="Personal / Other">Personal / Other</option>
+                                </select>
+                            </div>
+
                             <div class="form-group-custom">
                                 <label class="form-label-custom" for="keyStatus">Key Handover Status *</label>
                                 <select class="form-select-custom" name="keyStatus" id="keyStatus" required>

@@ -331,20 +331,26 @@ async function studentCheckoutHandle(event) {
     const session = getStudentSession();
     const studentId = document.getElementById("studentId")?.value.trim() || session.studentId || session.student_id;
     const checkoutDate = document.getElementById("checkoutDate")?.value;
+    const reason = document.getElementById("reason")?.value || "End of Semester";
     const keyStatus = document.getElementById("keyStatus")?.value || "Returned";
     const roomCondition = document.getElementById("roomCondition")?.value || "Good";
+    const remarks = document.getElementById("remarks")?.value || "";
 
+    if (!studentId) { studentAlertModal(false, "Student ID is required"); return; }
     if (!checkoutDate) { studentAlertModal(false, "Please select your proposed departure date"); return; }
+    if (!reason) { studentAlertModal(false, "Please select a reason for checkout"); return; }
 
-    const submitBtn = document.querySelector("#checkout-form button[type='submit'], form[action*='checkout'] button[type='submit']");
+    const submitBtn = document.querySelector("#checkout-form button[type='submit'], #checkout-request button[type='submit'], form[action*='checkout'] button[type='submit']");
     const origText = submitBtn ? submitBtn.innerHTML : "Submit Clearance";
     if (submitBtn) { submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Submitting...`; submitBtn.disabled = true; }
 
     const formData = new FormData();
     formData.append("studentId", studentId);
     formData.append("checkoutDate", checkoutDate);
+    formData.append("reason", reason);
     formData.append("keyStatus", keyStatus);
     formData.append("roomCondition", roomCondition);
+    formData.append("remarks", remarks);
 
     try {
         const response = await fetch(adminApiBaseUrl + '/checkout/add-checkout.php', {

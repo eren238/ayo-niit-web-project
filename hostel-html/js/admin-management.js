@@ -1077,8 +1077,9 @@ function renderCheckoutsTable(checkoutList) {
                 </td>
                 <td>${item.hostel_name || 'Hostel'} - Room ${item.room_number || '—'}</td>
                 <td>${dateStr}</td>
-                <td><span class="status-badge badge-success">Returned</span></td>
-                <td>Good Condition</td>
+                <td><span class="role-pill">${item.reason || 'End of Semester'}</span></td>
+                <td><span class="status-badge badge-success">${item.key_status || 'Returned'}</span></td>
+                <td>${item.room_condition || 'Good Condition'}</td>
                 <td><span class="status-badge badge-success">Cleared</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
@@ -1095,17 +1096,30 @@ function renderCheckoutsTable(checkoutList) {
 async function createCheckoutHandle(event) {
     if (event) event.preventDefault();
 
-    const studentId = document.getElementById("studentId")?.value;
+    const studentId = document.getElementById("studentId")?.value?.trim();
     const checkoutDate = document.getElementById("checkoutDate")?.value;
     const reason = document.getElementById("reason")?.value || "End of Semester";
+    const keyStatus = document.getElementById("keyStatus")?.value || "Returned";
+    const roomCondition = document.getElementById("roomCondition")?.value || "Good";
+    const statusId = document.getElementById("statusId")?.value || "CLEARED";
+    const remarks = document.getElementById("remarks")?.value || "";
 
-    if (!studentId) { alertModal(false, "STUDENT IS REQUIRED"); return; }
+    if (!studentId) { alertModal(false, "STUDENT ID IS REQUIRED"); return; }
     if (!checkoutDate) { alertModal(false, "CHECKOUT DATE IS REQUIRED"); return; }
+    if (!reason) { alertModal(false, "REASON FOR CHECKOUT IS REQUIRED"); return; }
+
+    const submitBtn = document.querySelector("#log-checkout button[type='submit']");
+    const origText = submitBtn ? submitBtn.innerHTML : "Record Checkout";
+    if (submitBtn) { submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Recording...`; submitBtn.disabled = true; }
 
     const formData = new FormData();
     formData.append("studentId", studentId);
     formData.append("checkoutDate", checkoutDate);
     formData.append("reason", reason);
+    formData.append("keyStatus", keyStatus);
+    formData.append("roomCondition", roomCondition);
+    formData.append("statusId", statusId);
+    formData.append("remarks", remarks);
 
     try {
         const response = await safeFetchAdmin('/checkout/add-checkout.php', null, { method: "POST", body: formData });
@@ -1121,6 +1135,8 @@ async function createCheckoutHandle(event) {
         }
     } catch (err) {
         alertModal(false, "Connection error: " + err.message);
+    } finally {
+        if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
     }
 }
 

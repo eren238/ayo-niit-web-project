@@ -89,7 +89,7 @@ a {
     top: 0;
     left: 0;
     background: rgb(0, 0, 0, 0.6);
-    z-index: 500;
+    z-index: 999999;
     display: flex;
     justify-content: center;
     align-items: center;

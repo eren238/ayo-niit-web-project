@@ -11,7 +11,7 @@ function openModal(modalId) {
 }
 
 function closeModal(modalId) {
-    if (modalId) {
+    if (modalId && typeof modalId === 'string' && modalId !== 'alert' && modalId !== 'studentAlert') {
         const modal = document.getElementById(modalId);
         if (modal) {
             modal.classList.remove("active");
@@ -19,6 +19,10 @@ function closeModal(modalId) {
     } else {
         document.querySelectorAll(".modal-overlay.active").forEach(m => m.classList.remove("active"));
     }
+    const alertEl = document.getElementById("alert");
+    if (alertEl) alertEl.classList.remove("alertModal");
+    const studentAlertEl = document.getElementById("studentAlert");
+    if (studentAlertEl) studentAlertEl.classList.remove("alertModal");
     document.body.style.overflow = "";
 }
 

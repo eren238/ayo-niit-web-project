@@ -1371,11 +1371,11 @@ function renderBedsTable(bedList) {
                         </div>
                     </div>
                 </td>
-                <td><strong>Room ${bed.room_number || '—'}</strong></td>
-                <td>${bed.hostel_name || bed.hostel_id || 'Hostel'}</td>
+                <td><strong>${bed.hostel_name || bed.hostel_id || 'Hostel Block'}</strong></td>
+                <td>Room ${bed.room_number || '—'}</td>
+                <td>Standard Single</td>
                 <td>${residentName}</td>
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
-                <td>${bed.created_at ? new Date(bed.created_at).toLocaleDateString('en-GB') : 'Active'}</td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
                         <button type="button" class="btn-action-icon" title="Edit Bed" onclick="openEditBedModal('${bed.bed_id}')"><i class="bi bi-pencil"></i></button>

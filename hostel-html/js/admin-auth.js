@@ -1,12 +1,13 @@
 let apiBaseUrl = window.CUSTOM_ADMIN_AUTH_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
 
-// Local XAMPP Apache detection
+// Local XAMPP Apache detection (works on port 80, empty, and Live Server port 5500)
 if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
     const port = window.location.port;
-    if (port === "" || port === "80") {
-        const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/hostel";
-        apiBaseUrl = window.location.origin + rootPath + "/admin/auth";
-    }
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const localHost = (port === "" || port === "80") ? window.location.origin : `${protocol}//${hostname}`;
+    const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/ayo-niit-web-project/hostel";
+    apiBaseUrl = localHost + rootPath + "/admin/auth";
 }
 let adminApiBaseUrl = apiBaseUrl;
 let staffApiBaseUrl = apiBaseUrl;

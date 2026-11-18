@@ -16,7 +16,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 }
 
 $httpHost = $_SERVER['HTTP_HOST'] ?? '';
-$isLocal = in_array($httpHost, ['localhost', '127.0.0.1']) || strpos($httpHost, 'localhost:') === 0 || strpos($httpHost, '127.0.0.1:') === 0;
+$isCli = (php_sapi_name() === 'cli');
+$isLocal = $isCli || in_array($httpHost, ['localhost', '127.0.0.1']) || strpos($httpHost, 'localhost:') === 0 || strpos($httpHost, '127.0.0.1:') === 0;
 
 if ($isLocal) {
     // Local development (XAMPP)

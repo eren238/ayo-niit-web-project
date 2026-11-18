@@ -2,15 +2,16 @@ let studentApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/stude
 let adminApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
 let staffApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/staff/auth";
 
-// Local XAMPP Apache detection
+// Local XAMPP Apache detection (works on port 80, empty, and Live Server port 5500)
 if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
     const port = window.location.port;
-    if (port === "" || port === "80") {
-        const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/hostel";
-        studentApiBaseUrl = window.location.origin + rootPath + "/student/student-auth";
-        adminApiBaseUrl = window.location.origin + rootPath + "/admin/auth";
-        staffApiBaseUrl = window.location.origin + rootPath + "/admin/auth";
-    }
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const localHost = (port === "" || port === "80") ? window.location.origin : `${protocol}//${hostname}`;
+    const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/ayo-niit-web-project/hostel";
+    studentApiBaseUrl = localHost + rootPath + "/student/student-auth";
+    adminApiBaseUrl = localHost + rootPath + "/admin/auth";
+    staffApiBaseUrl = localHost + rootPath + "/admin/auth";
 }
 let apiBaseUrl = studentApiBaseUrl;
 

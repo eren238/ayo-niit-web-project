@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 
 <?php
-//decleration of variable
+// DECLARATION OF VARIABLE
 
 $paymentId     = trim($_POST['paymentId']);
 $studentId     = trim($_POST['studentId']);
@@ -9,14 +9,12 @@ $feeId         = trim($_POST['feeId']);
 $amount        = trim($_POST['amount']);
 $paymentMethod = trim($_POST['paymentMethod']);
 $paymentDate   = trim($_POST['paymentDate']);
-$statusId      = trim($_POST['statusId'] ?? 'P');
-
-
+$statusId      = trim($_POST['statusId']);
 
 if ($paymentId == '') {
     $response = [
         'success' => false,
-        'message' => "PAYMENT ID IS REQUIRED"
+        'message' => "PAYMENT ID IS REQUIRED, Kindly fill in the payment ID to continue"
     ];
     goto end;
 }
@@ -24,7 +22,7 @@ if ($paymentId == '') {
 if ($studentId == '') {
     $response = [
         'success' => false,
-        'message' => "STUDENT IS REQUIRED"
+        'message' => "STUDENT IS REQUIRED, Kindly select or enter a student ID"
     ];
     goto end;
 }
@@ -32,7 +30,7 @@ if ($studentId == '') {
 if ($feeId == '') {
     $response = [
         'success' => false,
-        'message' => "FEE TYPE IS REQUIRED"
+        'message' => "FEE TYPE IS REQUIRED, Kindly select fee type"
     ];
     goto end;
 }
@@ -48,7 +46,7 @@ if ($amount == '' || !is_numeric($amount) || $amount <= 0) {
 if ($paymentMethod == '') {
     $response = [
         'success' => false,
-        'message' => "PAYMENT METHOD IS REQUIRED"
+        'message' => "PAYMENT METHOD IS REQUIRED, Kindly select payment method"
     ];
     goto end;
 }
@@ -56,7 +54,15 @@ if ($paymentMethod == '') {
 if ($paymentDate == '') {
     $response = [
         'success' => false,
-        'message' => "PAYMENT DATE IS REQUIRED"
+        'message' => "PAYMENT DATE IS REQUIRED, Kindly select payment date"
+    ];
+    goto end;
+}
+
+if ($statusId == '') {
+    $response = [
+        'success' => false,
+        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
     ];
     goto end;
 }

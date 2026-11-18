@@ -2,12 +2,12 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 <?php
 // DECLARATION OF VARIABLE
-$staffId      = trim($_POST['staffId'] ?? '');
-$firstName    = trim($_POST['firstName'] ?? '');
-$lastName     = trim($_POST['lastName'] ?? '');
-$emailAddress = trim($_POST['emailAddress'] ?? '');
-$roleId       = trim($_POST['roleId'] ?? '');
-$statusId     = trim($_POST['statusId'] ?? '');
+$staffId      = trim($_POST['staffId']);
+$firstName    = trim($_POST['firstName']);
+$lastName     = trim($_POST['lastName']);
+$emailAddress = trim($_POST['emailAddress']);
+$roleId       = trim($_POST['roleId']);
+$statusId     = trim($_POST['statusId']);
 if ($staffId == '') {
     $response = [
         'success' => false,

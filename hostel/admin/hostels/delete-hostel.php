@@ -2,7 +2,7 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$hostelId = trim($_POST['hostelId'] ?? '');
+$hostelId = trim($_POST['hostelId'] );
 
 if ($hostelId == '') {
     $response = [

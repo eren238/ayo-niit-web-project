@@ -2,8 +2,8 @@
 
 <?php
 
-$visitorId     = trim($_POST['visitorId'] ?? '');
-$departureTime = trim($_POST['departureTime'] ?? '');
+$visitorId     = trim($_POST['visitorId'] );
+$departureTime = trim($_POST['departureTime'] );
 
 if ($visitorId == '') {
     $response = [

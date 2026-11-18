@@ -1,28 +1,34 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 
 <?php
+// DECLARATION OF VARIABLE
 
-$transferId = trim($_POST['transferId'] ?? '');
-$reason     = trim($_POST['reason'] ?? '');
+$transferId = trim($_POST['transferId']);
+$reason     = trim($_POST['reason']);
 
-if ($transferId == '')
-     { $response = 
-    ['success' => false, 'message' => "TRANSFER ID IS REQUIRED"];
-
+if ($transferId == '') {
+    $response = [
+        'success' => false,
+        'message' => "TRANSFER ID IS REQUIRED, Kindly fill in the transfer ID to continue"
+    ];
     goto end;
 }
 
-if ($reason == '')
-     { $response =
-     ['success' => false, 'message' => "REASON IS REQUIRED"];
-     
+if ($reason == '') {
+    $response = [
+        'success' => false,
+        'message' => "REASON IS REQUIRED, Kindly fill in the reason to continue"
+    ];
     goto end;
 }
 
 $checkQuery = mysqli_query($conn, "SELECT * FROM transfers_tab WHERE transfer_id = '$transferId'") or die(mysqli_error($conn));
 
 if (mysqli_num_rows($checkQuery) == 0) {
-    $response = ['success' => false, 'message' => "TRANSFER RECORD NOT FOUND"];
+    $response = [
+        'success' => false,
+        'message' => "TRANSFER RECORD NOT FOUND"
+    ];
     goto end;
 }
 

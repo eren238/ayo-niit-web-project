@@ -1,15 +1,16 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 
 <?php
+// DECLARATION OF VARIABLE
 
-$checkoutId    = trim($_POST['checkoutId'] ?? '');
-$reason        = trim($_POST['reason'] ?? '');
-$roomCondition = trim($_POST['roomCondition'] ?? '');
+$checkoutId    = trim($_POST['checkoutId']);
+$reason        = trim($_POST['reason']);
+$roomCondition = trim($_POST['roomCondition']);
 
 if ($checkoutId == '') {
     $response = [
         'success' => false,
-        'message' => "CHECKOUT ID IS REQUIRED"
+        'message' => "CHECKOUT ID IS REQUIRED, Kindly fill in the checkout ID to continue"
     ];
     goto end;
 }
@@ -17,7 +18,7 @@ if ($checkoutId == '') {
 if ($reason == '') {
     $response = [
         'success' => false,
-        'message' => "REASON IS REQUIRED"
+        'message' => "REASON IS REQUIRED, Kindly fill in the reason to continue"
     ];
     goto end;
 }
@@ -25,7 +26,7 @@ if ($reason == '') {
 if ($roomCondition == '') {
     $response = [
         'success' => false,
-        'message' => "ROOM CONDITION IS REQUIRED"
+        'message' => "ROOM CONDITION IS REQUIRED, Kindly fill in the room condition to continue"
     ];
     goto end;
 }

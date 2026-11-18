@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 
 <?php
-$studentId = trim($_POST['studentId'] ?? '');
+$studentId = trim($_POST['studentId'] );
 if ($studentId == '') {
     $response = [
         'success' => false,

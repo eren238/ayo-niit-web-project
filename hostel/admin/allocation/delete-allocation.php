@@ -2,7 +2,7 @@
 
 <?php
 
-$allocationId = trim($_POST['allocationId'] ?? '');
+$allocationId = trim($_POST['allocationId'] );
 
 if ($allocationId == '') {
     $response = ['success' => false, 'message' => "ALLOCATION ID IS REQUIRED"];

@@ -2,7 +2,7 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$roomId = trim($_POST['roomId'] ?? '');
+$roomId = trim($_POST['roomId'] );
 
 if ($roomId == '') {
     $response = [

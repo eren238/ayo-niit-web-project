@@ -2,7 +2,7 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$checkoutId = trim($_POST['checkoutId'] ?? '');
+$checkoutId = trim($_POST['checkoutId'] );
 
 if ($checkoutId == '') {
     $response = [

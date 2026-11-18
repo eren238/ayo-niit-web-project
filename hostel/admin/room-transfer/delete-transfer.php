@@ -2,7 +2,7 @@
 
 <?php
 
-$transferId = trim($_POST['transferId'] ?? '');
+$transferId = trim($_POST['transferId'] );
 
 if ($transferId == '')
      {

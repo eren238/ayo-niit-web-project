@@ -2,11 +2,29 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$hostelId       = trim($_POST['hostelId']);
-$hostelName     = trim($_POST['hostelName']);
-$gender         = trim($_POST['gender']);
-$hostelCapacity = trim($_POST['hostelCapacity']);
-$statusId       = trim($_POST['statusId']);
+$hostelId       = trim($_POST['hostelId'] ?? '');
+$hostelName     = trim($_POST['hostelName'] ?? '');
+$gender         = trim($_POST['gender'] ?? '');
+$hostelCapacity = trim($_POST['hostelCapacity'] ?? $_POST['capacity'] ?? '');
+$statusId       = trim($_POST['statusId'] ?? '1');
+
+// Normalize status ID
+if (strtoupper($statusId) === 'ACTIVE' || $statusId === '1' || $statusId === '') {
+    $statusId = '1';
+} elseif (strtoupper($statusId) === 'MAINTENANCE' || strtoupper($statusId) === 'CLOSED' || $statusId === '2') {
+    $statusId = '2';
+} else {
+    $statusId = '1';
+}
+
+// Normalize gender
+if (strcasecmp($gender, 'Co-ed') === 0 || strcasecmp($gender, 'Mixed') === 0) {
+    $gender = 'Mixed';
+} elseif (strcasecmp($gender, 'Male') === 0) {
+    $gender = 'Male';
+} elseif (strcasecmp($gender, 'Female') === 0) {
+    $gender = 'Female';
+}
 
 if ($hostelId == '') {
     $response = [
@@ -16,7 +34,8 @@ if ($hostelId == '') {
     goto end;
 }
 
-$checkHostelQuery = mysqli_query($conn, "SELECT * FROM hostels_tab WHERE hostel_id = '$hostelId'") or die(mysqli_error($conn));
+$safeHostelId = mysqli_real_escape_string($conn, $hostelId);
+$checkHostelQuery = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_id = '$safeHostelId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkHostelQuery) == 0) {
     $response = [
         'success' => false,
@@ -41,15 +60,7 @@ if ($gender == '') {
     goto end;
 }
 
-if ($hostelCapacity == '') {
-    $response = [
-        'success' => false,
-        'message' => "HOSTEL CAPACITY IS REQUIRED, Kindly fill in the hostel capacity to continue"
-    ];
-    goto end;
-}
-
-if (!is_numeric($hostelCapacity) || $hostelCapacity <= 0) {
+if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || (int)$hostelCapacity <= 0) {
     $response = [
         'success' => false,
         'message' => "VALID HOSTEL CAPACITY IS REQUIRED"
@@ -57,15 +68,12 @@ if (!is_numeric($hostelCapacity) || $hostelCapacity <= 0) {
     goto end;
 }
 
-if ($statusId == '') {
-    $response = [
-        'success' => false,
-        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
-    ];
-    goto end;
-}
+$safeHostelName = mysqli_real_escape_string($conn, $hostelName);
+$safeGender     = mysqli_real_escape_string($conn, $gender);
+$safeCapacity   = (int)$hostelCapacity;
+$safeStatusId   = mysqli_real_escape_string($conn, $statusId);
 
-$nameCheck = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_name = '$hostelName' AND hostel_id != '$hostelId'") or die(mysqli_error($conn));
+$nameCheck = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_name = '$safeHostelName' AND hostel_id != '$safeHostelId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($nameCheck) > 0) {
     $response = [
         'success' => false,
@@ -75,14 +83,14 @@ if (mysqli_num_rows($nameCheck) > 0) {
 }
 
 mysqli_query($conn, "UPDATE `hostels_tab` SET 
-    `hostel_name`     = '$hostelName',
-    `gender`          = '$gender',
-    `hostel_capacity` = '$hostelCapacity',
-    `status_id`       = '$statusId',
+    `hostel_name`     = '$safeHostelName',
+    `gender`          = '$safeGender',
+    `hostel_capacity` = '$safeCapacity',
+    `status_id`       = '$safeStatusId',
     `updated_at`      = NOW()
-    WHERE `hostel_id` = '$hostelId'") or die(mysqli_error($conn));
+    WHERE `hostel_id` = '$safeHostelId'") or die(mysqli_error($conn));
 
-$fetchUpdated = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE hostels_tab.hostel_id = '$hostelId'") or die(mysqli_error($conn));
+$fetchUpdated = mysqli_query($conn, "SELECT hostels_tab.*, COALESCE(status_tab.status_name, 'Active') AS status_name FROM hostels_tab LEFT JOIN status_tab ON hostels_tab.status_id = status_tab.status_id WHERE hostels_tab.hostel_id = '$safeHostelId'") or die(mysqli_error($conn));
 
 $data = mysqli_fetch_assoc($fetchUpdated);
 $data['hostelId'] = $data['hostel_id'];

@@ -1,11 +1,11 @@
 <?php require_once __DIR__ . '/../../config/connection.php'; ?>
 <?php
-$allocationId = trim($_POST['allocationId'] ?? '');
-$studentId    = trim($_POST['studentId'] ?? '');
-$hostelId     = trim($_POST['hostelId'] ?? '');
-$roomId       = trim($_POST['roomId'] ?? '');
-$bedId        = trim($_POST['bedId'] ?? '');
-$statusId     = trim($_POST['statusId'] ?? '');
+$allocationId = trim($_POST['allocationId']);
+$studentId    = trim($_POST['studentId']);
+$hostelId     = trim($_POST['hostelId']);
+$roomId       = trim($_POST['roomId']);
+$bedId        = trim($_POST['bedId']);
+$statusId     = trim($_POST['statusId']);
 
 if ($allocationId == '') {
     $response = ['success' => false, 'message' => "ALLOCATION ID IS REQUIRED"];

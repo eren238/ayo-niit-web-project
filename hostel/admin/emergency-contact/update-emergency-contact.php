@@ -3,13 +3,12 @@
 <?php
 // DECLERATION OF VARIABLE
 
-$contactId = trim($_POST['contactId']);
-$nokName = trim($_POST['nokName']);
+$contactId    = trim($_POST['contactId']);
+$nokName      = trim($_POST['nokName']);
 $relationship = trim($_POST['relationship']);
-$nokPhone = trim($_POST['nokPhone']);
-$nokAddress = trim($_POST['nokAddress'] ?? '');
-$statusId = trim($_POST['statusId'] ?? '1');
-if ($statusId == '') $statusId = '1';
+$nokPhone     = trim($_POST['nokPhone']);
+$nokAddress   = trim($_POST['nokAddress']);
+$statusId     = trim($_POST['statusId']);
 
 if ($contactId == '') {
     $response = [
@@ -52,7 +51,11 @@ if ($nokAddress == '') {
 }
 
 if ($statusId == '') {
-    $statusId = '1';
+    $response = [
+        'success' => false,
+        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
+    ];
+    goto end;
 }
 
 $checkExist = mysqli_query($conn, "SELECT * FROM emergency_contacts_tab WHERE contact_id = '$contactId'") or die(mysqli_error($conn));

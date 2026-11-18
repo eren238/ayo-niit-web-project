@@ -3,13 +3,12 @@
 <?php
 // DECLERATION OF VARIABLE
 
-$studentId = trim($_POST['studentId']);
-$nokName = trim($_POST['nokName']);
+$studentId    = trim($_POST['studentId']);
+$nokName      = trim($_POST['nokName']);
 $relationship = trim($_POST['relationship']);
-$nokPhone = trim($_POST['nokPhone']);
-$nokAddress = trim($_POST['nokAddress'] ?? '');
-$statusId = trim($_POST['statusId'] ?? '1');
-if ($statusId == '') $statusId = '1';
+$nokPhone     = trim($_POST['nokPhone']);
+$nokAddress   = trim($_POST['nokAddress']);
+$statusId     = trim($_POST['statusId']);
 
 if ($studentId == '') {
     $response = [
@@ -52,7 +51,11 @@ if ($nokAddress == '') {
 }
 
 if ($statusId == '') {
-    $statusId = '1';
+    $response = [
+        'success' => false,
+        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
+    ];
+    goto end;
 }
 
 $checkStudent = mysqli_query($conn, "SELECT * FROM student_tab WHERE student_id = '$studentId'") or die(mysqli_error($conn));

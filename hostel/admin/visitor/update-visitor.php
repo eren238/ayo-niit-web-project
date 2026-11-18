@@ -2,14 +2,14 @@
 
 <?php
 
-$visitorId     = trim($_POST['visitorId'] ?? '');
-$visitorName   = trim($_POST['visitorName'] ?? '');
-$studentId     = trim($_POST['studentId'] ?? '');
-$purpose       = trim($_POST['purpose'] ?? '');
-$visitDate     = trim($_POST['visitDate'] ?? '');
-$arrivalTime   = trim($_POST['arrivalTime'] ?? '');
-$departureTime = trim($_POST['departureTime'] ?? '');
-$statusId      = trim($_POST['statusId'] ?? '');
+$visitorId     = trim($_POST['visitorId']);
+$visitorName   = trim($_POST['visitorName']);
+$studentId     = trim($_POST['studentId']);
+$purpose       = trim($_POST['purpose']);
+$visitDate     = trim($_POST['visitDate']);
+$arrivalTime   = trim($_POST['arrivalTime']);
+$departureTime = trim($_POST['departureTime']);
+$statusId      = trim($_POST['statusId']);
 
 if ($visitorId == '') {
     $response = [

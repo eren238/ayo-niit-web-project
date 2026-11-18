@@ -2,16 +2,16 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$hostelId       = trim($_POST['hostelId'] ?? '');
-$hostelName     = trim($_POST['hostelName'] ?? '');
-$gender         = trim($_POST['gender'] ?? '');
-$hostelCapacity = trim($_POST['hostelCapacity'] ?? $_POST['capacity'] ?? '');
-$statusId       = trim($_POST['statusId'] ?? '1');
+$hostelId       = trim($_POST['hostelId']);
+$hostelName     = trim($_POST['hostelName']);
+$gender         = trim($_POST['gender']);
+$hostelCapacity = trim($_POST['hostelCapacity']);
+$statusId       = trim($_POST['statusId']);
 
 if ($hostelId == '') {
     $response = [
         'success' => false,
-        'message' => "HOSTEL ID IS REQUIRED"
+        'message' => "HOSTEL ID IS REQUIRED, Kindly fill in the hostel ID to continue"
     ];
     goto end;
 }
@@ -28,7 +28,7 @@ if (mysqli_num_rows($checkHostelQuery) == 0) {
 if ($hostelName == '') {
     $response = [
         'success' => false,
-        'message' => "HOSTEL NAME IS REQUIRED"
+        'message' => "HOSTEL NAME IS REQUIRED, Kindly fill in the hostel name to continue"
     ];
     goto end;
 }
@@ -36,12 +36,20 @@ if ($hostelName == '') {
 if ($gender == '') {
     $response = [
         'success' => false,
-        'message' => "GENDER IS REQUIRED"
+        'message' => "GENDER IS REQUIRED, Kindly select gender to continue"
     ];
     goto end;
 }
 
-if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || $hostelCapacity <= 0) {
+if ($hostelCapacity == '') {
+    $response = [
+        'success' => false,
+        'message' => "HOSTEL CAPACITY IS REQUIRED, Kindly fill in the hostel capacity to continue"
+    ];
+    goto end;
+}
+
+if (!is_numeric($hostelCapacity) || $hostelCapacity <= 0) {
     $response = [
         'success' => false,
         'message' => "VALID HOSTEL CAPACITY IS REQUIRED"
@@ -49,11 +57,12 @@ if ($hostelCapacity == '' || !is_numeric($hostelCapacity) || $hostelCapacity <= 
     goto end;
 }
 
-// Normalize status
-if ($statusId == '' || strtoupper($statusId) == 'ACTIVE') {
-    $statusId = '1';
-} elseif (strtoupper($statusId) == 'INACTIVE' || strtoupper($statusId) == 'CLOSED') {
-    $statusId = '2';
+if ($statusId == '') {
+    $response = [
+        'success' => false,
+        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
+    ];
+    goto end;
 }
 
 $nameCheck = mysqli_query($conn, "SELECT sn FROM hostels_tab WHERE hostel_name = '$hostelName' AND hostel_id != '$hostelId'") or die(mysqli_error($conn));

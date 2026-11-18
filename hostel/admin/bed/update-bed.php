@@ -2,14 +2,14 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$bedId     = trim($_POST['bedId'] ?? '');
-$bedNumber = trim($_POST['bedNumber'] ?? '');
-$statusId  = trim($_POST['statusId'] ?? 'D'); 
+$bedId     = trim($_POST['bedId']);
+$bedNumber = trim($_POST['bedNumber']);
+$statusId  = trim($_POST['statusId']); 
 
 if ($bedId == '') {
     $response = [
         'success' => false,
-        'message' => "BED ID IS REQUIRED"
+        'message' => "BED ID IS REQUIRED, Kindly fill in the bed ID to continue"
     ];
     goto end;
 }
@@ -17,7 +17,7 @@ if ($bedId == '') {
 if ($bedNumber == '') {
     $response = [
         'success' => false,
-        'message' => "BED NUMBER IS REQUIRED"
+        'message' => "BED NUMBER IS REQUIRED, Kindly fill in the bed number to continue"
     ];
     goto end;
 }
@@ -25,11 +25,10 @@ if ($bedNumber == '') {
 if ($statusId == '') {
     $response = [
         'success' => false,
-        'message' => "STATUS ID IS REQUIRED"
+        'message' => "STATUS ID IS REQUIRED, Kindly select status to continue"
     ];
     goto end;
 }
-
 
 $checkBedQuery = mysqli_query($conn, "SELECT * FROM beds_tab WHERE bed_id = '$bedId'") or die(mysqli_error($conn));
 if (mysqli_num_rows($checkBedQuery) == 0) {
@@ -40,11 +39,9 @@ if (mysqli_num_rows($checkBedQuery) == 0) {
     goto end;
 }
 
+mysqli_query($conn, "UPDATE `beds_tab` SET `bed_number` = '$bedNumber', `status_id` = '$statusId' WHERE `bed_id` = '$bedId'") or die(mysqli_error($conn));
 
-mysqli_query($conn, "UPDATE `beds_tab` SET  `bed_number` = '$bedNumber',`status_id`  = '$statusId' WHERE `bed_id` = '$bedId'") or die(mysqli_error($conn));
-
-
-$fetchUpdated = mysqli_query($conn, "SELECT beds_tab.*, rooms_tab.room_number, hostels_tab.hostel_name, status_tab.status_name FROM beds_tab, rooms_tab, hostels_tab, status_tab WHERE beds_tab.room_id = rooms_tab.room_id AND beds_tab.hostel_id = hostels_tab.hostel_id AND beds_tab.status_id = status_tab.status_id   AND beds_tab.bed_id = '$bedId'") or die(mysqli_error($conn));
+$fetchUpdated = mysqli_query($conn, "SELECT beds_tab.*, rooms_tab.room_number, hostels_tab.hostel_name, status_tab.status_name FROM beds_tab, rooms_tab, hostels_tab, status_tab WHERE beds_tab.room_id = rooms_tab.room_id AND beds_tab.hostel_id = hostels_tab.hostel_id AND beds_tab.status_id = status_tab.status_id AND beds_tab.bed_id = '$bedId'") or die(mysqli_error($conn));
 
 $data = mysqli_fetch_assoc($fetchUpdated);
 $response = [
@@ -52,6 +49,7 @@ $response = [
     'message' => "BED UPDATED SUCCESSFULLY",
     'data'    => $data
 ];
+
 end:
 echo json_encode($response);
 ?>

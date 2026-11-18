@@ -102,6 +102,24 @@ CREATE TABLE `complaints_tab` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `emergency_contacts_tab`
+--
+
+CREATE TABLE `emergency_contacts_tab` (
+  `contact_id` varchar(50) NOT NULL,
+  `student_id` varchar(100) NOT NULL,
+  `nok_name` varchar(150) NOT NULL,
+  `relationship` varchar(100) NOT NULL,
+  `phone_number` varchar(50) NOT NULL,
+  `residential_address` text NOT NULL,
+  `status_id` varchar(50) NOT NULL DEFAULT '1',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `department_tab`
 --
 
@@ -425,6 +443,13 @@ ALTER TABLE `complaints_tab`
 --
 ALTER TABLE `department_tab`
   ADD PRIMARY KEY (`sn`);
+
+--
+-- Indexes for table `emergency_contacts_tab`
+--
+ALTER TABLE `emergency_contacts_tab`
+  ADD PRIMARY KEY (`contact_id`),
+  ADD KEY `idx_student_id` (`student_id`);
 
 --
 -- Indexes for table `fees_tab`

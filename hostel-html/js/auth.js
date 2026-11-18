@@ -1,6 +1,6 @@
-let studentApiBaseUrl = window.CUSTOM_STUDENT_AUTH_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/student/student-auth";
-let adminApiBaseUrl = window.CUSTOM_ADMIN_AUTH_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
-let staffApiBaseUrl = window.CUSTOM_STAFF_AUTH_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
+let studentApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/student/student-auth";
+let adminApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
+let staffApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/staff/auth";
 
 // Local XAMPP Apache detection
 if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {

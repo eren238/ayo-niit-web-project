@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json');
 
-$query = mysqli_query($conn, "SELECT hostel_id, hostel_name, code, gender, hostel_capacity, status_id FROM hostels_tab WHERE status_id = '1' OR status_id = 'ACTIVE' ORDER BY hostel_name ASC");
+$query = mysqli_query($conn, "SELECT hostel_id, hostel_name, gender, hostel_capacity, status_id FROM hostels_tab WHERE status_id = '1' OR status_id = 'ACTIVE' ORDER BY hostel_name ASC");
 
 if (!$query) {
     echo json_encode(['success' => false, 'message' => mysqli_error($conn)]);

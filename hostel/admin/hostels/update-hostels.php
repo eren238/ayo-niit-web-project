@@ -77,7 +77,6 @@ $fetchUpdated = mysqli_query($conn, "SELECT hostels_tab.*, status_tab.status_nam
 
 $data = mysqli_fetch_assoc($fetchUpdated);
 $data['hostelId'] = $data['hostel_id'];
-$data['code']     = $data['hostel_id'];
 
 $response = [
     'success' => true,

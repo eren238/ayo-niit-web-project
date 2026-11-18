@@ -113,7 +113,7 @@ async function fetchAvailableHostels() {
         if (result.success === true && Array.isArray(result.data) && result.data.length > 0) {
             hostelSelect.innerHTML = `<option value="" disabled selected>Select Hostel Block</option>`;
             result.data.forEach(hostel => {
-                const id = hostel.hostel_id || hostel.code || hostel.hostelId;
+                const id = hostel.hostel_id || hostel.hostelId;
                 const name = hostel.hostel_name || hostel.hostelName;
                 const gender = hostel.gender ? ` (${hostel.gender})` : '';
                 hostelSelect.innerHTML += `<option value="${id}">${name}${gender}</option>`;
@@ -252,7 +252,7 @@ async function studentRegisterBedHandle(event) {
         });
 
         if (response.status === 404) {
-            response = await fetch(adminApiBaseUrl + '/allocation/add-allocation.php', {
+            response = await fetch(adminApiBaseUrl + '/allocation/create-allocation.php', {
                 method: "POST",
                 body: formData
             });
@@ -297,12 +297,11 @@ async function studentTransferRequestHandle(event) {
 
     const formData = new FormData();
     formData.append("studentId", studentId);
-    formData.append("targetRoom", targetRoomId);
+    formData.append("newBedId", targetRoomId);
     formData.append("reason", reason);
-    formData.append("remarks", remarks || "");
 
     try {
-        const response = await fetch(adminApiBaseUrl + '/room-transfer/add-transfer.php', {
+        const response = await fetch(adminApiBaseUrl + '/room-transfer/create-transfer.php', {
             method: "POST",
             body: formData
         });
@@ -353,7 +352,7 @@ async function studentCheckoutHandle(event) {
     formData.append("remarks", remarks);
 
     try {
-        const response = await fetch(adminApiBaseUrl + '/checkout/add-checkout.php', {
+        const response = await fetch(adminApiBaseUrl + '/checkout/create-checkout.php', {
             method: "POST",
             body: formData
         });
@@ -400,9 +399,11 @@ async function studentVisitorHandle(event) {
     formData.append("purpose", purpose);
     formData.append("visitDate", visitDate);
     formData.append("arrivalTime", arrivalTime);
+    formData.append("departureTime", "");
+    formData.append("statusId", "IN");
 
     try {
-        const response = await fetch(adminApiBaseUrl + '/visitor/add-visitor.php', {
+        const response = await fetch(adminApiBaseUrl + '/visitor/create-visitor.php', {
             method: "POST",
             body: formData
         });
@@ -443,13 +444,14 @@ async function studentPaymentHandle(event) {
 
     const formData = new FormData();
     formData.append("studentId", studentId);
-    formData.append("feeDescription", feeDescription);
+    formData.append("feeId", feeDescription || "FEE20260924");
     formData.append("amount", amount);
     formData.append("paymentMethod", paymentMethod);
-    formData.append("transactionRef", transactionRef);
+    formData.append("paymentDate", new Date().toISOString().slice(0, 10));
+    formData.append("statusId", "P");
 
     try {
-        const response = await fetch(adminApiBaseUrl + '/payment/add-payment.php', {
+        const response = await fetch(adminApiBaseUrl + '/payment/create-payment.php', {
             method: "POST",
             body: formData
         });
@@ -510,6 +512,81 @@ async function loadStudentRoomFromDB() {
 }
 
 /* ==========================================================================
+   6. EMERGENCY CONTACT / NEXT OF KIN (student/profile.html)
+   ========================================================================== */
+async function saveEmergencyContactHandle(event) {
+    if (event) event.preventDefault();
+
+    const session = getStudentSession();
+    const studentId = session.studentId || session.student_id || "STUDENT20260924025518";
+    const nokName = document.getElementById("nokName")?.value.trim();
+    const nokRelationship = document.getElementById("nokRelationship")?.value.trim();
+    const nokPhone = document.getElementById("nokPhone")?.value.trim();
+    const nokAddress = document.getElementById("nokAddress")?.value.trim();
+
+    if (!nokName) { studentAlertModal(false, "NEXT OF KIN NAME IS REQUIRED"); return; }
+    if (!nokRelationship) { studentAlertModal(false, "RELATIONSHIP IS REQUIRED"); return; }
+    if (!nokPhone) { studentAlertModal(false, "EMERGENCY PHONE NUMBER IS REQUIRED"); return; }
+    if (!nokAddress) { studentAlertModal(false, "RESIDENTIAL ADDRESS IS REQUIRED"); return; }
+
+    const submitBtn = document.querySelector("#emergencyContactForm button[type='submit']");
+    const origText = submitBtn ? submitBtn.innerHTML : "Save Emergency Contact";
+    if (submitBtn) { submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Saving...`; submitBtn.disabled = true; }
+
+    const formData = new FormData();
+    formData.append("studentId", studentId);
+    formData.append("nokName", nokName);
+    formData.append("relationship", nokRelationship);
+    formData.append("nokPhone", nokPhone);
+    formData.append("nokAddress", nokAddress);
+    formData.append("statusId", "1");
+
+    try {
+        const response = await fetch(studentApiBaseUrl + '/emergency-contact/create-emergency-contact.php', {
+            method: "POST",
+            body: formData
+        });
+        const fetchData = await parseStudentJsonResponse(response);
+
+        if (fetchData.success === true) {
+            studentAlertModal(true, fetchData.message || "EMERGENCY CONTACT SAVED SUCCESSFULLY");
+        } else {
+            studentAlertModal(false, fetchData.message || "Failed to save emergency contact.");
+        }
+    } catch (err) {
+        studentAlertModal(false, "Connection error: " + err.message);
+    } finally {
+        if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
+    }
+}
+
+async function loadEmergencyContact() {
+    const session = getStudentSession();
+    const studentId = session.studentId || session.student_id || "STUDENT20260924025518";
+
+    const formData = new FormData();
+    formData.append("studentId", studentId);
+
+    try {
+        const response = await fetch(studentApiBaseUrl + '/emergency-contact/fetch-emergency-contact.php', {
+            method: "POST",
+            body: formData
+        });
+        const fetchData = await parseStudentJsonResponse(response);
+
+        if (fetchData.success === true && fetchData.data) {
+            const d = fetchData.data;
+            if (document.getElementById("nokName") && d.nokName) document.getElementById("nokName").value = d.nokName;
+            if (document.getElementById("nokRelationship") && d.relationship) document.getElementById("nokRelationship").value = d.relationship;
+            if (document.getElementById("nokPhone") && d.nokPhone) document.getElementById("nokPhone").value = d.nokPhone;
+            if (document.getElementById("nokAddress") && d.nokAddress) document.getElementById("nokAddress").value = d.nokAddress;
+        }
+    } catch (e) {
+        // Silent catch for graceful degradation
+    }
+}
+
+/* ==========================================================================
    DOM INITIALIZATION
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", function () {
@@ -550,6 +627,13 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentForm.addEventListener("submit", studentPaymentHandle);
     }
 
-    // 6. Load actual allocation
+    // 6. Emergency contact form
+    const emgForm = document.getElementById("emergencyContactForm");
+    if (emgForm) {
+        emgForm.addEventListener("submit", saveEmergencyContactHandle);
+        loadEmergencyContact();
+    }
+
+    // 7. Load actual allocation
     loadStudentRoomFromDB();
 });

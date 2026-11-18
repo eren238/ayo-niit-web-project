@@ -2,9 +2,9 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$bedId     = trim($_POST['bedId']);
-$bedNumber = trim($_POST['bedNumber']);
-$statusId  = trim($_POST['statusId']); 
+$bedId     = trim($_POST['bedId'] ?? '');
+$bedNumber = trim($_POST['bedNumber'] ?? '');
+$statusId  = trim($_POST['statusId'] ?? 'D'); 
 
 if ($bedId == '') {
     $response = [

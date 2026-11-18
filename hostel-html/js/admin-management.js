@@ -173,6 +173,7 @@ function renderStaffTable(staffList) {
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
+                        <button type="button" class="btn-action-icon" title="Edit Staff" onclick="openEditStaffModal('${staff.staff_id}')"><i class="bi bi-pencil"></i></button>
                         <button type="button" class="btn-action-icon btn-action-delete" title="Delete Staff" onclick="deleteStaffHandle('${staff.staff_id}')">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -236,6 +237,7 @@ async function createStaffHandle(event) {
     }
 }
 
+
 async function deleteStaffHandle(staffId) {
     if (!confirm(`Are you sure you want to delete staff member ${staffId}?`)) return;
 
@@ -254,6 +256,111 @@ async function deleteStaffHandle(staffId) {
         }
     } catch (error) {
         alertModal(false, "Connection error: " + error.message);
+    }
+}
+
+function openEditStaffModal(staffId) {
+    const staff = allStaffList.find(s => (s.staff_id === staffId));
+    if (!staff) { alertModal(false, "Staff record not found."); return; }
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 class="section-card-title" style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">Edit Staff Member</h3>
+                    <p class="section-card-desc" style="margin: 4px 0 0 0; font-size: 13px; color: #64748b;">Staff ID: <code>${staff.staff_id}</code></p>
+                </div>
+                <button type="button" class="btn-action-icon" onclick="closeModal('modal-edit-staff')" style="border: none; background: #f1f5f9; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <form onsubmit="updateStaffHandle(event)">
+                <input type="hidden" name="staffId" id="editStaffId" value="${staff.staff_id}">
+                <div class="form-grid-2col">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStaffFirstName">First Name *</label>
+                        <input type="text" class="form-input-custom" name="firstName" id="editStaffFirstName" value="${staff.first_name || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStaffLastName">Last Name *</label>
+                        <input type="text" class="form-input-custom" name="lastName" id="editStaffLastName" value="${staff.last_name || ''}" required>
+                    </div>
+                </div>
+                <div class="form-grid-3col" style="margin-top: 14px;">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStaffEmail">Email Address *</label>
+                        <input type="email" class="form-input-custom" name="emailAddress" id="editStaffEmail" value="${staff.email_address || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStaffRole">Role Assignment *</label>
+                        <select class="form-select-custom" name="roleId" id="editStaffRole" required>
+                            <option value="1" ${staff.role_id === '1' ? 'selected' : ''}>Administrator</option>
+                            <option value="2" ${staff.role_id === '2' ? 'selected' : ''}>Hostel Warden</option>
+                            <option value="3" ${staff.role_id === '3' ? 'selected' : ''}>Hall Porter</option>
+                            <option value="4" ${staff.role_id === '4' ? 'selected' : ''}>Maintenance Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStaffStatus">Account Status *</label>
+                        <select class="form-select-custom" name="statusId" id="editStaffStatus" required>
+                            <option value="1" ${(staff.status_id === '1' || staff.status_name === 'Active') ? 'selected' : ''}>Active</option>
+                            <option value="2" ${(staff.status_id === '2' || staff.status_name === 'Inactive') ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn-secondary" onclick="closeModal('modal-edit-staff')">Cancel</button>
+                    <button type="submit" class="btn-primary"><i class="bi bi-check2"></i> Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modal = document.getElementById("modal-edit-staff");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "modal-edit-staff";
+        modal.className = "modal-overlay";
+        document.body.appendChild(modal);
+    }
+    modal.innerHTML = modalHtml;
+    openModal("modal-edit-staff");
+}
+
+async function updateStaffHandle(event) {
+    if (event) event.preventDefault();
+    const staffId = document.getElementById("editStaffId")?.value;
+    const firstName = document.getElementById("editStaffFirstName")?.value.trim();
+    const lastName = document.getElementById("editStaffLastName")?.value.trim();
+    const emailAddress = document.getElementById("editStaffEmail")?.value.trim();
+    const roleId = document.getElementById("editStaffRole")?.value || "2";
+    const statusId = document.getElementById("editStaffStatus")?.value || "1";
+
+    if (!firstName || !lastName || !emailAddress) {
+        alertModal(false, "Please fill in all required fields.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("staffId", staffId);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("emailAddress", emailAddress);
+    formData.append("roleId", roleId);
+    formData.append("statusId", statusId);
+
+    try {
+        const response = await safeFetchAdmin('/staff/update-staff.php', null, { method: "POST", body: formData });
+        const res = await parseJsonResponse(response);
+        if (res.success === true) {
+            alertModal(true, "STAFF MEMBER UPDATED SUCCESSFULLY");
+            closeModal("modal-edit-staff");
+            fetchAllStaff();
+        } else {
+            alertModal(false, res.message || "Failed to update staff.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
     }
 }
 
@@ -316,12 +423,20 @@ function renderStudentsTable(studentsList) {
                     </div>
                 </td>
                 <td>${student.gender || '—'}</td>
-                <td>${student.department || '—'}</td>
-                <td>${student.level ? student.level + ' L' : '—'}</td>
-                <td>${student.email_address || '—'}</td>
+                <td>${student.department || '—'} (${student.level ? student.level + ' L' : '—'})</td>
+                <td>${student.phone_number || student.phoneNumber || student.email_address || '—'}</td>
+                <td>
+                    ${student.nok_name ? `<strong>${student.nok_name}</strong>${student.relationship ? ' (' + student.relationship + ')' : ''}<br><span style="font-size: 11.5px; color: #64748b;"><i class="bi bi-telephone"></i> ${student.nok_phone || '—'}</span>` : '<span style="color: #94a3b8; font-style: italic;">Not Registered</span>'}
+                </td>
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
+                        <button type="button" class="btn-action-icon" style="color: #dc2626;" title="Emergency Contact / Next of Kin" onclick="openEmergencyModal('${student.student_id}')">
+                            <i class="bi bi-shield-exclamation"></i>
+                        </button>
+                        <button type="button" class="btn-action-icon" title="Edit Student" onclick="openEditStudentModal('${student.student_id}')">
+                            <i class="bi bi-pencil"></i>
+                        </button>
                         <button type="button" class="btn-action-icon btn-action-delete" title="Delete Student" onclick="deleteStudentHandle('${student.student_id}')">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -392,6 +507,7 @@ async function createStudentHandle(event) {
     }
 }
 
+
 async function deleteStudentHandle(studentId) {
     if (!confirm(`Are you sure you want to delete student ${studentId}?`)) return;
 
@@ -410,6 +526,259 @@ async function deleteStudentHandle(studentId) {
         }
     } catch (error) {
         alertModal(false, "Connection error: " + error.message);
+    }
+}
+
+function openEditStudentModal(studentId) {
+    const student = allStudentsList.find(s => (s.student_id === studentId));
+    if (!student) { alertModal(false, "Student record not found."); return; }
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 class="section-card-title" style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">Edit Student Record</h3>
+                    <p class="section-card-desc" style="margin: 4px 0 0 0; font-size: 13px; color: #64748b;">Matric ID: <code>${student.student_id}</code></p>
+                </div>
+                <button type="button" class="btn-action-icon" onclick="closeModal('modal-edit-student')" style="border: none; background: #f1f5f9; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <form onsubmit="updateStudentHandle(event)">
+                <input type="hidden" name="studentId" id="editStudentId" value="${student.student_id}">
+                <div class="form-grid-3col">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentFirstName">First Name *</label>
+                        <input type="text" class="form-input-custom" name="firstName" id="editStudentFirstName" value="${student.first_name || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentLastName">Last Name *</label>
+                        <input type="text" class="form-input-custom" name="lastName" id="editStudentLastName" value="${student.last_name || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentGender">Gender *</label>
+                        <select class="form-select-custom" name="gender" id="editStudentGender" required>
+                            <option value="Male" ${student.gender === 'Male' ? 'selected' : ''}>Male</option>
+                            <option value="Female" ${student.gender === 'Female' ? 'selected' : ''}>Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid-2col" style="margin-top: 14px;">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentDept">Department *</label>
+                        <input type="text" class="form-input-custom" name="department" id="editStudentDept" value="${student.department || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentLevel">Level *</label>
+                        <select class="form-select-custom" name="level" id="editStudentLevel" required>
+                            <option value="100" ${student.level === '100' ? 'selected' : ''}>100 Level</option>
+                            <option value="200" ${student.level === '200' ? 'selected' : ''}>200 Level</option>
+                            <option value="300" ${student.level === '300' ? 'selected' : ''}>300 Level</option>
+                            <option value="400" ${student.level === '400' ? 'selected' : ''}>400 Level</option>
+                            <option value="500" ${student.level === '500' ? 'selected' : ''}>500 Level</option>
+                            <option value="ND 1" ${student.level === 'ND 1' ? 'selected' : ''}>ND 1</option>
+                            <option value="ND 2" ${student.level === 'ND 2' ? 'selected' : ''}>ND 2</option>
+                            <option value="HND 1" ${student.level === 'HND 1' ? 'selected' : ''}>HND 1</option>
+                            <option value="HND 2" ${student.level === 'HND 2' ? 'selected' : ''}>HND 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid-3col" style="margin-top: 14px;">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentPhone">Phone Number *</label>
+                        <input type="tel" class="form-input-custom" name="phoneNumber" id="editStudentPhone" value="${student.phone_number || student.phoneNumber || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentEmail">Email Address *</label>
+                        <input type="email" class="form-input-custom" name="emailAddress" id="editStudentEmail" value="${student.email_address || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editStudentStatus">Status *</label>
+                        <select class="form-select-custom" name="statusId" id="editStudentStatus" required>
+                            <option value="1" ${(student.status_id === '1' || student.status_name === 'Active') ? 'selected' : ''}>Active</option>
+                            <option value="2" ${(student.status_id === '2' || student.status_name === 'Inactive') ? 'selected' : ''}>Inactive / Suspended</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn-secondary" onclick="closeModal('modal-edit-student')">Cancel</button>
+                    <button type="submit" class="btn-primary"><i class="bi bi-check2"></i> Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modal = document.getElementById("modal-edit-student");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "modal-edit-student";
+        modal.className = "modal-overlay";
+        document.body.appendChild(modal);
+    }
+    modal.innerHTML = modalHtml;
+    openModal("modal-edit-student");
+}
+
+async function updateStudentHandle(event) {
+    if (event) event.preventDefault();
+    const studentId = document.getElementById("editStudentId")?.value;
+    const firstName = document.getElementById("editStudentFirstName")?.value.trim();
+    const lastName = document.getElementById("editStudentLastName")?.value.trim();
+    const gender = document.getElementById("editStudentGender")?.value;
+    const department = document.getElementById("editStudentDept")?.value.trim();
+    const level = document.getElementById("editStudentLevel")?.value;
+    const phoneNumber = document.getElementById("editStudentPhone")?.value.trim();
+    const emailAddress = document.getElementById("editStudentEmail")?.value.trim();
+    const statusId = document.getElementById("editStudentStatus")?.value || "1";
+
+    if (!firstName || !lastName || !phoneNumber || !emailAddress) {
+        alertModal(false, "Please fill in all required fields.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("studentId", studentId);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("gender", gender);
+    formData.append("department", department);
+    formData.append("level", level);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("emailAddress", emailAddress);
+    formData.append("statusId", statusId);
+
+    try {
+        const response = await safeFetchAdmin('/student/update-student.php', null, { method: "POST", body: formData });
+        const res = await parseJsonResponse(response);
+        if (res.success === true) {
+            alertModal(true, "STUDENT UPDATED SUCCESSFULLY");
+            closeModal("modal-edit-student");
+            fetchAllStudents();
+        } else {
+            alertModal(false, res.message || "Failed to update student.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
+    }
+}
+
+function openEmergencyModal(studentId) {
+    const student = allStudentsList.find(s => (s.student_id === studentId));
+    if (!student) { alertModal(false, "Student record not found."); return; }
+
+    const studentFullName = `${student.first_name || ''} ${student.last_name || ''}`.trim() || student.student_id;
+    const nokName = student.nok_name || '';
+    const relationship = student.relationship || 'Parent';
+    const nokPhone = student.nok_phone || '';
+    const nokAddress = student.nok_address || '';
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 class="section-card-title" style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">
+                        <i class="bi bi-shield-exclamation" style="color: #dc2626; margin-right: 6px;"></i> Emergency Contact & Next of Kin
+                    </h3>
+                    <p class="section-card-desc" style="margin: 4px 0 0 0; font-size: 13px; color: #64748b;">
+                        Resident: <strong>${studentFullName}</strong> • Matric ID: <code>${student.student_id}</code>
+                    </p>
+                </div>
+                <button type="button" class="btn-action-icon" onclick="closeModal('modal-emergency-contact')" style="border: none; background: #f1f5f9; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <form onsubmit="saveEmergencyContactHandle(event)">
+                <input type="hidden" name="studentId" id="emgStudentId" value="${student.student_id}">
+                <div class="form-grid-2col">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="emgNokName">Next of Kin Full Name *</label>
+                        <input type="text" class="form-input-custom" name="nokName" id="emgNokName" value="${nokName}" placeholder="e.g. Chief Michael Posikay" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="emgRelationship">Relationship *</label>
+                        <select class="form-select-custom" name="relationship" id="emgRelationship" required>
+                            <option value="Father" ${relationship === 'Father' ? 'selected' : ''}>Father</option>
+                            <option value="Mother" ${relationship === 'Mother' ? 'selected' : ''}>Mother</option>
+                            <option value="Guardian" ${relationship === 'Guardian' ? 'selected' : ''}>Guardian</option>
+                            <option value="Brother" ${relationship === 'Brother' ? 'selected' : ''}>Brother</option>
+                            <option value="Sister" ${relationship === 'Sister' ? 'selected' : ''}>Sister</option>
+                            <option value="Uncle" ${relationship === 'Uncle' ? 'selected' : ''}>Uncle</option>
+                            <option value="Aunt" ${relationship === 'Aunt' ? 'selected' : ''}>Aunt</option>
+                            <option value="Spouse" ${relationship === 'Spouse' ? 'selected' : ''}>Spouse</option>
+                            <option value="Other" ${(!['Father','Mother','Guardian','Brother','Sister','Uncle','Aunt','Spouse'].includes(relationship)) ? 'selected' : ''}>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid-2col" style="margin-top: 14px;">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="emgNokPhone">Emergency Phone Number *</label>
+                        <input type="tel" class="form-input-custom" name="nokPhone" id="emgNokPhone" value="${nokPhone}" placeholder="e.g. 08031234567" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="emgStatusId">Status *</label>
+                        <select class="form-select-custom" name="statusId" id="emgStatusId" required>
+                            <option value="1" selected>Active & Verified</option>
+                            <option value="2">Unverified</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-custom" style="margin-top: 14px;">
+                    <label class="form-label-custom" for="emgNokAddress">Residential Address *</label>
+                    <input type="text" class="form-input-custom" name="nokAddress" id="emgNokAddress" value="${nokAddress}" placeholder="e.g. 14, University Road, Lagos, Nigeria" required>
+                </div>
+                <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn-secondary" onclick="closeModal('modal-emergency-contact')">Cancel</button>
+                    <button type="submit" class="btn-primary" style="background: #dc2626;"><i class="bi bi-shield-check"></i> Save Emergency Contact</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modal = document.getElementById("modal-emergency-contact");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "modal-emergency-contact";
+        modal.className = "modal-overlay";
+        document.body.appendChild(modal);
+    }
+    modal.innerHTML = modalHtml;
+    openModal("modal-emergency-contact");
+}
+
+async function saveEmergencyContactHandle(event) {
+    if (event) event.preventDefault();
+    const studentId = document.getElementById("emgStudentId")?.value;
+    const nokName = document.getElementById("emgNokName")?.value.trim();
+    const relationship = document.getElementById("emgRelationship")?.value;
+    const nokPhone = document.getElementById("emgNokPhone")?.value.trim();
+    const nokAddress = document.getElementById("emgNokAddress")?.value.trim();
+    const statusId = document.getElementById("emgStatusId")?.value || "1";
+
+    if (!nokName || !nokPhone || !nokAddress) {
+        alertModal(false, "Please fill in all required emergency contact details.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("studentId", studentId);
+    formData.append("nokName", nokName);
+    formData.append("relationship", relationship);
+    formData.append("nokPhone", nokPhone);
+    formData.append("nokAddress", nokAddress);
+    formData.append("statusId", statusId);
+
+    try {
+        const response = await safeFetchAdmin('/emergency-contact/create-emergency-contact.php', '/emergency-contact/update-emergency-contact.php', { method: "POST", body: formData });
+        const res = await parseJsonResponse(response);
+        if (res.success === true) {
+            alertModal(true, "EMERGENCY CONTACT SAVED SUCCESSFULLY");
+            closeModal("modal-emergency-contact");
+            fetchAllStudents();
+        } else {
+            alertModal(false, res.message || "Failed to save emergency contact.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
     }
 }
 
@@ -482,6 +851,7 @@ function renderHostelsTable(hostelList) {
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
+                        <button type="button" class="btn-action-icon" title="Edit Hostel" onclick="openEditHostelModal('${hostel.hostel_id || hostelId}')"><i class="bi bi-pencil"></i></button>
                         <button type="button" class="btn-action-icon btn-action-delete" title="Delete Hostel" onclick="deleteHostelHandle('${hostel.hostel_id || hostelId}')">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -528,21 +898,113 @@ async function createHostelHandle(event) {
     formData.append("hostelName", hostelName);
     formData.append("gender", gender);
     formData.append("hostelCapacity", capacity);
-    formData.append("capacity", capacity);
-    formData.append("totalRooms", totalRooms || "20");
     formData.append("statusId", statusId);
 
     try {
-        const response = await safeFetchAdmin('/hostels/add-hostel.php', '/hostel/create-hostel.php', { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/hostels/create-hostel.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
-            alertModal(true, `HOSTEL CREATED SUCCESSFULLY!`);
+            alertModal(true, `HOSTEL CREATED SUCCESSFULLY! Hostel ID: ${fetchData.data?.hostelId || ''}`);
             document.querySelector("#add-hostel form")?.reset();
             closeModal("modal-add-hostel");
             fetchAllHostels();
         } else {
             alertModal(false, fetchData.message || "Failed to save hostel.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
+    } finally {
+        if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
+    }
+}
+
+
+function openEditHostelModal(hostelId) {
+    const hostel = allHostelsList.find(h => ((h.hostel_id || h.hostelId) == hostelId));
+    if (!hostel) { alertModal(false, "Hostel record not found."); return; }
+
+    const curName = hostel.hostel_name || hostel.hostelName || "";
+    const curGender = hostel.gender || "";
+    const curCap = hostel.hostel_capacity || hostel.capacity || "";
+    const curStatus = (hostel.status_id !== undefined) ? hostel.status_id : "1";
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0 0 4px;">Edit Hostel</h3>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Update hostel block information (ID: ${hostelId})</p>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeModal('modal-edit-hostel')" style="background: none; border: none; font-size: 1.25rem; color: #64748b; cursor: pointer;">&times;</button>
+            </div>
+            <form onsubmit="updateHostelHandle(event)">
+                <input type="hidden" name="hostelId" value="${hostelId}">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Hostel Name *</label>
+                        <input type="text" name="hostelName" value="${curName}" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Gender Wing *</label>
+                        <select name="gender" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                            <option value="Male" ${curGender.toLowerCase() === "male" ? "selected" : ""}>Male</option>
+                            <option value="Female" ${curGender.toLowerCase() === "female" ? "selected" : ""}>Female</option>
+                            <option value="Co-ed" ${curGender.toLowerCase() === "co-ed" || curGender.toLowerCase() === "mixed" ? "selected" : ""}>Co-ed / Mixed</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Total Capacity *</label>
+                        <input type="number" name="hostelCapacity" value="${curCap}" min="1" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Status *</label>
+                        <select name="statusId" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                            <option value="1" ${curStatus == "1" ? "selected" : ""}>Active / Operational</option>
+                            <option value="2" ${curStatus == "2" ? "selected" : ""}>Inactive / Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('modal-edit-hostel')" style="padding: 8px 18px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; cursor: pointer;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="padding: 8px 20px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-weight: 600; cursor: pointer;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modalEl = document.getElementById("modal-edit-hostel");
+    if (!modalEl) {
+        modalEl = document.createElement("div");
+        modalEl.id = "modal-edit-hostel";
+        modalEl.className = "modal-overlay";
+        document.body.appendChild(modalEl);
+    }
+    modalEl.innerHTML = modalHtml;
+    modalEl.classList.add("active");
+}
+
+async function updateHostelHandle(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const origText = submitBtn ? submitBtn.innerHTML : "";
+    if (submitBtn) { submitBtn.innerHTML = "Saving..."; submitBtn.disabled = true; }
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await safeFetchAdmin('/hostels/update-hostels.php', '/hostel/update-hostels.php', { method: "POST", body: formData });
+        const result = await parseJsonResponse(response);
+
+        if (result.success === true) {
+            closeModal("modal-edit-hostel");
+            alertModal(true, result.message || "HOSTEL UPDATED SUCCESSFULLY");
+            fetchAllHostels();
+        } else {
+            alertModal(false, result.message || "Failed to update hostel.");
         }
     } catch (err) {
         alertModal(false, "Connection error: " + err.message);
@@ -641,6 +1103,7 @@ function renderRoomsTable(roomList) {
                 <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
+                        <button type="button" class="btn-action-icon" title="Edit Room" onclick="openEditRoomModal('${room.room_id || room.roomId}')"><i class="bi bi-pencil"></i></button>
                         <button type="button" class="btn-action-icon btn-action-delete" title="Delete Room" onclick="deleteRoomHandle('${room.room_id || room.roomId}')">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -655,11 +1118,16 @@ function updateRoomStats(roomList) {
     const totalEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(1) .stat-big-value");
     const occupiedEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(2) .stat-big-value");
     const availableEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(3) .stat-big-value");
+    const capacityEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(4) .stat-big-value");
 
     if (totalEl) totalEl.textContent = roomList.length;
-    const occupied = roomList.filter(r => r.status_id === 'OCCUPIED' || r.status === 'OCCUPIED').length;
+    const occupied = roomList.filter(r => r.status_id === 'OCCUPIED' || r.status === 'OCCUPIED' || r.status_name === 'Occupied').length;
     if (occupiedEl) occupiedEl.textContent = occupied;
     if (availableEl) availableEl.textContent = roomList.length - occupied;
+    if (capacityEl) {
+        const totalCapacity = roomList.reduce((acc, r) => acc + (parseInt(r.capacity || r.room_capacity || 0) || 0), 0);
+        capacityEl.textContent = totalCapacity > 0 ? totalCapacity.toLocaleString() : (roomList.length * 4);
+    }
 }
 
 async function createRoomHandle(event) {
@@ -684,15 +1152,14 @@ async function createRoomHandle(event) {
     formData.append("block", hostelId);
     formData.append("floor", floor);
     formData.append("roomCapacity", capacity);
-    formData.append("capacity", capacity);
     formData.append("statusId", statusId);
 
     try {
-        const response = await safeFetchAdmin('/rooms/add-room.php', '/room/create-room.php', { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/rooms/create-room.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
-            alertModal(true, `ROOM CREATED SUCCESSFULLY! Room ${roomNumber}`);
+            alertModal(true, `ROOM CREATED SUCCESSFULLY! Room ID: ${fetchData.data?.roomId || ''} (Room ${roomNumber})`);
             document.querySelector("#add-room form")?.reset();
             closeModal("modal-add-room");
             fetchAllRooms();
@@ -705,6 +1172,7 @@ async function createRoomHandle(event) {
         if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
     }
 }
+
 
 async function deleteRoomHandle(roomId) {
     if (!confirm(`Are you sure you want to delete room ${roomId}?`)) return;
@@ -724,6 +1192,119 @@ async function deleteRoomHandle(roomId) {
         }
     } catch (error) {
         alertModal(false, "Connection error: " + error.message);
+    }
+}
+
+function openEditRoomModal(roomId) {
+    const room = allRoomsList.find(r => (r.room_id === roomId || r.roomId === roomId));
+    if (!room) { alertModal(false, "Room record not found."); return; }
+
+    let hostelOptions = "";
+    allHostelsList.forEach(h => {
+        const hId = h.hostel_id || h.hostelId;
+        const isSel = (hId === room.hostel_id || hId === room.hostelId) ? "selected" : "";
+        hostelOptions += `<option value="${hId}" ${isSel}>${h.hostel_name || hId}</option>`;
+    });
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 class="section-card-title" style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">Edit Room</h3>
+                    <p class="section-card-desc" style="margin: 4px 0 0 0; font-size: 13px; color: #64748b;">Room ID: <code>${room.room_id || room.roomId}</code></p>
+                </div>
+                <button type="button" class="btn-action-icon" onclick="closeModal('modal-edit-room')" style="border: none; background: #f1f5f9; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <form onsubmit="updateRoomHandle(event)">
+                <input type="hidden" name="roomId" id="editRoomId" value="${room.room_id || room.roomId}">
+                <div class="form-grid-3col">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomHostelId">Hostel Block *</label>
+                        <select class="form-select-custom" name="hostelId" id="editRoomHostelId" required>
+                            ${hostelOptions || `<option value="${room.hostel_id || ''}" selected>${room.hostel_name || 'Current Hostel'}</option>`}
+                        </select>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomNumber">Room Number *</label>
+                        <input type="text" class="form-input-custom" name="roomNumber" id="editRoomNumber" value="${room.room_number || ''}" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomFloor">Floor Level *</label>
+                        <input type="number" class="form-input-custom" name="floor" id="editRoomFloor" value="${room.floor || '1'}" min="0" required>
+                    </div>
+                </div>
+                <div class="form-grid-3col" style="margin-top: 14px;">
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomCapacity">Bed Capacity *</label>
+                        <input type="number" class="form-input-custom" name="roomCapacity" id="editRoomCapacity" value="${room.room_capacity || room.capacity || 4}" min="1" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomBlock">Wing / Block Label</label>
+                        <input type="text" class="form-input-custom" name="block" id="editRoomBlock" value="${room.block || 'Wing A'}">
+                    </div>
+                    <div class="form-group-custom">
+                        <label class="form-label-custom" for="editRoomStatus">Status *</label>
+                        <select class="form-select-custom" name="statusId" id="editRoomStatus" required>
+                            <option value="1" ${(room.status_id === '1' || room.status_name === 'Active' || !room.status_id) ? 'selected' : ''}>Active</option>
+                            <option value="2" ${(room.status_id === '2' || room.status_id === 'MAINTENANCE' || room.status_name === 'Maintenance') ? 'selected' : ''}>Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn-secondary" onclick="closeModal('modal-edit-room')">Cancel</button>
+                    <button type="submit" class="btn-primary"><i class="bi bi-check2"></i> Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modal = document.getElementById("modal-edit-room");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "modal-edit-room";
+        modal.className = "modal-overlay";
+        document.body.appendChild(modal);
+    }
+    modal.innerHTML = modalHtml;
+    openModal("modal-edit-room");
+}
+
+async function updateRoomHandle(event) {
+    if (event) event.preventDefault();
+    const roomId = document.getElementById("editRoomId")?.value;
+    const hostelId = document.getElementById("editRoomHostelId")?.value;
+    const roomNumber = document.getElementById("editRoomNumber")?.value.trim();
+    const floor = document.getElementById("editRoomFloor")?.value || "1";
+    const capacity = document.getElementById("editRoomCapacity")?.value || "4";
+    const block = document.getElementById("editRoomBlock")?.value || "Wing A";
+    const statusId = document.getElementById("editRoomStatus")?.value || "1";
+
+    if (!roomNumber) { alertModal(false, "Room number is required."); return; }
+
+    const formData = new FormData();
+    formData.append("roomId", roomId);
+    formData.append("hostelId", hostelId);
+    formData.append("roomNumber", roomNumber);
+    formData.append("floor", floor);
+    formData.append("roomCapacity", capacity);
+    formData.append("capacity", capacity);
+    formData.append("block", block);
+    formData.append("statusId", statusId);
+
+    try {
+        const response = await safeFetchAdmin('/rooms/update-room.php', '/room/update-room.php', { method: "POST", body: formData });
+        const res = await parseJsonResponse(response);
+        if (res.success === true) {
+            alertModal(true, "ROOM UPDATED SUCCESSFULLY");
+            closeModal("modal-edit-room");
+            fetchAllRooms();
+        } else {
+            alertModal(false, res.message || "Failed to update room.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
     }
 }
 
@@ -797,6 +1378,7 @@ function renderBedsTable(bedList) {
                 <td>${bed.created_at ? new Date(bed.created_at).toLocaleDateString('en-GB') : 'Active'}</td>
                 <td style="text-align: right;">
                     <div style="display: inline-flex; gap: 4px;">
+                        <button type="button" class="btn-action-icon" title="Edit Bed" onclick="openEditBedModal('${bed.bed_id}')"><i class="bi bi-pencil"></i></button>
                         <button type="button" class="btn-action-icon btn-action-delete" title="Delete Bed" onclick="deleteBedHandle('${bed.bed_id}')">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -811,11 +1393,13 @@ function updateBedStats(bedList) {
     const totalEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(1) .stat-big-value");
     const occEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(2) .stat-big-value");
     const availEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(3) .stat-big-value");
+    const reservedEl = document.querySelector(".stats-cards-grid-4 .overview-stat-card:nth-child(4) .stat-big-value");
 
     if (totalEl) totalEl.textContent = bedList.length.toLocaleString();
-    const occupied = bedList.filter(b => b.status_id === 'O' || b.student_id).length;
+    const occupied = bedList.filter(b => b.status_id === 'A' || b.status_id === 'O' || b.student_id).length;
     if (occEl) occEl.textContent = occupied.toLocaleString();
     if (availEl) availEl.textContent = (bedList.length - occupied).toLocaleString();
+    if (reservedEl) reservedEl.textContent = bedList.filter(b => b.status_id === 'M' || b.status_id === 'R').length;
 }
 
 async function createBedHandle(event) {
@@ -837,21 +1421,104 @@ async function createBedHandle(event) {
     const formData = new FormData();
     formData.append("hostelId", hostelId);
     formData.append("roomId", roomNumber);
-    formData.append("roomNumber", roomNumber);
     formData.append("bedNumber", bedNumber);
     formData.append("statusId", statusId === "OCCUPIED" ? "O" : (statusId === "MAINTENANCE" ? "M" : "D"));
 
     try {
-        const response = await safeFetchAdmin('/bed/add-bed.php', '/bed/create-bed.php', { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/bed/create-bed.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
-            alertModal(true, `BED SPACE ADDED SUCCESSFULLY! Bed ${bedNumber}`);
+            alertModal(true, `BED CREATED SUCCESSFULLY! Bed ID: ${fetchData.data?.bedId || ''} (Bed ${bedNumber})`);
             document.querySelector("#add-bed form")?.reset();
             closeModal("modal-add-bed");
             fetchAllBeds();
         } else {
             alertModal(false, fetchData.message || "Failed to add bed space.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
+    } finally {
+        if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
+    }
+}
+
+
+function openEditBedModal(bedId) {
+    const bed = allBedsList.find(b => (b.bed_id == bedId));
+    if (!bed) { alertModal(false, "Bed record not found."); return; }
+
+    const curBedNumber = bed.bed_number || "";
+    const curStatus = bed.status_id || "D";
+    const curRoom = bed.room_number ? `Room ${bed.room_number}` : (bed.room_id || "");
+    const curHostel = bed.hostel_name || "";
+
+    const modalHtml = `
+        <div class="modal-dialog-custom">
+            <div class="modal-header-custom" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0 0 4px;">Edit Bed</h3>
+                    <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Update bed details (ID: ${bedId})</p>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeModal('modal-edit-bed')" style="background: none; border: none; font-size: 1.25rem; color: #64748b; cursor: pointer;">&times;</button>
+            </div>
+            <form onsubmit="updateBedHandle(event)">
+                <input type="hidden" name="bedId" value="${bedId}">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.82rem; color: #475569;">
+                    <strong>Location:</strong> ${curHostel} &bull; ${curRoom}
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Bed Number *</label>
+                        <input type="text" name="bedNumber" value="${curBedNumber}" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 6px;">Status *</label>
+                        <select name="statusId" required class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                            <option value="D" ${curStatus === "D" || curStatus === "1" ? "selected" : ""}>Available</option>
+                            <option value="A" ${curStatus === "A" || curStatus === "2" ? "selected" : ""}>Occupied</option>
+                            <option value="M" ${curStatus === "M" || curStatus === "3" ? "selected" : ""}>Under Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('modal-edit-bed')" style="padding: 8px 18px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; cursor: pointer;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="padding: 8px 20px; border-radius: 6px; background: #2563eb; color: #fff; border: none; font-weight: 600; cursor: pointer;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    let modalEl = document.getElementById("modal-edit-bed");
+    if (!modalEl) {
+        modalEl = document.createElement("div");
+        modalEl.id = "modal-edit-bed";
+        modalEl.className = "modal-overlay";
+        document.body.appendChild(modalEl);
+    }
+    modalEl.innerHTML = modalHtml;
+    modalEl.classList.add("active");
+}
+
+async function updateBedHandle(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const origText = submitBtn ? submitBtn.innerHTML : "";
+    if (submitBtn) { submitBtn.innerHTML = "Saving..."; submitBtn.disabled = true; }
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await safeFetchAdmin('/bed/update-bed.php', null, { method: "POST", body: formData });
+        const result = await parseJsonResponse(response);
+
+        if (result.success === true) {
+            closeModal("modal-edit-bed");
+            alertModal(true, result.message || "BED UPDATED SUCCESSFULLY");
+            fetchAllBeds();
+        } else {
+            alertModal(false, result.message || "Failed to update bed.");
         }
     } catch (err) {
         alertModal(false, "Connection error: " + err.message);
@@ -980,7 +1647,7 @@ async function createAllocationHandle(event) {
     formData.append("bedId", bedId);
 
     try {
-        const response = await safeFetchAdmin('/allocation/add-allocation.php', null, { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/allocation/create-allocation.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
@@ -1122,7 +1789,7 @@ async function createCheckoutHandle(event) {
     formData.append("remarks", remarks);
 
     try {
-        const response = await safeFetchAdmin('/checkout/add-checkout.php', null, { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/checkout/create-checkout.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
@@ -1224,6 +1891,45 @@ function renderTransfersTable(transferList) {
     }).join("");
 }
 
+async function createTransferHandle(event) {
+    if (event) event.preventDefault();
+
+    const studentId = document.getElementById("studentId")?.value.trim();
+    const newBedId = document.getElementById("targetRoomId")?.value.trim() || document.getElementById("newBedId")?.value.trim();
+    const reason = document.getElementById("reason")?.value.trim();
+
+    if (!studentId) { alertModal(false, "STUDENT ID IS REQUIRED"); return; }
+    if (!newBedId) { alertModal(false, "TARGET BED / ROOM IS REQUIRED"); return; }
+    if (!reason) { alertModal(false, "REASON IS REQUIRED"); return; }
+
+    const submitBtn = document.querySelector("#request-transfer button[type='submit'], form[action*='transfer'] button[type='submit']");
+    const origText = submitBtn ? submitBtn.innerHTML : "Save Transfer Record";
+    if (submitBtn) { submitBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Saving...`; submitBtn.disabled = true; }
+
+    const formData = new FormData();
+    formData.append("studentId", studentId);
+    formData.append("newBedId", newBedId);
+    formData.append("reason", reason);
+
+    try {
+        const response = await safeFetchAdmin('/room-transfer/create-transfer.php', null, { method: "POST", body: formData });
+        const fetchData = await parseJsonResponse(response);
+
+        if (fetchData.success === true) {
+            alertModal(true, "TRANSFER CREATED SUCCESSFULLY");
+            document.querySelector("#request-transfer form, form[action*='transfer']")?.reset();
+            closeModal("modal-request-transfer");
+            fetchAllTransfers();
+        } else {
+            alertModal(false, fetchData.message || "Failed to process transfer.");
+        }
+    } catch (err) {
+        alertModal(false, "Connection error: " + err.message);
+    } finally {
+        if (submitBtn) { submitBtn.innerHTML = origText; submitBtn.disabled = false; }
+    }
+}
+
 async function deleteTransferHandle(transferId) {
     if (!confirm(`Are you sure you want to delete transfer record ${transferId}?`)) return;
 
@@ -1319,6 +2025,8 @@ async function createVisitorHandle(event) {
     const purpose = document.getElementById("purpose")?.value;
     const visitDate = document.getElementById("visitDate")?.value;
     const arrivalTime = document.getElementById("arrivalTime")?.value || "10:00";
+    const departureTime = document.getElementById("departureTime")?.value || "";
+    const statusId = document.getElementById("statusId")?.value || "IN";
 
     if (!studentId) { alertModal(false, "STUDENT MATRIC / ID IS REQUIRED"); return; }
     if (!visitorName) { alertModal(false, "VISITOR NAME IS REQUIRED"); return; }
@@ -1331,9 +2039,11 @@ async function createVisitorHandle(event) {
     formData.append("purpose", purpose);
     formData.append("visitDate", visitDate);
     formData.append("arrivalTime", arrivalTime);
+    formData.append("departureTime", departureTime);
+    formData.append("statusId", statusId);
 
     try {
-        const response = await safeFetchAdmin('/visitor/add-visitor.php', null, { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/visitor/create-visitor.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
@@ -1440,23 +2150,26 @@ async function createPaymentHandle(event) {
     if (event) event.preventDefault();
 
     const studentId = document.getElementById("studentId")?.value.trim();
-    const feeDescription = document.getElementById("feeDescription")?.value || "Annual Hostel Fee";
+    const feeId = document.getElementById("feeId")?.value?.trim() || document.getElementById("feeDescription")?.value?.trim() || "FEE20260924";
     const amount = document.getElementById("amount")?.value;
     const paymentMethod = document.getElementById("paymentMethod")?.value || "Bank Transfer";
-    const transactionRef = document.getElementById("transactionRef")?.value.trim() || ("TXN-" + Date.now());
+    const paymentDate = document.getElementById("paymentDate")?.value || new Date().toISOString().slice(0, 10);
+    const statusId = document.getElementById("statusId")?.value || "P";
 
     if (!studentId) { alertModal(false, "STUDENT MATRIC / ID IS REQUIRED"); return; }
+    if (!feeId) { alertModal(false, "FEE IS REQUIRED"); return; }
     if (!amount) { alertModal(false, "AMOUNT IS REQUIRED"); return; }
 
     const formData = new FormData();
     formData.append("studentId", studentId);
-    formData.append("feeDescription", feeDescription);
+    formData.append("feeId", feeId);
     formData.append("amount", amount);
     formData.append("paymentMethod", paymentMethod);
-    formData.append("transactionRef", transactionRef);
+    formData.append("paymentDate", paymentDate);
+    formData.append("statusId", statusId);
 
     try {
-        const response = await safeFetchAdmin('/payment/add-payment.php', null, { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/payment/create-payment.php', null, { method: "POST", body: formData });
         const fetchData = await parseJsonResponse(response);
 
         if (fetchData.success === true) {
@@ -1524,6 +2237,17 @@ function populateHostelDropdowns(hostels) {
             const hId = h.hostel_id || h.hostelName;
             const hName = h.hostel_name || hId;
             sel.innerHTML += `<option value="${hId}" ${currentVal === hId ? 'selected' : ''}>${hName} (${h.gender || 'Mixed'})</option>`;
+        });
+    });
+
+    const filterSelects = document.querySelectorAll("select.toolbar-select[aria-label='Filter by Hostel Block'], #hostelFilter");
+    filterSelects.forEach(sel => {
+        if (!sel) return;
+        const currentVal = sel.value;
+        sel.innerHTML = `<option value="">All Blocks</option>`;
+        hostels.forEach(h => {
+            const hName = h.hostel_name || h.hostel_id || h.hostelName;
+            sel.innerHTML += `<option value="${hName}" ${currentVal === hName ? 'selected' : ''}>${hName}</option>`;
         });
     });
 }
@@ -1620,13 +2344,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 8. Transfers
-    const transferForm = document.querySelector("#request-transfer form");
-    if (transferForm) {
-        transferForm.addEventListener("submit", function(e) {
-            e.preventDefault();
-            alertModal(true, "TRANSFER REQUEST RECORDED FOR EVALUATION");
-        });
+    const transferForm = document.querySelector("#request-transfer form, form[action*='transfer'], .section-card form");
+    if (transferForm && window.location.pathname.includes("transfer")) {
+        transferForm.addEventListener("submit", createTransferHandle);
         fetchAllTransfers();
+    } else if (transferForm) {
+        transferForm.addEventListener("submit", createTransferHandle);
     }
 
     // 9. Visitors

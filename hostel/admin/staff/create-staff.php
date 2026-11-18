@@ -42,7 +42,6 @@ if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
     goto end;
 }
 
-
 if ($roleId == '') {
     $response = [
         'success' => false,

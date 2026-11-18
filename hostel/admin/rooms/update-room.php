@@ -2,13 +2,17 @@
 
 <?php
 // DECLARATION OF VARIABLE
-$roomId       = trim($_POST['roomId']);
-$hostelId     = trim($_POST['hostelId']);
-$roomNumber   = trim($_POST['roomNumber']);
-$block        = trim($_POST['block']);
-$floor        = trim($_POST['floor']);
-$roomCapacity = trim($_POST['roomCapacity']);
-$statusId     = 1; 
+$roomId       = trim($_POST['roomId'] ?? '');
+$hostelId     = trim($_POST['hostelId'] ?? '');
+$roomNumber   = trim($_POST['roomNumber'] ?? '');
+$block        = trim($_POST['block'] ?? $_POST['hostelId'] ?? 'A');
+if ($block == '') $block = 'A';
+$floor        = trim($_POST['floor'] ?? '1');
+if ($floor == '') $floor = '1';
+$roomCapacity = trim($_POST['roomCapacity'] ?? $_POST['capacity'] ?? '4');
+if ($roomCapacity == '' || !is_numeric($roomCapacity)) $roomCapacity = '4';
+$statusId     = trim($_POST['statusId'] ?? '1');
+if ($statusId == '') $statusId = '1'; 
 
 if ($roomId == '') {
     $response = [

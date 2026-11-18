@@ -1,6 +1,7 @@
-let apiBaseUrl = window.CUSTOM_ADMIN_AUTH_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
+const onlineAdminAuthApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin/auth";
+let apiBaseUrl = window.CUSTOM_ADMIN_AUTH_API_BASE_URL || onlineAdminAuthApiBaseUrl;
 
-// Local XAMPP Apache detection (works on port 80, empty, and Live Server port 5500)
+// Local XAMPP Apache detection
 if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
     const port = window.location.port;
     const protocol = window.location.protocol;
@@ -11,6 +12,21 @@ if (typeof window !== "undefined" && (window.location.hostname === "localhost" |
 }
 let adminApiBaseUrl = apiBaseUrl;
 let staffApiBaseUrl = apiBaseUrl;
+
+async function safeAuthFetch(endpoint, options = {}) {
+    try {
+        return await fetch(apiBaseUrl + endpoint, options);
+    } catch (err) {
+        if (apiBaseUrl !== onlineAdminAuthApiBaseUrl) {
+            try {
+                return await fetch(onlineAdminAuthApiBaseUrl + endpoint, options);
+            } catch (e) {
+                throw err;
+            }
+        }
+        throw err;
+    }
+}
 
 async function parseJsonResponse(response) {
     const rawText = await response.text();
@@ -128,7 +144,7 @@ async function adminSignInHandle() {
     formData.append("password", password);
 
     try {
-        const response = await fetch(apiBaseUrl + '/sign-in.php', {
+        const response = await safeAuthFetch('/sign-in.php', {
             method: "POST",
             body: formData
         });
@@ -184,7 +200,7 @@ async function adminForgotPasswordHandle() {
     formData.append("resetOtp", "");
 
     try {
-        const response = await fetch(apiBaseUrl + '/forgot-password.php', {
+        const response = await safeAuthFetch('/forgot-password.php', {
             method: "POST",
             body: formData
         });
@@ -280,7 +296,7 @@ async function adminResetPasswordHandle() {
     formData.append("confirmPassword", confirmPassword);
 
     try {
-        const response = await fetch(apiBaseUrl + '/reset-password.php', {
+        const response = await safeAuthFetch('/reset-password.php', {
             method: "POST",
             body: formData
         });

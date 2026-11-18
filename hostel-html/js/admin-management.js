@@ -5,15 +5,17 @@
  * - Allocations, Checkouts, Transfers, Visitors, Payments, Maintenance
  */
 
-let adminApiBaseUrl = window.CUSTOM_ADMIN_API_BASE_URL || "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin";
+const onlineAdminApiBaseUrl = "https://hostelhub.niitwebdev.com.ng/hostelhub-api/admin";
+let adminApiBaseUrl = window.CUSTOM_ADMIN_API_BASE_URL || onlineAdminApiBaseUrl;
 
 // Local XAMPP Apache detection
 if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
     const port = window.location.port;
-    if (port === "" || port === "80") {
-        const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/hostel";
-        adminApiBaseUrl = window.location.origin + rootPath + "/admin";
-    }
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const localHost = (port === "" || port === "80") ? window.location.origin : `${protocol}//${hostname}`;
+    const rootPath = window.location.pathname.includes("/ayo-niit-web-project/") ? "/ayo-niit-web-project/hostel" : "/ayo-niit-web-project/hostel";
+    adminApiBaseUrl = localHost + rootPath + "/admin";
 }
 
 // Helper: Safely parse JSON from server responses
@@ -30,7 +32,7 @@ async function parseJsonResponse(response) {
     }
 }
 
-// Resilient fetch helper: tries primary endpoint, falls back to alternative if 404
+// Resilient fetch helper: tries primary endpoint, falls back to alternative if 404 or offline
 async function safeFetchAdmin(primaryPath, fallbackPath, options = {}) {
     try {
         const res = await fetch(adminApiBaseUrl + primaryPath, options);
@@ -39,6 +41,16 @@ async function safeFetchAdmin(primaryPath, fallbackPath, options = {}) {
         }
         return res;
     } catch (err) {
+        // If local server unreachable, fall back to online production server
+        if (adminApiBaseUrl !== onlineAdminApiBaseUrl) {
+            try {
+                const res = await fetch(onlineAdminApiBaseUrl + primaryPath, options);
+                if (res.status === 404 && fallbackPath) {
+                    return await fetch(onlineAdminApiBaseUrl + fallbackPath, options);
+                }
+                return res;
+            } catch (fallbackErr) {}
+        }
         if (fallbackPath) {
             try {
                 return await fetch(adminApiBaseUrl + fallbackPath, options);

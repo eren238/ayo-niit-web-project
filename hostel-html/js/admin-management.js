@@ -1008,7 +1008,7 @@ async function updateHostelHandle(event) {
     const formData = new FormData(form);
 
     try {
-        const response = await safeFetchAdmin('/hostels/update-hostels.php', '/hostel/update-hostels.php', { method: "POST", body: formData });
+        const response = await safeFetchAdmin('/hostels/update-hostel.php', '/hostels/update-hostels.php', { method: "POST", body: formData });
         const result = await parseJsonResponse(response);
 
         if (result.success === true) {

@@ -154,7 +154,6 @@ async function staffSignInHandle() {
         if (fetchData.success === true || fetchData.success === "true") {
             if (fetchData.data) {
                 sessionStorage.setItem("staffUserSession", JSON.stringify(fetchData.data));
-                localStorage.setItem("staffUserSession", JSON.stringify(fetchData.data));
             }
             const welcomeName = (fetchData.data && (fetchData.data.firstName || fetchData.data.emailAddress))
                 ? ' Welcome, ' + (fetchData.data.firstName || fetchData.data.emailAddress)

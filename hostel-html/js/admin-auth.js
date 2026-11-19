@@ -154,7 +154,6 @@ async function adminSignInHandle() {
         if (fetchData.success === true || fetchData.success === "true") {
             if (fetchData.data) {
                 sessionStorage.setItem("adminUserSession", JSON.stringify(fetchData.data));
-                localStorage.setItem("adminUserSession", JSON.stringify(fetchData.data));
             }
             const welcomeName = (fetchData.data && (fetchData.data.firstName || fetchData.data.emailAddress))
                 ? ' Welcome, ' + (fetchData.data.firstName || fetchData.data.emailAddress)

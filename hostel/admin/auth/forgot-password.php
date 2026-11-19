@@ -39,7 +39,7 @@ $otpCode = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 if (file_exists(__DIR__ . '/../../config/mail/user/sent-otp-to-mail.php')) {
     $resetOtp = $otpCode;
     try {
-        @include_once __DIR__ . '/../../config/mail/user/sent-otp-to-mail.php';
+        @include __DIR__ . '/../../config/mail/user/sent-otp-to-mail.php';
     } catch (\Throwable $t) {
         // Fail silently so password reset flow continues
     }

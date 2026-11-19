@@ -49,6 +49,14 @@ $studentId = $studentData['student_id'];
 
 $otpCode = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
+if (file_exists(__DIR__ . '/../../config/mail/user/sent-otp-to-mail.php')) {
+    $resetOtp = $otpCode;
+    try {
+        @include __DIR__ . '/../../config/mail/user/sent-otp-to-mail.php';
+    } catch (\Throwable $t) {
+        // Fail silently so password reset flow continues
+    }
+}
 
 mysqli_query($conn, "UPDATE student_tab SET reset_otp='$otpCode', updated_at=NOW() WHERE student_id='$studentId'");
 

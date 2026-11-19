@@ -86,7 +86,7 @@ function studentAlertModal(success, message, callbackOrUrl = null) {
 
 function getStudentSession() {
     try {
-        return JSON.parse(sessionStorage.getItem("studentUserSession") || localStorage.getItem("studentUserSession") || "{}");
+        return JSON.parse(sessionStorage.getItem("studentUserSession") || "{}");
     } catch (e) {
         return {};
     }

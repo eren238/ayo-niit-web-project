@@ -2,10 +2,22 @@
  * School Hostel Management System - Session & User Profile Manager
  * Dynamically synchronizes logged-in user names, avatars, roles and IDs across
  * Student, Admin, and Staff portals so real user details are always displayed.
+ *
+ * Strict Session Policy:
+ * - Sessions live ONLY in sessionStorage (auto-clears on tab/browser close).
+ * - Visiting any portal page without an active session redirects to the login screen.
  */
 
 (function () {
     "use strict";
+
+    // 1. Wipe any old persistent localStorage sessions to prevent back-door link access
+    try {
+        localStorage.removeItem("adminUserSession");
+        localStorage.removeItem("staffUserSession");
+        localStorage.removeItem("studentUserSession");
+        localStorage.removeItem("userSignUpSession");
+    } catch (e) {}
 
     function parseSession(raw) {
         if (!raw) return null;
@@ -15,6 +27,65 @@
         } catch (e) {
             return null;
         }
+    }
+
+    // 2. Strict Route Guard: Ensure user cannot enter any part of the portal via link if not logged in
+    function enforceRouteGuard() {
+        const rawPath = window.location.pathname.toLowerCase().replace(/\\/g, "/");
+        const filename = rawPath.substring(rawPath.lastIndexOf("/") + 1);
+
+        // Public/Auth pages that do not require an active session
+        const isAuthFile = 
+            rawPath.includes("/admin-auth/") ||
+            rawPath.includes("/staff-auth/") ||
+            filename === "admin-sign-in.html" ||
+            filename === "admin-forgot-password.html" ||
+            filename === "admin-reset-password.html" ||
+            filename === "staff-sign-in.html" ||
+            filename === "staff-forgot-password.html" ||
+            filename === "staff-reset-password.html" ||
+            filename === "student-login.html" ||
+            filename === "student-sign-up.html" ||
+            filename === "student-forgot-password.html" ||
+            filename === "student-reset-password.html" ||
+            filename === "index.html" ||
+            filename === "";
+
+        if (isAuthFile) {
+            return true;
+        }
+
+        // Admin Portal: requires adminUserSession in sessionStorage
+        if (rawPath.includes("/admin/")) {
+            const adminSession = parseSession(sessionStorage.getItem("adminUserSession"));
+            if (!adminSession) {
+                window.location.replace("admin-auth/admin-sign-in.html");
+                return false;
+            }
+        }
+        // Staff Portal: requires staffUserSession in sessionStorage
+        else if (rawPath.includes("/staff/")) {
+            const staffSession = parseSession(sessionStorage.getItem("staffUserSession"));
+            if (!staffSession) {
+                window.location.replace("staff-auth/staff-sign-in.html");
+                return false;
+            }
+        }
+        // Student Portal: requires studentUserSession in sessionStorage
+        else if (rawPath.includes("/student/")) {
+            const studentSession = parseSession(sessionStorage.getItem("studentUserSession"));
+            if (!studentSession) {
+                window.location.replace("student-login.html");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Run guard immediately on script execution
+    if (!enforceRouteGuard()) {
+        return;
     }
 
     function getInitials(first, last, fullFallback) {
@@ -34,28 +105,19 @@
     }
 
     function getSessionData() {
-        const path = window.location.pathname.toLowerCase();
+        const path = window.location.pathname.toLowerCase().replace(/\\/g, "/");
         let portal = "student";
         let session = null;
 
-        if (path.includes("/admin/") || path.includes("/admin-auth/")) {
+        if (path.includes("/admin/")) {
             portal = "admin";
-            session = parseSession(sessionStorage.getItem("adminUserSession")) ||
-                      parseSession(localStorage.getItem("adminUserSession")) ||
-                      parseSession(sessionStorage.getItem("staffUserSession")) ||
-                      parseSession(localStorage.getItem("staffUserSession"));
-        } else if (path.includes("/staff/") || path.includes("/staff-auth/")) {
+            session = parseSession(sessionStorage.getItem("adminUserSession"));
+        } else if (path.includes("/staff/")) {
             portal = "staff";
-            session = parseSession(sessionStorage.getItem("staffUserSession")) ||
-                      parseSession(localStorage.getItem("staffUserSession")) ||
-                      parseSession(sessionStorage.getItem("adminUserSession")) ||
-                      parseSession(localStorage.getItem("adminUserSession"));
+            session = parseSession(sessionStorage.getItem("staffUserSession"));
         } else {
             portal = "student";
-            session = parseSession(sessionStorage.getItem("studentUserSession")) ||
-                      parseSession(localStorage.getItem("studentUserSession")) ||
-                      parseSession(sessionStorage.getItem("userSignUpSession")) ||
-                      parseSession(localStorage.getItem("userSignUpSession"));
+            session = parseSession(sessionStorage.getItem("studentUserSession"));
         }
 
         return { portal, user: session };
@@ -63,63 +125,29 @@
 
     function applyUserProfile() {
         const { portal, user } = getSessionData();
+        if (!user) return;
 
-        let firstName = "";
-        let lastName = "";
-        let fullName = "";
-        let email = "";
-        let userId = "";
-        let role = "";
-        let department = "";
-        let level = "";
-        let phoneNumber = "";
-        let gender = "";
-        let initials = "";
+        let firstName = user.firstName || user.first_name || user.firstname || "";
+        let lastName = user.lastName || user.last_name || user.lastname || "";
+        let fullName = (firstName && lastName)
+            ? `${firstName} ${lastName}`
+            : (user.fullName || user.fullname || user.name || firstName || lastName || "");
 
-        if (user) {
-            firstName = user.firstName || user.first_name || user.firstname || "";
-            lastName = user.lastName || user.last_name || user.lastname || "";
-            fullName = (firstName && lastName)
-                ? `${firstName} ${lastName}`
-                : (user.fullName || user.fullname || user.name || firstName || lastName || "");
-
-            email = user.emailAddress || user.email_address || user.email || "";
-            userId = user.studentId || user.student_id || user.matricNumber || user.matric_number || user.matricNo ||
+        let email = user.emailAddress || user.email_address || user.email || "";
+        let userId = user.studentId || user.student_id || user.matricNumber || user.matric_number || user.matricNo ||
                      user.staffId || user.staff_id || user.adminId || "";
-            role = user.roleName || user.role_name || user.role || user.roleTitle || "";
-            department = user.department || user.dept || "";
-            level = user.level || user.academicLevel || "";
-            phoneNumber = user.phoneNumber || user.phone_number || user.phone || "";
-            gender = user.gender || "";
+        let role = user.roleName || user.role_name || user.role || user.roleTitle || "";
+        let department = user.department || user.dept || "";
+        let level = user.level || user.academicLevel || "";
+        let phoneNumber = user.phoneNumber || user.phone_number || user.phone || "";
+        let gender = user.gender || "";
 
-            if (!fullName && email) {
-                const username = email.split("@")[0];
-                fullName = username.charAt(0).toUpperCase() + username.slice(1);
-            }
-
-            initials = getInitials(firstName, lastName, fullName || email || (portal === "admin" ? "Admin User" : portal === "staff" ? "Staff" : "Student"));
-        } else {
-            // Default fallbacks when no session is stored yet
-            if (portal === "admin") {
-                firstName = "Admin";
-                lastName = "User";
-                fullName = "Admin User";
-                role = "Super Admin";
-                initials = "AU";
-            } else if (portal === "staff") {
-                firstName = "Staff";
-                lastName = "Member";
-                fullName = "Staff Member";
-                role = "Hall Warden";
-                initials = "SM";
-            } else {
-                firstName = "Student";
-                lastName = "Resident";
-                fullName = "Student Resident";
-                userId = "STUDENT PORTAL";
-                initials = "SR";
-            }
+        if (!fullName && email) {
+            const username = email.split("@")[0];
+            fullName = username.charAt(0).toUpperCase() + username.slice(1);
         }
+
+        const initials = getInitials(firstName, lastName, fullName || email || (portal === "admin" ? "Admin User" : portal === "staff" ? "Staff" : "Student"));
 
         // 1. Update all top-bar profile badges across any page
         document.querySelectorAll(".user-profile-badge").forEach(badge => {
@@ -152,13 +180,11 @@
 
         // 2. Student Portal Page-Specific Enhancements
         if (portal === "student" && user) {
-            // Dashboard header welcome text
             const topWelcomeP = document.querySelector(".dashboard-topbar .page-title-group p");
             if (topWelcomeP && topWelcomeP.textContent.includes("Welcome")) {
                 topWelcomeP.textContent = `Welcome back, ${fullName}${userId ? ' (Matric: ' + userId + ')' : ''}`;
             }
 
-            // Roommate cards: update the card for current user "(You)"
             document.querySelectorAll(".roommate-card.current-user").forEach(card => {
                 const nameEl = card.querySelector(".roommate-name");
                 if (nameEl) nameEl.textContent = `${fullName} (You)`;
@@ -187,7 +213,6 @@
                 }
             });
 
-            // Student profile page (profile.html)
             const profileAvatar = document.querySelector(".section-card .user-avatar-circle");
             if (profileAvatar) profileAvatar.textContent = initials;
 
@@ -202,7 +227,6 @@
                 profileHeaderP.innerHTML = `Matric ID: <strong>${userId || 'Pending'}</strong>${deptInfo}`;
             }
 
-            // Form inputs in profile.html
             const setVal = (name, val) => {
                 if (!val) return;
                 const el = document.querySelector(`input[name="${name}"]`);
@@ -232,16 +256,14 @@
             const href = (link.getAttribute("href") || "").toLowerCase();
             if (text.includes("sign out") || text.includes("logout") || href.includes("sign-in") || href.includes("login")) {
                 link.addEventListener("click", function () {
-                    const path = window.location.pathname.toLowerCase();
+                    const path = window.location.pathname.toLowerCase().replace(/\\/g, "/");
                     if (path.includes("/admin")) {
                         sessionStorage.removeItem("adminUserSession");
-                        localStorage.removeItem("adminUserSession");
                     } else if (path.includes("/staff")) {
                         sessionStorage.removeItem("staffUserSession");
-                        localStorage.removeItem("staffUserSession");
                     } else {
                         sessionStorage.removeItem("studentUserSession");
-                        localStorage.removeItem("studentUserSession");
+                        sessionStorage.removeItem("userSignUpSession");
                     }
                 });
             }
@@ -254,17 +276,14 @@
         apply: applyUserProfile,
         setStudentSession: function (data) {
             sessionStorage.setItem("studentUserSession", JSON.stringify(data));
-            localStorage.setItem("studentUserSession", JSON.stringify(data));
             applyUserProfile();
         },
         setAdminSession: function (data) {
             sessionStorage.setItem("adminUserSession", JSON.stringify(data));
-            localStorage.setItem("adminUserSession", JSON.stringify(data));
             applyUserProfile();
         },
         setStaffSession: function (data) {
             sessionStorage.setItem("staffUserSession", JSON.stringify(data));
-            localStorage.setItem("staffUserSession", JSON.stringify(data));
             applyUserProfile();
         }
     };
@@ -282,6 +301,7 @@
 
     // Also run on pageshow (handles browser back/forward cache)
     window.addEventListener("pageshow", function () {
+        if (!enforceRouteGuard()) return;
         applyUserProfile();
     });
 })();

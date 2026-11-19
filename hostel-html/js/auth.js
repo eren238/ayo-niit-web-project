@@ -141,7 +141,6 @@ async function signInHandle() {
         if (fetchData.success === true || fetchData.success === "true") {
             if (fetchData.data) {
                 sessionStorage.setItem("studentUserSession", JSON.stringify(fetchData.data));
-                localStorage.setItem("studentUserSession", JSON.stringify(fetchData.data));
             }
             const email = (fetchData.data && (fetchData.data.firstName || fetchData.data.emailAddress))
                 ? ' Hi, ' + (fetchData.data.firstName || fetchData.data.emailAddress)
@@ -286,9 +285,6 @@ async function signUpHandle() {
                 studentId: (fetchData.data && (fetchData.data.studentId || fetchData.data.student_id)) || ""
             };
             sessionStorage.setItem("userSignUpSession", JSON.stringify(signupData));
-            localStorage.setItem("userSignUpSession", JSON.stringify(signupData));
-            sessionStorage.setItem("studentUserSession", JSON.stringify(signupData));
-            localStorage.setItem("studentUserSession", JSON.stringify(signupData));
             alertModal(true, fetchData.message || "STUDENT CREATED SUCCESSFUL", "student-login.html");
         } else {
             alertModal(false, fetchData.message || "Unable to complete sign up");
@@ -494,7 +490,6 @@ async function adminSignInHandle() {
         if (fetchData.success === true || fetchData.success === "true") {
             if (fetchData.data) {
                 sessionStorage.setItem("adminUserSession", JSON.stringify(fetchData.data));
-                localStorage.setItem("adminUserSession", JSON.stringify(fetchData.data));
             }
             const welcomeName = (fetchData.data && (fetchData.data.firstName || fetchData.data.emailAddress))
                 ? ' Welcome, ' + (fetchData.data.firstName || fetchData.data.emailAddress)
@@ -706,7 +701,6 @@ async function staffSignInHandle() {
         if (fetchData.success === true || fetchData.success === "true") {
             if (fetchData.data) {
                 sessionStorage.setItem("staffUserSession", JSON.stringify(fetchData.data));
-                localStorage.setItem("staffUserSession", JSON.stringify(fetchData.data));
             }
             const welcomeName = (fetchData.data && (fetchData.data.firstName || fetchData.data.emailAddress))
                 ? ' Welcome, ' + (fetchData.data.firstName || fetchData.data.emailAddress)
